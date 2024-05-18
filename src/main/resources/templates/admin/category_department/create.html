@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Create Category Department</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/category-department}" class="btn btn-primary">Back</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <form th:action="@{/categories}" method="post" id="categoryForm" name="categoryForm">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="name">Name</label>
+                                        <input type="text" th:name="name" id="name" class="form-control" placeholder="Name">
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="slug">Slug</label>
+                                        <input type="text" readonly th:name="slug" id="slug" class="form-control" placeholder="Slug">
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <input type="hidden" th:id="image_id" th:name="image_id" value="    ">
+                                        <label for="image">Image</label>
+                                        <div id="image" class="dropzone dz-clickable">
+                                            <div class="dz-message needsclick">
+                                                <br>Drop files here or click to upload.<br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="status">Status</label>
+                                        <select th:name="status" id="status" class="form-control">
+                                            <option value="1">Active</option>
+                                            <option value="0">Block</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="showHome">Show on Home</label>
+                                        <select th:name="showHome" id="showHome" class="form-control">
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pb-5 pt-3">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                        <a th:href="@{/admin/category-department}" class="btn btn-outline-dark ml-3">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(document).ready(function(){
+        $(".summernote").summernote({
+            height: 400
+        });
+    });
+</script>
+
+</body>
+</html>
