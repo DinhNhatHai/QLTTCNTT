@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import com.EquipMgmt.EquipMgmtspringboot.Models.User;
 import com.EquipMgmt.EquipMgmtspringboot.Repository.UserRepository;
 
-import java.util.Set;
-
 @Service
 public class UserServiceImplement implements UserService {
 
