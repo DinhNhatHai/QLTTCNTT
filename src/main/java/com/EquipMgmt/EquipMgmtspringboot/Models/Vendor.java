@@ -3,20 +3,20 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "Supplier")
-public class Supplier {
+@Table(name = "vendor")
+public class Vendor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Size(min = 3, max = 50)
-    @Column(name = "supplier_name", nullable = false)
-    private String supplierName;
+    @Column(name = "vendor_name", nullable = false)
+    private String vendorName;
 
     @Size(min = 10, max =15,message = "Phone number must be between 10 and 15 characters" )
-    @Column(name = "phone_number", nullable = false)
-    private String phoneNumber;
+    @Column(name = "telephone", nullable = false)
+    private String telephone;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -24,10 +24,10 @@ public class Supplier {
     @Column(name = "address", nullable = false)
     private String address;
 
-    public Supplier(Long id, String supplierName, String phoneNumber, String email, String address) {
+    public Vendor(Long id, String vendorName, String telephone, String email, String address) {
         this.id = id;
-        this.supplierName = supplierName;
-        this.phoneNumber = phoneNumber;
+        this.vendorName = vendorName;
+        this.telephone = telephone;
         this.email = email;
         this.address = address;
     }
@@ -41,20 +41,20 @@ public class Supplier {
         this.id = id;
     }
 
-    public String getSupplierName() {
-        return supplierName;
+    public String getVendorName() {
+        return vendorName;
     }
 
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return telephone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(String telephone) {
+        this.telephone = telephone;
     }
 
     public String getEmail() {
