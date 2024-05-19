@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "Department")
+@Table(name = "department")
 public class Department {
 
     @Id
@@ -14,7 +14,7 @@ public class Department {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "DepartmentType_id",referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "department_type_id",referencedColumnName = "id", nullable = false)
     private DepartmentType departmentType;
 
     @Size(min = 3, max = 50)
