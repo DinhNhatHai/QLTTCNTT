@@ -11,4 +11,14 @@ public class DepartmentController {
     public String index() {
         return  "admin/department/list";
     }
+
+    @GetMapping("/create")
+    public String create() {
+        return  "admin/department/create";
+    }
+
+    @GetMapping("/edit")
+    public String edit() {
+        return  "admin/department/edit";
+    }
 }

@@ -11,4 +11,14 @@ public class PagesController {
     public String index() {
         return  "admin/pages/list";
     }
+
+    @GetMapping("/create")
+    public String create() {
+        return  "admin/pages/create";
+    }
+
+    @GetMapping("/edit")
+    public String edit() {
+        return  "admin/pages/edit";
+    }
 }

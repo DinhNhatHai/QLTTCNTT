@@ -18,10 +18,10 @@
             <div class="container-fluid my-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Device</h1>
+                        <h1>Chỉnh Sửa Thông Tin Thiết Bị</h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a th:href="@{/admin/device}" class="btn btn-primary">Back</a>
+                        <a th:href="@{/admin/device}" class="btn btn-primary">Trở Lại</a>
                     </div>
                 </div>
             </div>
@@ -31,157 +31,132 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="row">
-
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="title">Title</label>
-                                            <input type="text" th:name="title" id="title" class="form-control" placeholder="Title">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="description">Description</label>
-                                            <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Description"></textarea>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h2 class="h4 mb-3">Media</h2>
-                                <div id="image" class="dropzone dz-clickable">
-                                    <div class="dz-message needsclick">
-                                        <br>Drop files here or click to upload.<br><br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h2 class="h4 mb-3">Pricing</h2>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="price">Price</label>
-                                            <input type="text" th:name="price" id="price" class="form-control" placeholder="Price">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="compare_price">Compare at Price</label>
-                                            <input type="text" th:name="compare_price" id="compare_price" class="form-control" placeholder="Compare Price">
-                                            <p class="text-muted mt-3">
-                                                To show a reduced price, move the product’s original price into Compare at price. Enter a lower value into Price.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h2 class="h4 mb-3">Inventory</h2>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="sku">SKU (Stock Keeping Unit)</label>
-                                            <input type="text" th:name="sku" id="sku" class="form-control" placeholder="sku">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="barcode">Barcode</label>
-                                            <input type="text" th:name="barcode" id="barcode" class="form-control" placeholder="Barcode">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" type="checkbox" id="track_qty" th:name="track_qty" checked>
-                                                <label for="track_qty" class="custom-control-label">Track Quantity</label>
+                <form class="commonForm" th:action="@{/admin/device/create}" method="post" th:object="${device}">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="device_id">ID Thiết Bị</label>
+                                                <input type="text" th:name="device_id" id="device_id" class="form-control" placeholder="Tên thiết bị">
                                             </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <input type="number" min="0" th:name="qty" id="qty" class="form-control" placeholder="Qty">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="name">Tên Thiết Bị</label>
+                                                <input type="text" th:name="name" id="name" class="form-control" placeholder="Tên thiết bị">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="model">Mã Model</label>
+                                                <input type="text" th:name="model" id="model" class="form-control" placeholder="Mã model">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="date_add_storage">Ngày Nhập Vào Kho</label>
+                                                <input autocomplete="off" type="text" th:name="date_add_storage" id="date_add_storage" class="form-control" placeholder="Ngày nhập vào kho">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="date_use">Ngày Bàn Giao Sử Dụng</label>
+                                                <input autocomplete="off" type="text" th:name="date_use" id="date_use" class="form-control" placeholder="Ngày bàn giao sử dụng">
+                                                <p></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="description">Mô Tả</label>
+                                                <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h2 class="h4 mb-3">Hình Ảnh</h2>
+                                    <div id="image" class="dropzone dz-clickable">
+                                        <div class="dz-message needsclick">
+                                            <br>Tải Hình Ảnh Lên.<br><br>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h2 class="h4 mb-3">Product status</h2>
-                                <div class="mb-3">
-                                    <select th:name="status" id="status" class="form-control">
-                                        <option value="1">Active</option>
-                                        <option value="0">Block</option>
-                                    </select>
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="brand">Thương Hiệu</label>
+                                        <select th:name="brand" id="brand"  class="form-control">
+                                            <option value="">Apple</option>
+                                            <option value="">Vivo</option>
+                                            <option value="">HP</option>
+                                            <option value="">Samsung</option>
+                                            <option value="">DELL</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="h4  mb-3">Product category</h2>
-                                <div class="mb-3">
-                                    <label for="category">Category</label>
-                                    <select th:name="category" id="category" class="form-control">
-                                        <option value="">Electronics</option>
-                                        <option value="">Clothes</option>
-                                        <option value="">Furniture</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="category">Sub category</label>
-                                    <select th:name="sub_category" id="sub_category" class="form-control">
-                                        <option value="">Mobile</option>
-                                        <option value="">Home Theater</option>
-                                        <option value="">Headphones</option>
-                                    </select>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h2 class="h4 mb-3">Tình Trạng Thiết Bị</h2>
+                                    <div class="mb-3">
+                                        <label for="category">Danh Mục Tình Trạng</label>
+                                        <select th:name="status_type" id="status_type" class="form-control">
+                                            <option value="1">Active</option>
+                                            <option value="0">Block</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="category">Tình Trạng Thiết Bị</label>
+                                        <select th:name="status" id="status" class="form-control">
+                                            <option value="1">Active</option>
+                                            <option value="0">Block</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h2 class="h4 mb-3">Product brand</h2>
-                                <div class="mb-3">
-                                    <select th:name="status"  class="form-control">
-                                        <option value="">Apple</option>
-                                        <option value="">Vivo</option>
-                                        <option value="">HP</option>
-                                        <option value="">Samsung</option>
-                                        <option value="">DELL</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h2 class="h4 mb-3">Featured product</h2>
-                                <div class="mb-3">
-                                    <select name="status" id="" class="form-control">
-                                        <option value="0">No</option>
-                                        <option value="1">Yes</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="pb-5 pt-3">
-                    <button class="btn btn-primary">Save</button>
-                    <a th:href="@{/admin/device}" class="btn btn-outline-dark ml-3">Cancel</a>
-                </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 class="h4  mb-3">Loại Thiết Bị</h2>
+                                    <div class="mb-3">
+                                        <label for="category">Danh Mục Thiết Bị</label>
+                                        <select th:name="category" id="category" class="form-control">
+                                            <option value="">Electronics</option>
+                                            <option value="">Clothes</option>
+                                            <option value="">Furniture</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="sub_category">Loại Thiết Bị</label>
+                                        <select th:name="sub_category" id="sub_category" class="form-control">
+                                            <option value="">Mobile</option>
+                                            <option value="">Home Theater</option>
+                                            <option value="">Headphones</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="pb-5 pt-3">
+                                <button class="btn btn-primary">Cập Nhật</button>
+                                <a th:href="@{/admin/device}" class="btn btn-outline-dark ml-3">Hủy</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
             <!-- /.card -->
         </section>
@@ -195,20 +170,6 @@
 <!-- jQuery -->
 
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
-
-<script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $(document).ready(function(){
-        $(".summernote").summernote({
-            height: 400
-        });
-    });
-</script>
 
 </body>
 </html>

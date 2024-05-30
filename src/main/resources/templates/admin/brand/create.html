@@ -18,10 +18,10 @@
             <div class="container-fluid my-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Create Brand</h1>
+                        <h1>Tạo Thêm Thương Hiệu</h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a th:href="@{/admin/brand}" class="btn btn-primary">Back</a>
+                        <a th:href="@{/admin/brand}" class="btn btn-primary">Trở Lại</a>
                     </div>
                 </div>
             </div>
@@ -37,34 +37,28 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="name">Name</label>
-                                        <input type="text" th:name="name" id="name" class="form-control" placeholder="Name">
+                                        <label for="name">Tên Thương Hiệu</label>
+                                        <input type="text" th:name="name" id="name" class="form-control" placeholder="Tên thương hiệu">
                                         <p></p>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="slug">Slug</label>
-                                        <input type="text" readonly th:name="slug" id="slug" class="form-control" placeholder="Slug">
-                                        <p></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="status">Status</label>
-                                        <select th:name="status" id="status" class="form-control">
-                                            <option value="1">Active</option>
-                                            <option value="0">Block</option>
+                                        <label for="showHome">Hiển Thị Ở Trang Chủ</label>
+                                        <select th:name="showHome" id="showHome" class="form-control">
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
                                         </select>
-                                        <p></p>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="pb-5 pt-3">
-                        <button type="submit" class="btn btn-primary">Create</button>
-                        <a th:href="@{/admin/brand}" class="btn btn-outline-dark ml-3">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                        <a th:href="@{/admin/brand}" class="btn btn-outline-dark ml-3">Hủy</a>
                     </div>
                 </form>
             </div>
@@ -81,20 +75,6 @@
 <!-- jQuery -->
 
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
-
-<script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $(document).ready(function(){
-        $(".summernote").summernote({
-            height: 400
-        });
-    });
-</script>
 
 </body>
 </html>

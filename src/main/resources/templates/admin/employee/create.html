@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tạo Thêm Nhân Viên</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/employee}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="employee-name">Tên Nhân Viên</label>
+                                    <input type="text" name="employee-name" id="employee-name" class="form-control" placeholder="Tên nhân viên">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="phone">SĐT</label>
+                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Số điện thoại">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="employee-id">Mã Nhân Viên</label>
+                                    <input type="text" name="employee-id" id="employee-id" class="form-control" placeholder="Mã nhân viên">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="position_id">Chức Vụ Nhân Viên</label>
+                                    <select name="position_id" id="position_id" class="form-control">
+                                        <option>Chọn Chức Vụ</option>
+                                        <option>Trưởng Phòng</option>
+                                        <option>Nhân Viên Bảo Trì</option>
+                                        <option>Nhân Viên Sửa Chữa</option>
+                                    </select>
+                                    <p></p>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="address">Địa Chỉ</label>
+                                    <input type="text" name="address" id="address" class="form-control" placeholder="Địa chỉ">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="user_name">Tên Tài Khoản</label>
+                                    <select name="user_name" id="user_name" class="form-control">
+                                        <option>Chọn Tên Tài Khoản</option>
+                                        <option>admin</option>
+                                        <option>dinhnhathai</option>
+                                    </select>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-5 pt-3">
+                    <button class="btn btn-primary">Xác Nhận</button>
+                    <a th:href="@{/admin/employee}" class="btn btn-outline-dark ml-3">Thoát</a>
+                </div>
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+</body>
+</html>
