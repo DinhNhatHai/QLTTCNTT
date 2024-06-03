@@ -64,7 +64,8 @@
                 <td th:text="${numberStart.index + 1}"></td>
                 <td th:text="${employeeType.nameEmployeeType}"></td>
                 <td th:text="${employeeType.description}"></td>
-                <td th:text="${employeeType.showHome}"></td>
+                <td th:if="${employeeType.showHome}">Có</td>
+                <td th:if="${!employeeType.showHome}">Không</td>
                 <td>
                   <a th:href="@{/admin/employee-type/edit/{id}(id=${employeeType.id})}" class="text-primary">
                     <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

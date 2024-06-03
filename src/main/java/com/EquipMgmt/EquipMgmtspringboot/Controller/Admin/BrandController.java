@@ -39,12 +39,12 @@ public class BrandController {
     public String edit() {
         return "admin/brand/edit";
     }
-//
-//    @PostMapping("/edit}")
-//    public String updateBrand(@PathVariable Long id, @ModelAttribute Brand brand) {
-//        brandService.updateBrand(id, brand);
-//        return "redirect:/admin/brand"; // Chuyển hướng người dùng đến trang danh sách sau khi cập nhật thành công
-//    }
+
+    @PostMapping("/edit}")
+    public String updateBrand(@PathVariable Long id, @ModelAttribute Brand brand) {
+        brandService.updateBrand(id, brand);
+        return "redirect:/admin/brand"; // Chuyển hướng người dùng đến trang danh sách sau khi cập nhật thành công
+    }
 
     @GetMapping("/delete/{id}")
     public String deleteBrand(@PathVariable Long id) {

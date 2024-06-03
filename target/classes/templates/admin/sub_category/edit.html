@@ -31,7 +31,8 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form th:action="@{/sub-categories}" method="post" id="categoryForm" name="categoryForm">
+                <form th:action="@{/admin/sub-category/edit}" method="post" th:object="${subCategory}">
+                    <input type="hidden" th:name="name" id="id" class="form-control" placeholder="id" th:field="*{id}">
                     <div class="card">
                         <div class="card-body">
 
@@ -39,11 +40,8 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="name">Danh Mục Trang Thiết Bị</label>
-                                        <select name="category" id="category" class="form-control">
-                                            <option value="1">Chọn Danh Mục</option>
-                                            <option value="2">Ngoại Vi</option>
-                                            <option value="3">Server</option>
-                                            <option value="4">Mạng</option>
+                                        <select class="form-control" id="category" th:field="*{category.id}">
+                                            <option th:each="category : ${listcate}" th:value="${category.id}" th:text="${category.nameCategory}"></option>
                                         </select>
                                         <p></p>
                                     </div>
@@ -52,9 +50,9 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="showHome">Hiển Thị Ở Trang Chủ</label>
-                                        <select name="showHome" id="showHome" class="form-control">
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
+                                        <select th:name="showHome" id="showHome" class="form-control" >
+                                            <option th:field="*{showHome}" value="1">Có</option>
+                                            <option th:field="*{showHome}" value="0">Không</option>
                                         </select>
                                     </div>
                                 </div>
@@ -62,7 +60,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="name">Tên Loại Trang Thiết Bị</label>
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Tên loại trang thiết bị">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Tên loại trang thiết bị" th:field="*{nameSubCategory}">
                                         <p></p>
                                     </div>
                                 </div>

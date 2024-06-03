@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.EquipMgmt.EquipMgmtspringboot.Models.UserRole;
+import com.EquipMgmt.EquipMgmtspringboot.Models.UserSubRoles;
 import com.EquipMgmt.EquipMgmtspringboot.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,16 +22,17 @@ public class CustomUserDetailService implements UserDetailsService {
     private UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findByUsername(username);
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+
+        User user = userService.findByUsername(userName);
         if (user == null) {
-            throw new UsernameNotFoundException("User not found with username: " + username);
+            throw new UsernameNotFoundException("User not found with username: " + userName);
         }
         Collection<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        Set<UserRole> roles = user.getUserRoles();
+        Set<UserSubRoles> subRoles = user.getUserSubRoles();
 
-        for (UserRole userRole : roles) {
-            grantedAuthorities.add(new SimpleGrantedAuthority(userRole.getRole().getName()));
+        for (UserSubRoles userSubRoles : subRoles) {
+            grantedAuthorities.add(new SimpleGrantedAuthority(userSubRoles.getSubRoles().getName()));
         }
 
         return new CustomUserDetails(user, grantedAuthorities);

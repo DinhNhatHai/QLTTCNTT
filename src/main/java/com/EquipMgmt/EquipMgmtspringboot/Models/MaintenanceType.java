@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "maintenacnce_type")
+@Table(name = "maintenance_type")
 public class MaintenanceType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +13,7 @@ public class MaintenanceType {
 
     @Size(min = 3 , max = 50)
     @Column(name = "name", length = 50)
-    private String nameMaintenacnceType;
+    private String nameMaintenanceType;
 
     @Column(name = "show_home")
     private String showHome;
@@ -27,12 +27,12 @@ public class MaintenanceType {
         this.id = id;
     }
 
-    public String getNameMaintenacnceType() {
-        return nameMaintenacnceType;
+    public String getNameMaintenanceType() {
+        return nameMaintenanceType;
     }
 
-    public void setNameMaintenacnceType(String nameMaintenacnceType) {
-        this.nameMaintenacnceType = nameMaintenacnceType;
+    public void setNameMaintenanceType(String nameMaintenanceType) {
+        this.nameMaintenanceType = nameMaintenanceType;
     }
 
     public String getShowHome() {

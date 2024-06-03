@@ -30,13 +30,15 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <div class="card col-md-6" >
-                    <div class="card-body ">
+                <div class="card">
+                    <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="name">Tên Người Dùng</label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Tên người dùng">
+                                    <label for="employee_type_id">Vai Trò Tài Khoản</label>
+                                    <select th:name="employee_type_id" id="employee_type_id" class="form-control">
+                                        <option>Nhân Viên Bảo Trì</option>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="user_name">Tên Đăng Nhập</label>
@@ -45,6 +47,28 @@
                                 <div class="mb-3">
                                     <label for="password">Mật Khẩu</label>
                                     <input type="text" name="password" id="password" class="form-control" placeholder="Mật khẩu">
+                                </div>
+<!--                                <div class="mb-3">-->
+<!--                                    <label for="confirm_password">Xác Nhận Mật Khẩu</label>-->
+<!--                                    <input type="text" name="confirm_password" id="confirm_password" class="form-control" placeholder="Xác nhận mật khẩu">-->
+<!--                                </div>-->
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="name">Tên Người Dùng</label>
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Tên người dùng">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email">Email</label>
+                                    <input type="text" name="email" id="email" class="form-control" placeholder="Địa chỉ email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="status">Trạng Thái Tài Khoản</label>
+                                    <select th:name="status" id="status" class="form-control">
+                                        <option value="Yes">Hoạt Động</option>
+                                        <option value="No">Vô Hiệu Hóa</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

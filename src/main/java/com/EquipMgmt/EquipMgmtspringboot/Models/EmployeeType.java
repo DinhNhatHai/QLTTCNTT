@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "employee_type")
 public class EmployeeType {
@@ -25,18 +27,21 @@ public class EmployeeType {
     @Column(name = "description")
     private String description;
 
+    @OneToMany(mappedBy = "employeeType")
+    private Set<Employee> employees;
 
     public EmployeeType() {
     }
 
-    public EmployeeType(Long id, String nameEmployeeType, String showHome, String description) {
+    public EmployeeType(Long id, String nameEmployeeType, String showHome, String description, Set<Employee> employees) {
         this.id = id;
         this.nameEmployeeType = nameEmployeeType;
         this.showHome = showHome;
         this.description = description;
+        this.employees = employees;
     }
 
-    // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -44,6 +49,7 @@ public class EmployeeType {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getNameEmployeeType() {
         return nameEmployeeType;
@@ -67,5 +73,21 @@ public class EmployeeType {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public Long getEmployeeTypeId() {
+        return id;
+    }
+
+    public void setEmployeeTypeId(Long id) {
+        this.id = id;
     }
 }

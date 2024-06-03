@@ -31,15 +31,14 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form class="commonForm"  th:action="@{/categories}" method="post" id="categoryForm" name="categoryForm">
+                <form th:action="@{/admin/category-department/create}" th:object="${departmentType}" method="post">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="departmentType">Tên Loại Phòng Ban</label>
-                                        <input type="text" th:name="departmentType" id="departmentType" class="form-control" placeholder="Tên loại phòng ban">
+                                        <input type="text" th:field="*{typeName}" id="departmentType" class="form-control" placeholder="Tên loại phòng ban">
                                         <p></p>
                                     </div>
                                 </div>
@@ -47,9 +46,8 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="showHome">Hiển Thị Ở Trang Chủ</label>
-                                        <select th:name="showHome" id="showHome" class="form-control">
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
+                                        <select th:field="*{showHome}" id="showHome" class="form-control">
+                                            <option th:each="showHomeOption : ${showHomeOptions}" th:value="${showHomeOption.key}" th:text="${showHomeOption.value}"></option>
                                         </select>
                                     </div>
                                 </div>
