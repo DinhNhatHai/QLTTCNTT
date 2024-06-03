@@ -14,4 +14,32 @@ public class Category {
     @Size(min = 3 , max = 50)
     @Column(name = "name", length = 50)
     private String nameCategory;
+
+    @Column(name = "show_home")
+    private String showHome;
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNameCategory() {
+        return nameCategory;
+    }
+
+    public void setNameCategory(String nameCategory) {
+        this.nameCategory = nameCategory;
+    }
+
+    public String getShowHome() {
+        return showHome;
+    }
+
+    public void setShowHome(String showHome) {
+        this.showHome = showHome;
+    }
 }

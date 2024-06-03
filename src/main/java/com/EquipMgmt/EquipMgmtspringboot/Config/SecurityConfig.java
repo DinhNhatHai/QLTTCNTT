@@ -23,7 +23,8 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((auth)->auth
                         .requestMatchers("/admin-assets/**", "/admin/login").permitAll()
-                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+//                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                        .requestMatchers("/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin

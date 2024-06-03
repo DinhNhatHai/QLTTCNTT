@@ -12,4 +12,14 @@ public class CategoryDepartmentController {
     public String index() {
         return  "admin/category_department/list";
     }
+
+    @GetMapping("/create")
+    public String create() {
+        return  "admin/category_department/create";
+    }
+
+    @GetMapping("/edit")
+    public String edit() {
+        return  "admin/category_department/edit";
+    }
 }

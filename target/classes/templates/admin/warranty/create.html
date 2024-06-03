@@ -59,10 +59,10 @@
             <div class="container-fluid my-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Create</h1>
+                        <h1>Tạo Thêm Phiếu Bảo Hành</h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a th:href="@{/admin/warranty}" class="btn btn-primary">Back</a>
+                        <a th:href="@{/admin/warranty}" class="btn btn-primary">Trở Lại</a>
                     </div>
                 </div>
             </div>
@@ -75,48 +75,57 @@
                 <form th:action="@{/warranty}" method="post" id="createWarrantyForm" name="createGuaranteeForm">
                     <div class="card">
                         <div class="card-body">
+
                             <div class="row">
+
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="warrantyTime">Ngày mang đi</label>
-                                        <input type="date" th:name="warrantyTime" id="warrantyTime" class="form-control" placeholder="YYYY-MM-DD">
-                                        <p></p>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="warrantyTime">Ngày mang về</label>
-                                    <input type="date" th:name="warrantyTime" id="warrantyTimes" class="form-control" placeholder="YYYY-MM-DD">
-                                    <p></p>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="idthietbi">ID bảo hành</label>
-                                        <select th:name="status" id="idthietbi" class="form-control">
-                                            <option value="1">Active</option>
-                                            <option value="0">Block</option>
-                                        </select>
-                                        <p></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="linhkien">ID nhân viên</label>
-                                        <select th:name="status" id="linhkien" class="form-control">
-                                            <option value="1">Active</option>
-                                            <option value="0">Block</option>
-                                        </select>
-                                        <p></p>
+                                        <label for="warranty_id">ID Phiếu Bảo Hành</label>
+                                        <input type="text" th:name="warranty_id" id="warranty_id" class="form-control" placeholder="ID bảo hành">
                                     </div>
                                 </div>
 
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="guarantee_id">ID Bảo Hành</label>
+                                        <input type="text" th:name="guarantee_id" id="guarantee_id" class="form-control" placeholder="ID bảo hành">
+                                    </div>
+                                </div>
 
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="date_take">Ngày Mang Đi</label>
+                                        <input type="text" th:name="date_take" id="date_take" class="form-control" placeholder="Ngày mang đi">
+                                    </div>
+                                </div>
 
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="equipment_id">ID Trang Thiết Bị</label>
+                                        <input type="text" th:name="equipment_id" id="equipment_id" class="form-control" placeholder="ID trang thiết bị">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="date_return">Ngày Mang Về</label>
+                                        <input type="text" th:name="date_return" id="date_return" class="form-control" placeholder="Ngày mang về">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="employee">Nhân Viên</label>
+                                        <input type="text" th:name="employee" id="employee" class="form-control" placeholder="Nhân viên">
+                                        <p></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="pb-5 pt-3">
-                        <button type="submit" class="btn btn-primary">Create</button>
-                        <a th:href="@{/admin/guarantee}" class="btn btn-outline-dark ml-3">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                        <a th:href="@{/admin/guarantee}" class="btn btn-outline-dark ml-3">Hủy</a>
                     </div>
                 </form>
             </div>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+  <!-- /.navbar -->
+  <!-- Main Sidebar Container -->
+  <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid my-2">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Edit Maintenance History</h1>
+          </div>
+          <div class="col-sm-6 text-right">
+            <a th:href="@{/admin/maintenance history}" class="btn btn-primary">Back</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="Maintenance History ID">Maintenance History ID :</label>
+                      <input type="text" th:name="Maintenance History ID" id="Maintenance History ID" class="form-control" placeholder="Maintenance History ID" th:value="${maintenanceHistory.Maintenance History ID}" readonly>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="system-device-id">System/Device/Component ID :</label>
+                      <input type="text" th:name="systemDeviceId" id="system-device-id" class="form-control" placeholder="System/Device/Component ID" th:value="${maintenanceHistory.systemDeviceId}">
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="maintenance-id">Maintenance ID :</label>
+                      <input type="text" th:name="maintenanceId" id="maintenance-id" class="form-control" placeholder="Maintenance ID" th:value="${maintenanceHistory.maintenanceId}">
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="maintenance-date">Maintenance Date :</label>
+                      <input type="date" th:name="maintenanceDate" id="maintenance-date" class="form-control" th:value="${maintenanceHistory.maintenanceDate}">
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="maintenance-result">Maintenance Result :</label>
+                      <textarea th:name="maintenanceResult" id="maintenance-result" class="form-control" placeholder="Maintenance Result" th:text="${maintenanceHistory.maintenanceResult}"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="Evaluation and comments">Evaluation and comments :</label>
+                      <textarea th:name="Evaluation and comments" id="Evaluation and comments" class="form-control" placeholder="Evaluation and comments" th:text="${maintenanceHistory.Evaluation and comments}"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pb-5 pt-3">
+          <button class="btn btn-primary">Save</button>
+          <a th:href="@{/admin/maintenance history}" class="btn btn-outline-dark ml-3">Cancel</a>
+        </div>
+      </div>
+      <!-- /.card -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+</body>
+</html>

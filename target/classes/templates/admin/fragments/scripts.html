@@ -13,4 +13,29 @@
     <script th:src="@{/admin-assets/plugins/select2/js/select2.min.js}"></script>
 
     <script th:src="@{/admin-assets/js/datetimepicker.js}"></script>
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function(){
+            $(".summernote").summernote({
+                height: 400
+            });
+
+<!--             $('#vendorForm').on('submit', function() {-->
+<!--                var plainText = $('.summernote').summernote('code').replace(/<\/?[^>]+(>|$)/g, ""); // Strip HTML tags-->
+<!--                $('#description').val(plainText); // Set the stripped content to the textarea-->
+<!--            });-->
+
+            $('.commonForm').on('submit', function() {
+                var plainText = $('.summernote').summernote('code').replace(/<\/?[^>]+(>|$)/g, "");
+                $('#description').val(plainText);
+            });
+        });
+    </script>
+
 </div>

@@ -17,10 +17,10 @@
             <div class="container-fluid my-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit User</h1>
+                        <h1>Chỉnh Sửa Thông Tin Tài Khoản</h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a th:href="@{/admin/users}" class="btn btn-primary">Back</a>
+                        <a th:href="@{/admin/users}" class="btn btn-primary">Trở Lại</a>
                     </div>
                 </div>
             </div>
@@ -30,39 +30,29 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <div class="card">
-                    <div class="card-body">
+                <div class="card col-md-6" >
+                    <div class="card-body ">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="name">Name</label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Name">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="email">Email</label>
-                                    <input type="text" name="email" id="email" class="form-control" placeholder="Email">
-                                </div>
-                            </div>
                             <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone">
+                                    <label for="name">Tên Người Dùng</label>
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Tên người dùng">
                                 </div>
-                            </div>
-                            <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label for="phone">Address</label>
-                                    <textarea name="address" id="address" class="form-control" cols="30" rows="5"></textarea>
+                                    <label for="user_name">Tên Đăng Nhập</label>
+                                    <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Tên đăng nhập">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password">Mật Khẩu</label>
+                                    <input type="text" name="password" id="password" class="form-control" placeholder="Mật khẩu">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="pb-5 pt-3">
-                    <button class="btn btn-primary">Create</button>
-                    <a th:href="@{/admin/users}" class="btn btn-outline-dark ml-3">Cancel</a>
+                    <button class="btn btn-primary">Cập Nhật</button>
+                    <a th:href="@{/admin/users}" class="btn btn-outline-dark ml-3">Hủy</a>
                 </div>
             </div>
             <!-- /.card -->
@@ -78,20 +68,6 @@
 <!-- jQuery -->
 
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
-
-<script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $(document).ready(function(){
-        $(".summernote").summernote({
-            height: 400
-        });
-    });
-</script>
 
 </body>
 </html>

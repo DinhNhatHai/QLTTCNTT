@@ -1,0 +1,172 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head th:replace="~{admin/fragments/head :: head}"></head>-->
+<!--<body class="hold-transition sidebar-mini">-->
+<!--&lt;!&ndash; Site wrapper &ndash;&gt;-->
+<!--<div class="wrapper">-->
+<!--    &lt;!&ndash; Navbar &ndash;&gt;-->
+<!--    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>-->
+<!--    &lt;!&ndash; /.navbar &ndash;&gt;-->
+
+<!--    &lt;!&ndash; Main Sidebar Container &ndash;&gt;-->
+<!--    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>-->
+
+<!--    &lt;!&ndash; Content Wrapper. Contains page content &ndash;&gt;-->
+<!--    <div class="content-wrapper">-->
+<!--        <section class="content-header">-->
+<!--            <div class="container-fluid my-2">-->
+<!--                <div class="row mb-2">-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <h1>Tạo Thêm Nhân Viên</h1>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-6 text-right">-->
+<!--                        <a th:href="@{/admin/employee}" class="btn btn-primary">Trở Lại</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; /.container-fluid &ndash;&gt;-->
+<!--        </section>-->
+<!--        &lt;!&ndash; Main content &ndash;&gt;-->
+<!--        <section class="content">-->
+<!--            &lt;!&ndash; Default box &ndash;&gt;-->
+<!--            <div class="container-fluid">-->
+<!--                <div class="card">-->
+<!--                    <div class="card-body">-->
+<!--                        <form th:action="@{/admin/employee/create}" method="post">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="employee-name">Tên Nhân Viên</label>-->
+<!--                                        <input type="text" name="employee-name" id="employee-name" class="form-control" placeholder="Tên nhân viên">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="phone">SĐT</label>-->
+<!--                                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Số điện thoại">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="employee-id">Mã Nhân Viên</label>-->
+<!--                                        <input type="text" name="employee-id" id="employee-id" class="form-control" placeholder="Mã nhân viên">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="email">Email</label>-->
+<!--                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="position_id">Chức Vụ Nhân Viên</label>-->
+<!--                                        <select name="position_id" id="position_id" class="form-control">-->
+<!--                                            <option value="">Chọn Chức Vụ</option>-->
+<!--                                            <option value="1">Trưởng Phòng</option>-->
+<!--                                            <option value="2">Nhân Viên Bảo Trì</option>-->
+<!--                                            <option value="3">Nhân Viên Sửa Chữa</option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="address">Địa Chỉ</label>-->
+<!--                                        <input type="text" name="address" id="address" class="form-control" placeholder="Địa chỉ">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="user_name">Tên Tài Khoản</label>-->
+<!--                                        <select name="user_name" id="user_name" class="form-control">-->
+<!--                                            <option value="">Chọn Tên Tài Khoản</option>-->
+<!--                                            <option value="admin">admin</option>-->
+<!--                                            <option value="dinhnhathai">dinhnhathai</option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="pb-5 pt-3">-->
+<!--                                <button class="btn btn-primary">Xác Nhận</button>-->
+<!--                                <a th:href="@{/admin/employee}" class="btn btn-outline-dark ml-3">Thoát</a>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; /.card &ndash;&gt;-->
+<!--        </section>-->
+<!--        &lt;!&ndash; /.content &ndash;&gt;-->
+<!--    </div>-->
+<!--    &lt;!&ndash; /.content-wrapper &ndash;&gt;-->
+<!--    <div th:replace="~{admin/fragments/footer :: footer}"></div>-->
+<!--</div>-->
+<!--&lt;!&ndash; ./wrapper &ndash;&gt;-->
+<!--&lt;!&ndash; jQuery &ndash;&gt;-->
+<!--<div th:replace="~{admin/fragments/scripts :: scripts}"></div>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+
+    <!-- Main Sidebar Container -->
+    <aside th:replace="~{admin/fragments/sidebar :: sidebar}"></aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tạo Mới Nhân Viên</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-body">
+                        <form th:action="@{/admin/employee/create}" method="post">
+                            <div class="form-group">
+                                <label for="name">Tên Nhân Viên:</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Điện Thoại:</label>
+                                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Địa Chỉ:</label>
+                                <input type="text" class="form-control" id="address" name="address" required>
+                            </div>
+                            <label for="employeeCode">Mã nhân viên:</label>
+                            <input type="text" class="form-control" id="employeeCode" name="employeeCode" required>
+                            <button type="submit" class="btn btn-primary">Tạo Mới</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer th:replace="~{admin/fragments/footer :: footer}"></footer>
+</div>
+
+<!-- Scripts -->
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+</body>
+</html>

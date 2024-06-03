@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+  <!-- /.navbar -->
+  <!-- Main Sidebar Container -->
+  <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid my-2">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Edit Maintenance</h1>
+          </div>
+          <div class="col-sm-6 text-right">
+            <a th:href="@{/admin/maintenance}" class="btn btn-primary">Back</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <!-- Default box -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="maintenance-id">Maintenance ID :</label>
+                      <input type="text" th:name="maintenanceId" id="maintenance-id" class="form-control" placeholder="Maintenance ID" th:value="${maintenance.maintenanceId}" readonly>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="system-device-id">System/Device/Component ID :</label>
+                      <input type="text" th:name="systemDeviceId" id="system-device-id" class="form-control" placeholder="System/Device/Component ID" th:value="${maintenance.systemDeviceId}">
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="Date of receiving equipment maintenance">Date of receiving equipment maintenance :</label>
+                      <input type="date" th:name="Date of receiving equipment maintenance" id="Date of receiving equipment maintenance" class="form-control" th:value="${maintenance.Date of receiving equipment maintenance}">
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="How long is the maintenance period">How long is the maintenance period :</label>
+                      <input type="text" th:name="How long is the maintenance period" id="How long is the maintenance period" class="form-control" placeholder="How long is the maintenance period" th:value="${maintenance.How long is the maintenance period}">
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="employee-id">Employee ID :</label>
+                      <input type="text" th:name="employeeId" id="employee-id" class="form-control" placeholder="Employee ID" th:value="${maintenance.employeeId}">
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="maintenance-type">Maintenance Type :</label>
+                      <input type="text" th:name="maintenanceType" id="maintenance-type" class="form-control" placeholder="Maintenance Type" th:value="${maintenance.maintenanceType}">
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="description">Description :</label>
+                      <textarea th:name="description" id="description" class="form-control" placeholder="Description" th:text="${maintenance.description}"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="mb-3">
+                      <label for="Expense">Expense :</label>
+                      <input type="text" th:name="Expense" id="Expense" class="form-control" placeholder="Expense" th:value="${maintenance.cost}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pb-5 pt-3">
+          <button class="btn btn-primary">Cập Nhật</button>
+          <a th:href="@{/admin/maintenance}" class="btn btn-outline-dark ml-3">Cancel</a>
+        </div>
+      </div>
+      <!-- /.card -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+</body>
+</html>

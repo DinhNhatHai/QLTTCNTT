@@ -1,3 +1,83 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head th:replace="~{admin/fragments/head :: head}"></head>-->
+<!--<body class="hold-transition sidebar-mini">-->
+<!--&lt;!&ndash; Site wrapper &ndash;&gt;-->
+<!--<div class="wrapper">-->
+<!--    &lt;!&ndash; Navbar &ndash;&gt;-->
+<!--    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>-->
+<!--    &lt;!&ndash; /.navbar &ndash;&gt;-->
+<!--    &lt;!&ndash; Main Sidebar Container &ndash;&gt;-->
+
+<!--    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>-->
+
+<!--    &lt;!&ndash; Content Wrapper. Contains page content &ndash;&gt;-->
+<!--    <div class="content-wrapper">-->
+<!--        &lt;!&ndash; Content Header (Page header) &ndash;&gt;-->
+<!--        <section class="content-header">-->
+<!--            <div class="container-fluid my-2">-->
+<!--                <div class="row mb-2">-->
+<!--                    <div class="col-sm-6">-->
+<!--                        <h1>Tạo Thêm Thương Hiệu</h1>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-6 text-right">-->
+<!--                        <a th:href="@{/admin/brand}" class="btn btn-primary">Trở Lại</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; /.container-fluid &ndash;&gt;-->
+<!--        </section>-->
+<!--        &lt;!&ndash; Main content &ndash;&gt;-->
+<!--        <section class="content">-->
+<!--            &lt;!&ndash; Default box &ndash;&gt;-->
+<!--            <div class="container-fluid">-->
+<!--                <form th:action="@{/brand}" method="post" id="createBrandForm" name="createBrandForm">-->
+<!--                    <div class="card">-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="name">Tên Thương Hiệu</label>-->
+<!--                                        <input type="text" th:name="name" id="name" class="form-control" placeholder="Tên thương hiệu">-->
+<!--                                        <p></p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+<!--                                <div class="col-md-6">-->
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="showHome">Hiển Thị Ở Trang Chủ</label>-->
+<!--                                        <select th:name="showHome" id="showHome" class="form-control">-->
+<!--                                            <option value="Yes">Yes</option>-->
+<!--                                            <option value="No">No</option>-->
+<!--                                        </select>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="pb-5 pt-3">-->
+<!--                        <button type="submit" class="btn btn-primary">Xác Nhận</button>-->
+<!--                        <a th:href="@{/admin/brand}" class="btn btn-outline-dark ml-3">Hủy</a>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; /.card &ndash;&gt;-->
+<!--        </section>-->
+<!--        &lt;!&ndash; /.content &ndash;&gt;-->
+
+<!--    </div>-->
+<!--    &lt;!&ndash; /.content-wrapper &ndash;&gt;-->
+
+<!--    <div th:replace="~{admin/fragments/footer :: footer}"></div>-->
+<!--</div>-->
+<!--&lt;!&ndash; ./wrapper &ndash;&gt;-->
+<!--&lt;!&ndash; jQuery &ndash;&gt;-->
+
+<!--<div th:replace="~{admin/fragments/scripts :: scripts}"></div>-->
+
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="~{admin/fragments/head :: head}"></head>
@@ -18,10 +98,10 @@
             <div class="container-fluid my-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Create Brand</h1>
+                        <h1>Tạo Thêm Thương Hiệu</h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a th:href="@{/admin/brand}" class="btn btn-primary">Back</a>
+                        <a th:href="@{/admin/brand}" class="btn btn-primary">Trở Lại</a>
                     </div>
                 </div>
             </div>
@@ -31,40 +111,24 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form th:action="@{/brand}" method="post" id="createBrandForm" name="createBrandForm">
+                <form th:action="@{/admin/brand/create}" method="post" id="createBrandForm" name="createBrandForm" th:object="${brand}">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="name">Name</label>
-                                        <input type="text" th:name="name" id="name" class="form-control" placeholder="Name">
+                                        <label for="name">Tên Thương Hiệu</label>
+                                        <input type="text" th:field="*{name}" th:name="name" id="name" class="form-control" placeholder="Tên thương hiệu">
                                         <p></p>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="slug">Slug</label>
-                                        <input type="text" readonly th:name="slug" id="slug" class="form-control" placeholder="Slug">
-                                        <p></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="status">Status</label>
-                                        <select th:name="status" id="status" class="form-control">
-                                            <option value="1">Active</option>
-                                            <option value="0">Block</option>
-                                        </select>
-                                        <p></p>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
                     <div class="pb-5 pt-3">
-                        <button type="submit" class="btn btn-primary">Create</button>
-                        <a th:href="@{/admin/brand}" class="btn btn-outline-dark ml-3">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                        <a th:href="@{/admin/brand}" class="btn btn-outline-dark ml-3">Hủy</a>
                     </div>
                 </form>
             </div>
@@ -98,3 +162,4 @@
 
 </body>
 </html>
+

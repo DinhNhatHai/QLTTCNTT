@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Sửa Thông Tin Tình Trạng Trang Thiết Bị</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/status-equipment}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="card mb-3">
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="status_equipment_id">Loại Tình Trạng Trang Thiết Bị</label>
+                                            <select name="status_equipment_id" id="status_equipment_id" class="form-control">
+                                                <option value="1">Chọn loại tình trạng</option>
+                                                <option value="2">Hoạt Động</option>
+                                                <option value="3">Không Hoạt Động</option>
+                                            </select>
+                                            <p></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="depreciation">Khấu Hao</label>
+                                            <input type="text" th:name="depreciation" id="depreciation" class="form-control" placeholder="Khấu hao theo %">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="status_equipment_name">Tên Tình Trạng</label>
+                                            <input type="text" th:name="status_equipment_name" id="status_equipment_name" class="form-control" placeholder="Tên tình trạng">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="showHome">Hiển Thị Ở Trang Chủ</label>
+                                            <select name="showHome" id="showHome" class="form-control">
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label for="description">Mô Tả</label>
+                                            <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pb-5 pt-3">
+                    <button class="btn btn-primary">Cập Nhật</button>
+                    <a th:href="@{/admin/status-equipment}" class="btn btn-outline-dark ml-3">Hủy</a>
+                </div>
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+</body>
+</html>

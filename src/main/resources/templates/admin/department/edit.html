@@ -8,9 +8,7 @@
     <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
     <!-- /.navbar -->
     <!-- Main Sidebar Container -->
-
     <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -18,10 +16,10 @@
             <div class="container-fluid my-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Phòng Ban</h1>
+                        <h1>Sửa Thông Tin Phòng Ban</h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a th:href="@{/admin/department}" class="btn btn-primary">Back</a>
+                        <a th:href="@{/admin/department}" class="btn btn-primary">Trở Lại</a>
                     </div>
                 </div>
             </div>
@@ -31,70 +29,72 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form th:action="@{/department}" method="post" id="createBrandForm" name="createBrandForm">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="name">Name</label>
-                                        <input type="text" th:name="name" id="name" class="form-control" placeholder="Name">
-                                        <p></p>
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="card mb-3">
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="department_type_id">Loại Phòng Ban</label>
+                                            <select name="department_type_id" id="department_type_id" class="form-control">
+                                                <option value="1">Chọn Loại Phòng Ban</option>
+                                                <option value="2">CNTT</option>
+                                                <option value="3">Kế Toán</option>
+                                                <option value="4">Bảo Vệ</option>
+                                            </select>
+                                            <p></p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="slug">Slug</label>
-                                        <input type="text" readonly th:name="slug" id="slug" class="form-control" placeholder="Slug">
-                                        <p></p>
+
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="department_location">Vị Trí Phòng Ban</label>
+                                            <input type="text" th:name="department_location" id="department_location" class="form-control" placeholder="Vị trí phòng ban">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="status">Status</label>
-                                        <select th:name="status" id="status" class="form-control">
-                                            <option value="1">Active</option>
-                                            <option value="0">Block</option>
-                                        </select>
-                                        <p></p>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="department_name">Tên Phòng Ban</label>
+                                            <input type="text" th:name="department_name" id="department_name" class="form-control" placeholder="Tên phòng ban">
+                                        </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="showHome">Hiển Thị Ở Trang Chủ</label>
+                                            <select name="showHome" id="showHome" class="form-control">
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="pb-5 pt-3">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <a th:href="@{/admin/department}" class="btn btn-outline-dark ml-3">Cancel</a>
-                    </div>
-                </form>
+                </div>
+
+                <div class="pb-5 pt-3">
+                    <button class="btn btn-primary">Cập Nhật</button>
+                    <a th:href="@{/admin/department}" class="btn btn-outline-dark ml-3">Hủy</a>
+                </div>
             </div>
             <!-- /.card -->
         </section>
         <!-- /.content -->
-
     </div>
     <!-- /.content-wrapper -->
-
     <div th:replace="~{admin/fragments/footer :: footer}"></div>
 </div>
 <!-- ./wrapper -->
 <!-- jQuery -->
-
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
-
-<script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $(document).ready(function(){
-        $(".summernote").summernote({
-            height: 400
-        });
-    });
-</script>
 
 </body>
 </html>

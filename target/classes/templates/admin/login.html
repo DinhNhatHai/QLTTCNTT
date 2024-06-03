@@ -9,10 +9,10 @@
     <!-- <div th:replace="admin/message :: message"></div> -->
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
-            <a href="#" class="h3">Administrative Panel</a>
+            <h3>Đăng Nhập Trang Quản Trị</h3>
         </div>
         <div class="card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg">Quản Lý Trang Thiết Bị CNTT - Bệnh Viện Ung Bướu</p>
             <form th:action="@{/admin/login}" method="POST">
                 <!-- <input type="hidden" name="_csrf" th:value="${_csrf.token}"/> -->
                 <div class="input-group mb-3">
@@ -36,13 +36,13 @@
                     <p class="invalid-feedback"></p>
                 </div>
                 <div class="row">
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
                     </div>
                 </div>
             </form>
             <p class="mb-1 mt-3">
-                <a href="forgot-password.html">I forgot my password</a>
+                <a href="forgot-password.html">Quên Mật Khẩu</a>
             </p>
         </div>
         <!-- /.card-body -->
