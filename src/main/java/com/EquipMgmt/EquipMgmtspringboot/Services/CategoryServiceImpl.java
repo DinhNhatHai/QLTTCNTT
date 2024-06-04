@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class CategoryServiceImpl implements CategoryService{
     @Autowired
@@ -52,4 +53,11 @@ public class CategoryServiceImpl implements CategoryService{
         }
         return false;
     }
+
+    @Override
+    public List<Category> search(String keyword) {
+        return categoryRepository.searchCategory(keyword);
+    }
+
+
 }

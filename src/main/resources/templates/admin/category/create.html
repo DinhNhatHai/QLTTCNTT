@@ -29,7 +29,7 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form class="commonForm" th:action="@{/admin/category/create}" method="post" th:object="${category}">
+                <form class="commonForm" th:action="@{/admin/category/create}" method="post" id="categoryForm" name="categoryForm" th:object="${category}" enctype="multipart/form-data">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -43,8 +43,8 @@
                                     <div class="mb-3">
                                         <label for="showHome">Hiển Thị Ở Trang Chủ</label>
                                         <select th:name="showHome" id="showHome" class="form-control">
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
+                                            <option th:field="*{showHome}" value="1">Có</option>
+                                            <option th:field="*{showHome}" value="0">Không</option>
                                         </select>
                                     </div>
                                 </div>
@@ -52,11 +52,9 @@
 
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="image">Hình Ảnh</label>
-                                        <div id="image" class="dropzone dz-clickable">
-                                            <div class="dz-message needsclick">
-                                                <br>Drop files here or click to upload.<br><br>
-                                            </div>
+                                        <label for="profile-pic">Hình Ảnh</label>
+                                        <div id="profile-pic" class="dropzone dz-clickable">
+                                            <input name="fileImage" type="file" accept="image/*" id="input-file">
                                         </div>
                                     </div>
                                 </div>
@@ -64,10 +62,9 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label for="description">Mô Tả</label>
-                                        <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                        <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả" th:field="*{description}"></textarea>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -87,6 +84,14 @@
 </div>
 <!-- ./wrapper -->
 <!-- jQuery -->
+
+<script>
+    let profilePic = document.getElementById("profile-pic");
+    let inputFile = document.getElementById("input-file");
+    inputFile.onchange = function(){
+        profilePic.src = URL.createObjectURL(inputFile.files[0]);
+    }
+</script>
 
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
 

@@ -8,6 +8,7 @@
     <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
     <!-- /.navbar -->
     <!-- Main Sidebar Container -->
+
     <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
 
     <!-- Content Wrapper. Contains page content -->
@@ -17,10 +18,10 @@
             <div class="container-fluid my-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Maintenance</h1>
+                        <h1>Tạo Thêm Hoạt Động Bảo Trì</h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a th:href="@{/admin/maintenance}" class="btn btn-primary">Back</a>
+                        <a th:href="@{/admin/maintenance}" class="btn btn-primary">Trở Lại</a>
                     </div>
                 </div>
             </div>
@@ -31,63 +32,72 @@
             <!-- Default box -->
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="maintenance-id">Maintenance ID :</label>
-                                            <input type="text" th:name="maintenanceId" id="maintenance-id" class="form-control" placeholder="Maintenance ID">
+                                            <label for="maintenance_type">Loại Bảo Trì</label>
+                                            <select th:name="maintenance_type" id="maintenance_type"  class="form-control">
+                                                <option value="">Định Kỳ</option>
+                                                <option value="">Hàng Năm</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="equipment_id">ID Trang Thiết Bị</label>
+                                            <select th:name="equipment_id" id="equipment_id"  class="form-control">
+                                                <option value="">Apple</option>
+                                                <option value="">Vivo</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="device_received_date">Ngày Nhận Thiết Bị</label>
+                                            <input autocomplete="off" type="text" name="device_received_date" id="device_received_date" class="form-control" placeholder="Ngày nhận thiết bị">
+                                            <p></p>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="date_add_storage">Thời Gian Xử Lý</label>
+                                            <input autocomplete="off" type="text" th:name="date_add_storage" id="date_add_storage" class="form-control" placeholder="Thời gian xử lý">
+                                            <p></p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="description">Nội Dung Bảo Trì</label>
+                                            <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Nội Dung Bảo Trì"></textarea>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="system-device-id">System/Device/Component ID :</label>
-                                            <input type="text" th:name="systemDeviceId" id="system-device-id" class="form-control" placeholder="System/Device/Component ID">
+                                            <label for="start_date">Ngày Bắt Đầu</label>
+                                            <select th:name="start_date" id="start_date"  class="form-control">
+                                                <option value="">17/02/2024</option>
+                                            </select>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label for="Date of receiving equipment maintenance">Date of receiving equipment maintenance :</label>
-                                            <input type="date" th:name="Date of receiving equipment maintenance" id="Date of receiving equipment maintenance" class="form-control">
+                                            <label for="end_date">Ngày Kết Thúc</label>
+                                            <select th:name="end_date" id="end_date"  class="form-control">
+                                                <option value="">17/02/2024</option>
+                                            </select>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label for="How long is the maintenance period">How long is the maintenance period :</label>
-                                            <input type="text" th:name="How long is the maintenance period" id="How long is the maintenance period" class="form-control" placeholder="How long is the maintenance period">
+                                            <label for="price">Chi Phí</label>
+                                            <input type="text" th:name="price" id="price" class="form-control" placeholder="Chi phí">
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label for="employee-id">Employee ID :</label>
-                                            <input type="text" th:name="employeeId" id="employee-id" class="form-control" placeholder="Employee ID">
+                                            <label for="maintenance_description">Mô Tả Bảo Trì</label>
+                                            <select th:name="maintenance_description" id="maintenance_description"  class="form-control">
+                                                <option value="">Bảo trì 6 tháng</option>
+                                                <option value="">Bảo trì theo năm</option>
+                                            </select>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label for="maintenance-type">Maintenance Type :</label>
-                                            <input type="text" th:name="maintenanceType" id="maintenance-type" class="form-control" placeholder="Maintenance Type">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="description">Description :</label>
-                                            <textarea th:name="description" id="description" class="form-control" placeholder="Description"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="Expense">Expense :</label>
-                                            <input type="text" th:name="Expense" id="Expense" class="form-control" placeholder="Expense">
+                                            <label for="employee_id">Nhân Viên Thực Hiện</label>
+                                            <select th:name="employee_id" id="employee_id"  class="form-control">
+                                                <option value="">Trần Văn B</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -95,10 +105,9 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="pb-5 pt-3">
-                    <button class="btn btn-primary">Submit</button>
-                    <a th:href="@{/admin/maintenance}" class="btn btn-outline-dark ml-3">Cancel</a>
+                    <button class="btn btn-primary">Xác Nhận</button>
+                    <a th:href="@{/admin/maintenance}" class="btn btn-outline-dark ml-3">Hủy</a>
                 </div>
             </div>
             <!-- /.card -->

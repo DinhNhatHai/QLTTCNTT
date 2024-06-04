@@ -21,20 +21,22 @@ public class Role {
     private String name;
 
     @OneToMany(mappedBy = "role")
-    private Set<UserRole> roleUsers;
+    private Set<SubRole> subRoles;
 
+    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER )
+    private Set<UserRole> roleUsers;
 
     // No-Args Constructor
     public Role() {
     }
 
-    // All-Args Constructor
-    public Role(Long id, String name) {
+    public Role(Long id, String name, Set<SubRole> subRoles, Set<UserRole> roleUsers) {
         this.id = id;
         this.name = name;
+        this.subRoles = subRoles;
+        this.roleUsers = roleUsers;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -43,12 +45,20 @@ public class Role {
         this.id = id;
     }
 
-    public String getName() {
+    public @NotNull @Size(min = 3, max = 50) String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NotNull @Size(min = 3, max = 50) String name) {
         this.name = name;
+    }
+
+    public Set<SubRole> getSubRoles() {
+        return subRoles;
+    }
+
+    public void setSubRoles(Set<SubRole> subRoles) {
+        this.subRoles = subRoles;
     }
 
     public Set<UserRole> getRoleUsers() {

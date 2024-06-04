@@ -2,63 +2,106 @@ package com.EquipMgmt.EquipMgmtspringboot.Controller.Admin;
 
 import com.EquipMgmt.EquipMgmtspringboot.Models.Category;
 import com.EquipMgmt.EquipMgmtspringboot.Services.CategoryService;
+import com.EquipMgmt.EquipMgmtspringboot.Services.ReportService;
+import com.EquipMgmt.EquipMgmtspringboot.Services.StorageService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/category")
 public class CategoryController {
-
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private StorageService storageService;
+    @Autowired
+    private ReportService reportService;
 
-    // Hiển thị form tạo mới category
-    @GetMapping("/create")
-    public String showCreateForm(Model model) {
-        model.addAttribute("category", new Category());
-        return "admin/category/create";
-    }
-
-    // Xử lý tạo mới category
-    @PostMapping("/create")
-    public String createCategory(@ModelAttribute("category") Category category, Model model) {
-        categoryService.create(category);
-        return "redirect:/admin/category";
-    }
-
-    // Hiển thị danh sách category
-    @GetMapping
-    public String listCategories(Model model) {
-        model.addAttribute("categories", categoryService.getAll());
+    @GetMapping()
+    public String index(Model model, @Param("keyword") String keyword) {
+        List<Category> list = this.categoryService.getAll();
+        if (keyword != null) {
+            list = this.categoryService.search(keyword);
+        }
+        model.addAttribute("list", list);
         return "admin/category/list";
     }
+    @GetMapping("/excel")
+    public void generateExcelReport (HttpServletResponse response) throws Exception {
 
-    // Hiển thị form chỉnh sửa category
+        response.setContentType("application/octet-stream");
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment;filename=Category.xls";
+
+        response.setHeader(headerKey, headerValue);
+
+        reportService.exportExcelCategory(response);
+
+        response.flushBuffer();
+    }
+    @GetMapping("/create")
+    public String create (Model model){
+        Category category = new Category();
+        model.addAttribute("category", category);
+        return "admin/category/create";
+
+    }
+
+    @PostMapping("/create")
+    public String save (@ModelAttribute("category") Category category, @RequestParam("fileImage") MultipartFile file ) throws
+            IOException {
+        this.storageService.store(file);
+        String fileName = file.getOriginalFilename();
+        category.setImage(fileName);
+        if (this.categoryService.create(category)) {
+            return "admin/category/create";
+        } else {
+            return "redirect:/admin/category";
+        }
+
+    }
+
     @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable("id") Long id, Model model) {
-        Category category = categoryService.findById(id);
-        if (category != null) {
-            model.addAttribute("category", category);
+    public String edit (Model model, @PathVariable("id") Long id){
+        Category category = this.categoryService.findById(id);
+        model.addAttribute("category", category);
+        return "admin/category/edit";
+    }
+    @PostMapping("/edit")
+    public String update (@ModelAttribute("category") Category category, @RequestParam("fileImage") MultipartFile
+            file){
+
+        String fileName = file.getOriginalFilename();
+        boolean isEmpty = fileName == null || fileName.trim().isEmpty();
+        if (!isEmpty) {
+            this.storageService.store(file);
+            category.setImage(fileName);
+        }
+        if (this.categoryService.update(category)) {
             return "admin/category/edit";
+        } else {
+            return "redirect:/admin/category";
+        }
+
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete (Model model, @PathVariable("id") Long id){
+        if (this.categoryService.delete(id)) {
+            return "redirect:/admin/category";
         } else {
             return "redirect:/admin/category";
         }
     }
 
-    // Xử lý chỉnh sửa category
-    @PostMapping("/edit/{id}")
-    public String editCategory(@PathVariable("id") Long id, @ModelAttribute("category") Category category) {
-        category.setId(id);
-        categoryService.update(category);
-        return "redirect:/admin/category";
-    }
-
-    // Xử lý xóa category
-    @GetMapping("/delete/{id}")
-    public String deleteCategory(@PathVariable("id") Long id) {
-        categoryService.delete(id);
-        return "redirect:/admin/category";
-    }
 }
+

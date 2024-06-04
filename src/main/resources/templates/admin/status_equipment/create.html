@@ -29,65 +29,59 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
+                <form class="commonForm" th:id="statusEquipmentFormCreate" th:action="@{/admin/status-equipment/create}" method="post" th:object="${statusEquipment}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="status_equipment_type_id">Loại Tình Trạng Trang Thiết Bị</label>
+                                                <select th:field="*{statusEquipmentType.id}" id="status_equipment_type_id" class="form-control">
+                                                    <option th:each="statusEquipmentType : ${statusEquipmentTypes}" th:value="${statusEquipmentType.id}" th:text="${statusEquipmentType.nameStatusType}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
 
-                        <div class="card mb-3">
-                            <div class="card-body">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="depreciation">Khấu Hao (5 năm = 20%)</label>
+                                                <input type="text" th:field="*{depreciation}" th:name="depreciation" id="depreciation" class="form-control" placeholder="Khấu hao theo %">
+                                            </div>
+                                        </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="status_equipment_id">Loại Tình Trạng Trang Thiết Bị</label>
-                                            <select name="status_equipment_id" id="status_equipment_id" class="form-control">
-                                                <option value="1">Chọn loại tình trạng</option>
-                                                <option value="2">Hoạt Động</option>
-                                                <option value="3">Không Hoạt Động</option>
-                                            </select>
-                                            <p></p>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="status_equipment_name">Tên Tình Trạng</label>
+                                                <input type="text" th:field="*{nameStatus}" th:name="status_equipment_name" id="status_equipment_name" class="form-control" placeholder="Tên tình trạng">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="showHome">Hiển Thị Ở Trang Chủ</label>
+                                                <select th:field="*{showHome}" id="showHome" class="form-control">
+                                                    <option th:value="Yes">Có</option>
+                                                    <option th:value="No">Không</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="description">Mô Tả</label>
+                                                <textarea th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="depreciation">Khấu Hao</label>
-                                            <input type="text" th:name="depreciation" id="depreciation" class="form-control" placeholder="Khấu hao theo %">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="status_equipment_name">Tên Tình Trạng</label>
-                                            <input type="text" th:name="status_equipment_name" id="status_equipment_name" class="form-control" placeholder="Tên tình trạng">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="showHome">Hiển Thị Ở Trang Chủ</label>
-                                            <select name="showHome" id="showHome" class="form-control">
-                                                <option value="Yes">Yes</option>
-                                                <option value="No">No</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="description">Mô Tả</label>
-                                            <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
+                </form>
                 <div class="pb-5 pt-3">
-                    <button class="btn btn-primary">Xác Nhận</button>
+                    <button class="btn btn-primary" onclick="document.getElementById('statusEquipmentFormCreate').submit()">Xác Nhận</button>
                     <a th:href="@{/admin/status-equipment}" class="btn btn-outline-dark ml-3">Hủy</a>
                 </div>
             </div>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Chỉnh Sửa Kho</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/warehouse}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <form class="commonForm" th:action="@{/admin/warehouse/edit/{id}(id=${warehouse.id})}"  method="post" id="editWarehouseForm" name="editWarehouseForm" th:object="${warehouse}">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="storage_name">Tên Kho</label>
+                                        <input type="text"  th:field="*{name}" id="storage_name" class="form-control" placeholder="Tên kho">
+                                        <p></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="location">Vị Trí</label>
+                                        <input type="text"  th:field="*{location}" id="location" class="form-control" placeholder="Vị trí">
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="description">Mô Tả</label>
+                                        <textarea   th:field="*{description}"  name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pb-5 pt-3">
+                        <button class="btn btn-primary" onclick="document.getElementById('editWarehouseForm').submit()">Cập Nhật</button>
+                        <a th:href="@{/admin/warehouse}" class="btn btn-outline-dark ml-3">Hủy</a>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+
+
+</body>
+</html>

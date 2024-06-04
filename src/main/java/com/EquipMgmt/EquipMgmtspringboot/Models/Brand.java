@@ -11,7 +11,7 @@ public class Brand {
     @Column(name = "id")
     private Long id;
 
-    @Size(min = 3, max = 50)
+    @Size(min = 1, max = 50)
     @Column(name = "name", length = 50, nullable = false)
     private String nameBrand;
 

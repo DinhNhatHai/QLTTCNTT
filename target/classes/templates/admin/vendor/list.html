@@ -68,8 +68,8 @@
                             </thead>
 
                             <tbody>
-                                <tr th:each="vendor : ${vendors}">
-                                    <td th:text="${vendor.id}">1</td>
+                                 <tr th:each="vendor, numberStart : ${vendors}">
+                                    <td th:text="${numberStart.index + 1}"></td>
                                     <td th:text="${vendor.vendorName}">Tên Nhà Cung Cấp</td>
                                     <td th:text="${vendor.description}">Mô Tả</td>
                                     <td th:text="${vendor.email}">Email</td>
@@ -116,14 +116,14 @@
 
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
 
-<script>
-    function submitForm() {
-        const form = document.getElementById('vendorForm');
-        const checkboxes = form.querySelectorAll('input[name="idsToDelete"]:checked');
-        const idsToDelete = Array.from(checkboxes).map(cb => cb.value).join(',');
-        form.action = `/admin/vendor/delete-and-reorder/${idsToDelete}`;
-    }
-</script>
+<!--<script>-->
+<!--    function submitForm() {-->
+<!--        const form = document.getElementById('vendorForm');-->
+<!--        const checkboxes = form.querySelectorAll('input[name="idsToDelete"]:checked');-->
+<!--        const idsToDelete = Array.from(checkboxes).map(cb => cb.value).join(',');-->
+<!--        form.action = `/admin/vendor/delete-and-reorder/${idsToDelete}`;-->
+<!--    }-->
+<!--</script>-->
 
 <div></div>
 </body>

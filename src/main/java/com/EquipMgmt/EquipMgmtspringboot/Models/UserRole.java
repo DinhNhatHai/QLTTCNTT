@@ -12,14 +12,12 @@ public class UserRole {
     @Column(name = "id")
     private Long id;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER )
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "role_id",referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER )
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
 
     // No-Args Constructor

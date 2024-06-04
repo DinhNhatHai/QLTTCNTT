@@ -8,6 +8,7 @@
     <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
     <!-- /.navbar -->
     <!-- Main Sidebar Container -->
+
     <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
 
     <!-- Content Wrapper. Contains page content -->
@@ -17,10 +18,10 @@
             <div class="container-fluid my-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Maintenance Schedule</h1>
+                        <h1>Tạo Thêm Lịch Bảo Bảo Trì</h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a th:href="@{/admin/maintenance schedule}" class="btn btn-primary">Back</a>
+                        <a th:href="@{/admin/maintenance-schedule}" class="btn btn-primary">Trở Lại</a>
                     </div>
                 </div>
             </div>
@@ -31,42 +32,27 @@
             <!-- Default box -->
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="Maintenance Schedule ID">Maintenance Schedule ID :</label>
-                                            <input type="text" th:name="Maintenance Schedule ID" id="Maintenance Schedule ID" class="form-control" placeholder="Maintenance Schedule ID">
+                                            <label for="start_date">Ngày Bắt Đầu</label>
+                                            <select th:name="start_date" id="start_date"  class="form-control">
+                                                <option value="">17/02/2024</option>
+                                            </select>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label for="system-device-id">System/Device/Component ID :</label>
-                                            <input type="text" th:name="systemDeviceId" id="system-device-id" class="form-control" placeholder="System/Device/Component ID">
+                                            <label for="end_date">Ngày Kết Thúc</label>
+                                            <select th:name="end_date" id="end_date"  class="form-control">
+                                                <option value="">17/02/2024</option>
+                                            </select>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-12">
                                         <div class="mb-3">
-                                            <label for="Maintenance schedule time">Maintenance schedule time :</label>
-                                            <input type="datetime-local" th:name="Maintenance schedule time" id="Maintenance schedule time" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="maintenance-type">Maintenance Type :</label>
-                                            <input type="text" th:name="maintenanceType" id="maintenance-type" class="form-control" placeholder="Maintenance Type">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="Describe">Describe :</label>
-                                            <textarea th:name="Describe" id="Describe" class="form-control" placeholder="Describe"></textarea>
+                                            <label for="description">Mô Tả</label>
+                                            <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -74,10 +60,9 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="pb-5 pt-3">
-                    <button class="btn btn-primary">Submit</button>
-                    <a th:href="@{/admin/maintenance schedule}" class="btn btn-outline-dark ml-3">Cancel</a>
+                    <button class="btn btn-primary">Xác Nhận</button>
+                    <a th:href="@{/admin/maintenance-schedule}" class="btn btn-outline-dark ml-3">Hủy</a>
                 </div>
             </div>
             <!-- /.card -->

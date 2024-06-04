@@ -30,29 +30,29 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="position_id">Loại Tài Khoản</label>
-                                    <select name="position_id" id="position_id" class="form-control">
-                                        <option>Chọn Vai Trò</option>
-                                        <option>ADMIN</option>
-                                        <option>USER</option>
-                                    </select>
-                                    <p></p>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="sub_roles">Vai Trò Tài Khoản</label>
-                                    <input type="text" name="sub_roles" id="sub_roles" class="form-control" placeholder="Vai trò tài khoản">
+                <form class="commonForm" th:id="subRoleFormCreate" th:action="@{/admin/sub-roles/create}" method="post" th:object="${subRoles}">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="role_id">Loại Tài Khoản</label>
+                                        <select th:field="*{role.id}" name="role_id" id="role_id" class="form-control">
+                                            <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+                                        </select>
+                                        <p></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="sub_roles">Vai Trò Tài Khoản</label>
+                                        <input type="text"   th:field="*{name}" name="sub_roles" id="sub_roles" class="form-control" placeholder="Vai trò tài khoản">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="pb-5 pt-3">
-                    <button class="btn btn-primary">Xác Nhận</button>
+                    <button class="btn btn-primary" onclick="document.getElementById('subRoleFormCreate').submit()">Xác Nhận</button>
                     <a th:href="@{/admin/sub-roles}" class="btn btn-outline-dark ml-3">Hủy</a>
                 </div>
             </div>

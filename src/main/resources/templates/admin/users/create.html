@@ -6,11 +6,8 @@
 <div class="wrapper">
     <!-- Navbar -->
     <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
-    <!-- /.navbar -->
     <!-- Main Sidebar Container -->
-
     <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <section class="content-header">
@@ -24,60 +21,65 @@
                     </div>
                 </div>
             </div>
-            <!-- /.container-fluid -->
         </section>
         <!-- Main content -->
         <section class="content">
-            <!-- Default box -->
             <div class="container-fluid">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="name">Tên Người Dùng</label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Tên người dùng">
+                <form th:action="@{/admin/users/create}" method="post" id="createUserForm" name="createUserForm" th:object="${users}">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="employee_type_id">Vai Trò Tài Khoản</label>
+                                        <select th:field="*{employeeType.id}" id="employee_type_id" class="form-control">
+                                            <option th:each="employeeType : ${employeeTypes}" th:value="${employeeType.id}" th:text="${employeeType.nameEmployeeType}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="user_name">Tên Đăng Nhập</label>
+                                        <input th:field="*{userName}" type="text" id="user_name" class="form-control" placeholder="Tên đăng nhập">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password">Mật Khẩu</label>
+                                        <input th:field="*{password}" type="password" id="password" class="form-control" placeholder="Mật khẩu">
+                                    </div>
+<!--                                    <div class="mb-3">-->
+<!--                                        <label for="confirmPassword">Xác Nhận Mật Khẩu</label>-->
+<!--                                        <input th:field="*{confirmPassword}" type="password" id="confirmPassword" class="form-control" placeholder="Xác nhận mật khẩu">-->
+<!--                                        <div th:if="${passwordMismatch}" class="alert alert-danger" th:text="${passwordMismatch}"></div>-->
+<!--                                    </div>-->
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="password">Mật Khẩu</label>
-                                    <input type="text" name="password" id="password" class="form-control" placeholder="Mật khẩu">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="user_name">Tên Đăng Nhậpp</label>
-                                    <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Tên đăng nhập">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="confirm_password">Xác Nhận Mật Khẩu</label>
-                                    <input type="text" name="confirm_password" id="confirm_password" class="form-control" placeholder="Xác nhận mật khẩu">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="name">Tên Người Dùng</label>
+                                        <input th:field="*{name}" type="text" id="name" class="form-control" placeholder="Tên người dùng">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email">Email</label>
+                                        <input th:field="*{email}" type="text" id="email" class="form-control" placeholder="Địa chỉ email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="enable">Trạng Thái Tài Khoản</label>
+                                        <select th:field="*{enable}" id="enable" class="form-control">
+                                            <option th:value="1">Hoạt Động</option>
+                                            <option th:value="0">Vô Hiệu Hóa</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="pb-5 pt-3">
-                    <button class="btn btn-primary">Xác Nhận</button>
+                    <button class="btn btn-primary" onclick="document.getElementById('createUserForm').submit()">Xác Nhận</button>
                     <a th:href="@{/admin/users}" class="btn btn-outline-dark ml-3">Hủy</a>
                 </div>
             </div>
-            <!-- /.card -->
         </section>
-        <!-- /.content -->
-
     </div>
-    <!-- /.content-wrapper -->
-
     <div th:replace="~{admin/fragments/footer :: footer}"></div>
 </div>
-<!-- ./wrapper -->
-<!-- jQuery -->
-
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
-
 </body>
 </html>

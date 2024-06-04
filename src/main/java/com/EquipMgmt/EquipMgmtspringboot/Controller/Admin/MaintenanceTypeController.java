@@ -1,7 +1,6 @@
 package com.EquipMgmt.EquipMgmtspringboot.Controller.Admin;
 
 import com.EquipMgmt.EquipMgmtspringboot.Models.MaintenanceType;
-import com.EquipMgmt.EquipMgmtspringboot.Models.Vendor;
 import com.EquipMgmt.EquipMgmtspringboot.Services.MaintenanceTypeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +22,8 @@ public class MaintenanceTypeController {
         return "admin/maintenance_type/list";
     }
 
-
     @GetMapping("/create")
-    public String createVendorForm(Model model) {
+    public String createMaintenanceTypeForm (Model model) {
         model.addAttribute("maintenanceType", new MaintenanceType());
         return "admin/maintenance_type/create";
     }
@@ -38,18 +36,6 @@ public class MaintenanceTypeController {
         maintenanceTypeService.save(maintenanceType);
         return "redirect:/admin/maintenance-type";
     }
-
-//    @GetMapping("/create")
-//    public String createMaintenanceTypeForm(Model model) {
-//        model.addAttribute("maintenanceType", new MaintenanceType());
-//        return "admin/maintenance_type/create";
-//    }
-//
-//    @PostMapping("/create")
-//    public String createMaintenanceType(@ModelAttribute MaintenanceType maintenanceType) {
-//        maintenanceTypeService.save(maintenanceType);
-//        return "redirect:/admin/maintenance_type";
-//    }
 
     @GetMapping("/edit/{id}")
     public String editMaintenanceTypeForm(@PathVariable Long id, Model model) {
