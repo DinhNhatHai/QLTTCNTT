@@ -3,11 +3,13 @@ package com.EquipMgmt.EquipMgmtspringboot.Models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "category")
 public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -31,18 +33,25 @@ public class Category {
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private Set<SubCategory> subCategory;
 
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+    private List<Device> devices;
+
     public Category(){
 
     }
 
-    public Category(Long id, String nameCategory, Boolean showHome, String image, String description, Set<SubCategory> subCategory) {
+    public Category(Long id, String nameCategory, Boolean showHome, String image, String description, Set<SubCategory> subCategory, List<Device> devices) {
         this.id = id;
         this.nameCategory = nameCategory;
         this.showHome = showHome;
         this.image = image;
         this.description = description;
         this.subCategory = subCategory;
+        this.devices = devices;
     }
+
+
+
 
     // Getters and Setters
 
@@ -92,5 +101,13 @@ public class Category {
 
     public void setSubCategory(Set<SubCategory> subCategory) {
         this.subCategory = subCategory;
+    }
+
+    public List<Device> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
     }
 }

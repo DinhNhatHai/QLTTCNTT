@@ -31,7 +31,7 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form class="commonForm" th:action="@{/admin/accessory/create}" method="post" th:object="${accessory}">
+                <form class="commonForm" th:id="accessoryFormCreate" th:action="@{/admin/accessory/create}" method="post" th:object="${accessory}">
                     <div class="row">
                         <div class="col-md-8">
                             <div class="card mb-3">
@@ -39,90 +39,70 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label for="device_id">ID Linh Phụ Kiện</label>
-                                                <input type="text" th:name="device_id" id="device_id" class="form-control" placeholder="Tên thiết bị">
+                                                <label for="accessory_id">ID Linh Phụ Kiện</label>
+                                                <input type="text"  th:field="*{accessoryId}" th:name="accessory_id" id="accessory_id" class="form-control" placeholder="ID linh phụ kiện">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label for="accessory_name">Tên Linh Phụ Kiện</label>
-                                                <input type="text" th:name="accessory_name" id="accessory_name" class="form-control" placeholder="Tên linh phụ kiện">
+                                                <label for="name">Tên Linh Phụ Kiện</label>
+                                                <input type="text" th:field="*{nameAccessory}" th:name="name" id="name" class="form-control" placeholder="Tên linh phụ kiện">
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="model">Mã Model</label>
-                                                <input type="text" th:name="model" id="model" class="form-control" placeholder="Mã model">
+                                                <input type="text" th:field="*{model}" th:name="model" id="model" class="form-control" placeholder="Mã model">
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="date_add_storage">Ngày Nhập Vào Kho</label>
-                                                <input autocomplete="off" type="text" th:name="date_add_storage" id="date_add_storage" class="form-control" placeholder="Ngày nhập vào kho">
-                                                <p></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="date_use">Ngày Bàn Giao Sử Dụng</label>
-                                                <input autocomplete="off" type="text" th:name="date_use" id="date_use" class="form-control" placeholder="Ngày bàn giao sử dụng">
-                                                <p></p>
-                                            </div>
-                                        </div>
-
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="description">Mô Tả</label>
-                                                <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                                <textarea th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <h2 class="h4 mb-3">Hình Ảnh</h2>
-                                    <div id="image" class="dropzone dz-clickable">
-                                        <div class="dz-message needsclick">
-                                            <br>Tải Hình Ảnh Lên.<br><br>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            <div class="card mb-3">-->
+<!--                                <div class="card-body">-->
+<!--                                    <h2 class="h4 mb-3">Hình Ảnh</h2>-->
+<!--                                    <div id="image" class="dropzone dz-clickable">-->
+<!--                                        <div class="dz-message needsclick">-->
+<!--                                            <br>Tải Hình Ảnh Lên.<br><br>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
                         </div>
+
                         <div class="col-md-4">
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <div class="mb-3">
-                                        <label for="brand">Thương Hiệu</label>
-                                        <select th:name="brand" id="brand"  class="form-control">
-                                            <option value="">Apple</option>
-                                            <option value="">Vivo</option>
-                                            <option value="">HP</option>
-                                            <option value="">Samsung</option>
-                                            <option value="">DELL</option>
+                                        <label for="brand_id">Thương Hiệu</label>
+                                        <select th:field="*{brand.id}" id="brand_id" class="form-control">
+                                            <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.nameBrand}"></option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h2 class="h4 mb-3">Tình Trạng Trang Thiết Bị</h2>
+                                    <h2 class="h4 mb-3">Tình Trạng Thiết Bị</h2>
                                     <div class="mb-3">
-                                        <label for="category">Danh Mục Tình Trạng</label>
-                                        <select th:name="status_type" id="status_type" class="form-control">
-                                            <option value="1">Active</option>
-                                            <option value="0">Block</option>
+                                        <label for="status_equipment_type_id">Danh Mục Tình Trạng</label>
+                                        <select th:field="*{statusEquipmentType.id}" id="status_equipment_type_id" class="form-control">
+                                            <option th:each="statusEquipmentType : ${statusEquipmentTypes}" th:value="${statusEquipmentType.id}" th:text="${statusEquipmentType.nameStatusType}"></option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="category">Tình Trạng Trang Thiết Bị</label>
-                                        <select th:name="status" id="status" class="form-control">
-                                            <option value="1">Active</option>
-                                            <option value="0">Block</option>
+                                        <label for="status_equipment_id">Tình Trạng Thiết Bị</label>
+                                        <select th:field="*{statusEquipment.id}" id="status_equipment_id" class="form-control">
+                                            <option th:each="statusEquipment : ${statusEquipments}" th:value="${statusEquipment.id}" th:text="${statusEquipment.nameStatus}"></option>
                                         </select>
                                     </div>
                                 </div>
@@ -130,27 +110,23 @@
 
                             <div class="card">
                                 <div class="card-body">
-                                    <h2 class="h4  mb-3">Loại Trang Thiết Bị</h2>
+                                    <h2 class="h4  mb-3">Loại Thiết Bị</h2>
                                     <div class="mb-3">
-                                        <label for="category">Danh Mục Trang Thiết Bị</label>
-                                        <select th:name="category" id="category" class="form-control">
-                                            <option value="">Electronics</option>
-                                            <option value="">Clothes</option>
-                                            <option value="">Furniture</option>
+                                        <label for="category_id">Danh Mục Thiết Bị</label>
+                                        <select th:field="*{category.id}" id="category_id" class="form-control">
+                                            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nameCategory}"></option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="sub_category">Loại Thiết Bị</label>
-                                        <select th:name="sub_category" id="sub_category" class="form-control">
-                                            <option value="">Mobile</option>
-                                            <option value="">Home Theater</option>
-                                            <option value="">Headphones</option>
+                                        <label for="sub_category_id">Loại Thiết Bị</label>
+                                        <select th:field="*{subCategory.id}" id="sub_category_id" class="form-control">
+                                            <option th:each="subCategory : ${subCategories}" th:value="${subCategory.id}" th:text="${subCategory.nameSubCategory}"></option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="pb-5 pt-3">
-                                <button class="btn btn-primary">Xác Nhận</button>
+                                <button class="btn btn-primary" onclick="document.getElementById('accessoryFormCreate').submit()">Xác Nhận</button>
                                 <a th:href="@{/admin/accessory}" class="btn btn-outline-dark ml-3">Hủy</a>
                             </div>
                         </div>
@@ -159,6 +135,7 @@
             </div>
             <!-- /.card -->
         </section>
+
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

@@ -3,6 +3,8 @@ package com.EquipMgmt.EquipMgmtspringboot.Models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "brand")
 public class Brand {
@@ -17,6 +19,9 @@ public class Brand {
 
     @Column(name = "show_home", nullable = false)
     private boolean showHome;
+
+    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
+    private List<Device> devices;
 
     // Getters and Setters
     public Long getId() {
