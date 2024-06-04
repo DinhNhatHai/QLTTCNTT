@@ -15,12 +15,12 @@ public class SubCategory {
     @Size(min = 5, max = 50)
     @Column(name = "name", length = 50)
     private String nameSubCategory;
+
     @Column(name = "show_home")
     private Boolean showHome;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "category",referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER )
+    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private Category category;
 
     public SubCategory(){
