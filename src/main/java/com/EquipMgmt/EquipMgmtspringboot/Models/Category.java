@@ -30,6 +30,7 @@ public class Category {
 
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private Set<SubCategory> subCategory;
+
     public Category(){
 
     }

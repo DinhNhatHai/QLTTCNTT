@@ -13,7 +13,14 @@ import java.util.Optional;
 public class UserServiceImplement implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
+
+    public UserServiceImplement(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public User findByUsername(String userName) {
@@ -27,14 +34,9 @@ public class UserServiceImplement implements UserService {
 
     @Override
     public void save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
-
-//    @Override
-//    public void save(User user) {
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        userRepository.save(user);
-//    }
 
     @Override
     public void deleteById(Long id) {

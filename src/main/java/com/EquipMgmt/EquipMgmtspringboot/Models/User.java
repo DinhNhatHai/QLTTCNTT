@@ -32,6 +32,9 @@ public class User {
     @Column(name = "password", nullable = false, length = 100)
     private String password;
 
+    @Transient
+    private String confirmPassword;
+
     @NotNull
     @Email
     @Column(name = "email", nullable = false, unique = true, length = 100)
@@ -58,11 +61,12 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String userName, String name, String password, String email, boolean enable, Employee employee, EmployeeType employeeType, Set<UserRole> userRoles, Set<UserSubRoles> userSubRoles) {
+    public User(Long id, String confirmPassword, String userName, String name, String password, String email, boolean enable, Employee employee, EmployeeType employeeType, Set<UserRole> userRoles, Set<UserSubRoles> userSubRoles) {
         this.id = id;
         this.userName = userName;
         this.name = name;
         this.password = password;
+        this.confirmPassword = confirmPassword;
         this.email = email;
         this.enable = enable;
         this.employee = employee;
@@ -101,6 +105,14 @@ public class User {
 
     public void setPassword(@NotNull @Size(min = 6, max = 100) String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public @NotNull @Email String getEmail() {

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -13,19 +14,24 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    public List<Department> getAllDepartments() {
+    @Override
+    public List<Department> findAll() {
         return departmentRepository.findAll();
     }
 
-    public Department getDepartmentById(Long id) {
-        return departmentRepository.findById(id).orElse(null);
+    @Override
+    public void save(Department departmentType) {
+        departmentRepository.save(departmentType);
     }
 
-    public Department saveDepartment(Department department) {
-        return departmentRepository.save(department);
-    }
-
-    public void deleteDepartment(Long id) {
+    @Override
+    public void deleteById(Long id) {
         departmentRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Department> getDepartmentById(Long id) {
+        return departmentRepository.findById(id);
+    }
+
 }

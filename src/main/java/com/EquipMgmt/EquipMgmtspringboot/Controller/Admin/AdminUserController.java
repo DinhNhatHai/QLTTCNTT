@@ -50,6 +50,7 @@ public class AdminUserController {
         User user = userService.getId(id)
                 .orElseThrow(() -> new IllegalArgumentException("Không tồn tài tại khoản:" + id));
         model.addAttribute("users", user);
+        model.addAttribute("employeeTypes", employeeTypeService.findAll());
         return "admin/users/edit";
     }
 

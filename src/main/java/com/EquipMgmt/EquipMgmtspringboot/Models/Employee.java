@@ -11,8 +11,8 @@ public class Employee {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_type_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER )
+    @JoinColumn(name = "employee_type_id", nullable = false)
     private EmployeeType employeeType;
 
     @OneToOne

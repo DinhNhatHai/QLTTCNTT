@@ -29,19 +29,17 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form action="/admin/department/create" method="post">
+                <form th:action="@{/admin/department/create}" method="post" id="createDepartmentForm" name="createDepartmentForm" th:object="${department}">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <div class="row">
-
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="departmentType">Loại Phòng Ban</label>
-                                                <select name="departmentType.id" id="departmentType" class="form-control">
-                                                    <option value="">Chọn loại phòng ban</option>
-                                                    <option th:each="type : ${departmentTypes}" th:value="${type.id}" th:text="${type.typeName}"></option>
+                                                <label for="department_type_id">Loại Phòng Ban</label>
+                                                <select th:field="*{departmentType.id}" id="department_type_id" class="form-control">
+                                                    <option th:each="departmentType : ${departmentTypes}" th:value="${departmentType.id}" th:text="${departmentType.nameDepartmentType}"></option>
                                                 </select>
                                             </div>
                                         </div>
@@ -49,37 +47,36 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="department_location">Vị Trí Phòng Ban</label>
-                                                <input type="text" name="location" id="department_location" class="form-control" placeholder="Vị trí phòng ban">
+                                                <input type="text"  th:field="*{location}" name="department_location" id="department_location" class="form-control" placeholder="Vị trí phòng ban">
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="department_name">Tên Phòng Ban</label>
-                                                <input type="text" th:name="department_name" id="department_name" class="form-control" placeholder="Tên phòng ban">
+                                                <input type="text" th:field="*{departmentName}" id="department_name" class="form-control" placeholder="Tên phòng ban">
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="showHome">Hiển Thị Ở Trang Chủ</label>
-                                                <select name="showHome" id="showHome" class="form-control">
-                                                    <option value="Yes">Yes</option>
-                                                    <option value="No">No</option>
+                                                <select th:field="*{showHome}" id="showHome" class="form-control">
+                                                    <option th:value="Yes">Có</option>
+                                                    <option th:value="No">Không</option>
                                                 </select>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="pb-5 pt-3">
+                        <button class="btn btn-primary" onclick="document.getElementById('createDepartmentForm').submit()">Xác Nhận</button>
+                        <a th:href="@{/admin/department}" class="btn btn-outline-dark ml-3">Hủy</a>
+                    </div>
                 </form>
-                <div class="pb-5 pt-3">
-                    <button class="btn btn-primary">Xác Nhận</button>
-                    <a th:href="@{/admin/department}" class="btn btn-outline-dark ml-3">Hủy</a>
-                </div>
             </div>
             <!-- /.card -->
         </section>

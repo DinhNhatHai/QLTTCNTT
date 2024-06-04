@@ -1,11 +1,13 @@
 package com.EquipMgmt.EquipMgmtspringboot.Services;
 
 import com.EquipMgmt.EquipMgmtspringboot.Models.DepartmentType;
+import com.EquipMgmt.EquipMgmtspringboot.Models.EmployeeType;
 import com.EquipMgmt.EquipMgmtspringboot.Repository.DepartmentTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DepartmentTypeServiceImpl implements DepartmentTypeService {
@@ -13,19 +15,23 @@ public class DepartmentTypeServiceImpl implements DepartmentTypeService {
     @Autowired
     private DepartmentTypeRepository departmentTypeRepository;
 
-    public List<DepartmentType> getAllDepartmentTypes() {
+    @Override
+    public List<DepartmentType> findAll() {
         return departmentTypeRepository.findAll();
     }
 
-    public DepartmentType getCategoryDepartmentById(Long id) {
-        return departmentTypeRepository.findById(id).orElse(null);
+    @Override
+    public void save(DepartmentType departmentType) {
+        departmentTypeRepository.save(departmentType);
     }
 
-    public DepartmentType updateDepartmentType(DepartmentType departmentType) {
-        return departmentTypeRepository.save(departmentType);
-    }
-
-    public void deleteCategoryDepartment(Long id) {
+    @Override
+    public void deleteById(Long id) {
         departmentTypeRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<DepartmentType> getDepartmentTypeById(Long id) {
+        return departmentTypeRepository.findById(id);
     }
 }

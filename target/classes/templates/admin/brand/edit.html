@@ -31,14 +31,14 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form th:action="@{/admin/brand/edit}" method="post" id="editBrandForm" name="editBrandForm">
+                <form th:action="@{/admin/brand/edit/{id}(id=${brand.id})}" method="post" id="editBrandForm" name="editBrandForm" th:object="${brand}">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="name">Tên Thương Hiệu</label>
-                                        <input type="text" th:name="name" id="name" class="form-control" placeholder="Tên thương hiệu">
+                                        <input type="text" th:field="*{nameBrand}" th:name="name" id="name" class="form-control" placeholder="Tên thương hiệu">
                                         <p></p>
                                     </div>
                                 </div>
@@ -46,17 +46,18 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="showHome">Hiển Thị Ở Trang Chủ</label>
-                                        <select th:name="showHome" id="showHome" class="form-control">
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
+                                        <select th:field="*{showHome}" id="showHome" class="form-control">
+                                            <option th:value="Yes">Có</option>
+                                            <option th:value="No">Không</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div class="pb-5 pt-3">
-                        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                        <button class="btn btn-primary" onclick="document.getElementById('editBrandForm').submit()">Cập Nhật</button>
                         <a th:href="@{/admin/brand}" class="btn btn-outline-dark ml-3">Hủy</a>
                     </div>
                 </form>

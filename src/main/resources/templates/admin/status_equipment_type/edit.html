@@ -31,15 +31,15 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form th:action="@{/categories}" method="post" id="categoryForm" name="categoryForm">
+                <form class="commonForm" th:id="statusEquipmentTypeFormEdit" th:action="@{/admin/status-equipment-type/edit/{id}(id=${statusEquipmentType.id})}" method="post" th:object="${statusEquipmentType}">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
 
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="departmentType">Tên Loại Tình Trạng</label>
-                                        <input type="text" th:name="departmentType" id="departmentType" class="form-control" placeholder="Tên loại tình trạng">
+                                        <label for="name">Tên Loại Tình Trạng</label>
+                                        <input type="text"  th:field="*{nameStatusType}" th:name="name" id="name" class="form-control" placeholder="Tên loại tình trạng">
                                         <p></p>
                                     </div>
                                 </div>
@@ -47,18 +47,24 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="showHome">Hiển Thị Ở Trang Chủ</label>
-                                        <select th:name="showHome" id="showHome" class="form-control">
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
+                                        <select th:field="*{showHome}" id="showHome" class="form-control">
+                                            <option th:value="Yes">Có</option>
+                                            <option th:value="No">Không</option>
                                         </select>
                                     </div>
                                 </div>
 
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="description">Mô Tả</label>
+                                        <textarea th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="pb-5 pt-3">
-                        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                        <button class="btn btn-primary" onclick="document.getElementById('statusEquipmentTypeFormEdit').submit()">Cập Nhật</button>
                         <a th:href="@{/admin/status-equipment-type}" class="btn btn-outline-dark ml-3">Hủy</a>
                     </div>
                 </form>

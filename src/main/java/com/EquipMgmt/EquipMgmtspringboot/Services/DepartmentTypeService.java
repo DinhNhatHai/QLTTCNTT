@@ -4,11 +4,12 @@ import com.EquipMgmt.EquipMgmtspringboot.Models.DepartmentType;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface DepartmentTypeService {
-    List<DepartmentType> getAllDepartmentTypes();
-    DepartmentType getCategoryDepartmentById(Long id);
-    DepartmentType updateDepartmentType(DepartmentType departmentType);
-    void  deleteCategoryDepartment(Long id);
+    List<DepartmentType> findAll();
+    Optional<DepartmentType> getDepartmentTypeById(Long id);
+    void save(DepartmentType departmentType);
+    void deleteById(Long id);
 }

@@ -61,15 +61,18 @@
                       <th>Loại Phòng Ban</th>
                       <th>Tên Phòng Ban</th>
                       <th>Vị Trí Phòng Ban</th>
+                      <th>Hiển Thị Ở Trang Chủ</th>
                       <th>Tác Vụ</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr th:each="department, numberStart: ${departments}">
-                      <td th:text="${numberStart.index+1}"></td>
-                      <td th:text="${department.departmentType.typeName}"></td>
+                    <tr th:each="department, numberStart : ${departments}">
+                      <td th:text="${numberStart.index + 1}"></td>
+                      <td th:text="${department.departmentType.nameDepartmentType}"></td>
                       <td th:text="${department.departmentName}"></td>
                       <td th:text="${department.location}"></td>
+                      <td th:if="${department.showHome}">Có</td>
+                      <td th:if="${!department.showHome}">Không</td>
                       <td>
                         <a th:href="@{/admin/department/edit/{id}(id=${department.id})}">
                           <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

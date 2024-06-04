@@ -15,35 +15,22 @@ public class BrandServiceImpl implements BrandService {
     private BrandRepository brandRepository;
 
     @Override
-    public List<Brand> getAllBrands() {
+    public List<Brand> findAll() {
         return brandRepository.findAll();
     }
 
     @Override
-    public Brand getBrandById(Long id) {
-        Optional<Brand> brand = brandRepository.findById(id);
-        if (brand.isPresent()) {
-            return brand.get();
-        } else {
-            throw new RuntimeException("Brand not found for id: " + id);
-        }
+    public Optional<Brand> getBrandById(Long id) {
+        return brandRepository.findById(id);
     }
 
     @Override
-    public Brand createBrand(Brand brand) {
-        return brandRepository.save(brand);
+    public void save(Brand brand) {
+        brandRepository.save(brand);
     }
 
     @Override
-    public Brand updateBrand(Long id, Brand brand) {
-        Brand existingBrand = getBrandById(id);
-        existingBrand.setNameBrand(brand.getNameBrand());
-        existingBrand.setShowHome(brand.isShowHome());
-        return brandRepository.save(existingBrand);
-    }
-
-    @Override
-    public void deleteBrand(Long id) {
+    public void deleteById(Long id) {
         brandRepository.deleteById(id);
     }
 }

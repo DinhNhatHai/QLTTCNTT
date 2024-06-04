@@ -53,15 +53,18 @@
               <tr>
                 <th>STT</th>
                 <th>Tên Danh Mục</th>
+                <th>Mô Tả</th>
                 <th>Hiển Thị Ở Trang Chủ</th>
                 <th>Tác Vụ</th>
               </tr>
               </thead>
               <tbody>
-                <tr th:each="maintenanceType : ${maintenanceTypes}">
-                  <td th:text="${maintenanceType.id}">1</td>
-                  <td th:text="${maintenanceType.nameMaintenacnceType}">Loại Bảo Trì</td>
-                  <td th:text="${maintenanceType.showHome}">Hiển Thị Ở Trang Chủ</td>
+                <tr th:each="maintenanceType, numberStart : ${maintenanceTypes}">
+                  <td th:text="${numberStart.index + 1}"></td>
+                  <td th:text="${maintenanceType.nameMaintenanceType}"></td>
+                  <td th:text="${maintenanceType.description}"></td>
+                  <td th:if="${maintenanceType.showHome}">Có</td>
+                  <td th:if="${!maintenanceType.showHome}">Không</td>
                   <td>
                     <a th:href="@{/admin/maintenance-type/edit/{id}(id=${maintenanceType.id})}" class="text-primary">
                       <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

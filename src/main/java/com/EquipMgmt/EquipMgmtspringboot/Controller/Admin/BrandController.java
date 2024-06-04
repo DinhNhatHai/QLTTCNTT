@@ -2,9 +2,11 @@ package com.EquipMgmt.EquipMgmtspringboot.Controller.Admin;
 
 import com.EquipMgmt.EquipMgmtspringboot.Models.Brand;
 import com.EquipMgmt.EquipMgmtspringboot.Services.BrandService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,38 +19,50 @@ public class BrandController {
     private BrandService brandService;
 
     @GetMapping
-    public String index(Model model) {
-        List<Brand> brands = brandService.getAllBrands();
-        model.addAttribute("brands", brands);
+    public String listBrands (Model model) {
+        model.addAttribute("brands", brandService.findAll());
         return "admin/brand/list";
     }
 
     @GetMapping("/create")
-    public String create(Model model) {
+    public String createBrandForm (Model model) {
         model.addAttribute("brand", new Brand());
         return "admin/brand/create";
     }
 
     @PostMapping("/create")
-    public String createBrand(@ModelAttribute Brand brand) {
-        brandService.createBrand(brand);
-        return "redirect:/admin/brand"; // Chuyển hướng người dùng đến trang danh sách sau khi tạo mới thành công
+    public String createBrand (@Valid @ModelAttribute Brand brand, BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/brand/create";
+        }
+        brandService.save(brand);
+        return "redirect:/admin/brand";
     }
 
-    @GetMapping("/edit")
-    public String edit() {
+
+    @GetMapping("/edit/{id}")
+    public String editBrandForm(@PathVariable Long id, Model model) {
+        Brand brand = brandService.getBrandById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Không tồn tại thương hiệu có Id:" + id));
+        model.addAttribute("brand", brand);
         return "admin/brand/edit";
     }
 
-    @PostMapping("/edit}")
-    public String updateBrand(@PathVariable Long id, @ModelAttribute Brand brand) {
-        brandService.updateBrand(id, brand);
-        return "redirect:/admin/brand"; // Chuyển hướng người dùng đến trang danh sách sau khi cập nhật thành công
+    @PostMapping("/edit/{id}")
+    public String updateBrand (@PathVariable Long id, @Valid @ModelAttribute Brand brand, BindingResult result) {
+        if (result.hasErrors()) {
+            return "admin/brand/edit";
+        }
+        brand.setId(id);
+        brandService.save(brand);
+        return "redirect:/admin/brand";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteBrand(@PathVariable Long id) {
-        brandService.deleteBrand(id);
-        return "redirect:/admin/brand"; // Chuyển hướng người dùng đến trang danh sách sau khi xóa thành công
+        Brand brand = brandService.getBrandById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Không tồn tại thương hiệu có Id:" + id));
+        brandService.deleteById(id);
+        return "redirect:/admin/brand";
     }
 }

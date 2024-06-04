@@ -31,19 +31,19 @@ public class UserSubRoles {
         this.subRole = subRole;
     }
 
-    public @NotNull SubRole getSubRoles() {
+    public SubRole getSubRole() {
         return subRole;
     }
 
-    public void setSubRoles(@NotNull SubRole subRole) {
+    public void setSubRole(SubRole subRole) {
         this.subRole = subRole;
     }
 
-    public @NotNull User getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(@NotNull User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

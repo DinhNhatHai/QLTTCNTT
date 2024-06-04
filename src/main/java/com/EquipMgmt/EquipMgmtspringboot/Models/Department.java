@@ -14,8 +14,8 @@ public class Department {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "department_type_id",referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER )
+    @JoinColumn(name = "department_type_id", nullable = false)
     private DepartmentType departmentType;
 
     @Size(min = 3, max = 50)

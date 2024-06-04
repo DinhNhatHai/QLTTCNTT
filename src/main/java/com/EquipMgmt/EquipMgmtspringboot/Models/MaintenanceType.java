@@ -15,8 +15,25 @@ public class MaintenanceType {
     @Column(name = "name", length = 50)
     private String nameMaintenanceType;
 
+
     @Column(name = "show_home")
     private String showHome;
+
+    @Size(max = 255, message = "Description must be less than 255 characters")
+    @Column(name = "description")
+    private String description;
+
+
+    public MaintenanceType() {
+    }
+
+    public MaintenanceType(Long id, String nameMaintenanceType, String showHome, String description) {
+        this.id = id;
+        this.nameMaintenanceType = nameMaintenanceType;
+        this.showHome = showHome;
+        this.description = description;
+    }
+
 
     // Getters and Setters
     public Long getId() {
@@ -41,5 +58,13 @@ public class MaintenanceType {
 
     public void setShowHome(String showHome) {
         this.showHome = showHome;
+    }
+
+    public @Size(max = 255, message = "Description must be less than 255 characters") String getDescription() {
+        return description;
+    }
+
+    public void setDescription(@Size(max = 255, message = "Description must be less than 255 characters") String description) {
+        this.description = description;
     }
 }

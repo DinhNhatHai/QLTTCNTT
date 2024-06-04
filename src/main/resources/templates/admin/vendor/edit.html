@@ -31,7 +31,7 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form class="commonForm" th:id="vendorForm" th:action="@{/admin/vendor/edit/{id}(id=${vendor.id})}" th:object="${vendor}" method="post">
+                <form class="commonForm" th:id="vendorFormEdit" th:action="@{/admin/vendor/edit/{id}(id=${vendor.id})}" th:object="${vendor}" method="post">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div class="pb-5 pt-3">
-                        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                        <button class="btn btn-primary" onclick="document.getElementById('vendorFormEdit').submit()">Cập Nhật</button>
                         <a th:href="@{/admin/vendor}" class="btn btn-outline-dark ml-3">Hủy</a>
                     </div>
                 </form>
@@ -95,25 +95,6 @@
 <!-- jQuery -->
 
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
-
-<script type="text/javascript">
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $(document).ready(function(){
-        $(".summernote").summernote({
-            height: 400
-        });
-
-         $('#vendorForm').on('submit', function() {
-            var plainText = $('.summernote').summernote('code').replace(/<\/?[^>]+(>|$)/g, ""); // Strip HTML tags
-            $('#description').val(plainText); // Set the stripped content to the textarea
-        });
-    });
-</script>
 
 </body>
 </html>

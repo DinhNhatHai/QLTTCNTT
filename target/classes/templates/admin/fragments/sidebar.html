@@ -87,6 +87,12 @@
                             </a>
                         </li>
                         <li class="nav-item-2">
+                            <a th:href="@{/admin/guarantee}" class="nav-link" data-id="guarantee">
+                                <i class="nav-icon fa-solid fa-medal"></i>
+                                <p>Bảo Hành</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
                             <a th:href="@{/admin/warranty}" class="nav-link" data-id="warranty">
                                 <i class="nav-icon fa-regular fa-clipboard"></i>
                                 <p>Phiếu Bảo Hành</p>
@@ -146,13 +152,6 @@
                             </a>
                         </li>
                         <li class="nav-item-2">
-                            <a th:href="@{/admin/guarantee}" class="nav-link" data-id="guarantee">
-                                <i class="nav-icon fa-solid fa-medal"></i>
-                                <p>Bảo Hành</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item-2">
                             <a th:href="@{/admin/qr-code}" class="nav-link" data-id="qr-code">
                                 <i class="nav-icon fa-solid fa-qrcode"></i>
                                 <p>QR Code</p>
@@ -171,7 +170,7 @@
                             </a>
                         </li>
                         <li class="nav-item-2">
-                            <a th:href="@{/admin/category-department}" class="nav-link" data-id="category-department">
+                            <a th:href="@{/admin/department-type}" class="nav-link" data-id="category-department">
                                 <i class="nav-icon fa-regular fa-hospital"></i>
                                 <p>Loại phòng ban</p>
                             </a>
@@ -183,7 +182,7 @@
                             </a>
                         </li>
                         <li class="nav-item-2">
-                            <a th:href="@{/admin/storage}" class="nav-link" data-id="storage">
+                            <a th:href="@{/admin/warehouse}" class="nav-link" data-id="storage">
                                 <i class="nav-icon fa-solid fa-house-laptop"></i>
                                 <p>Kho</p>
                             </a>
@@ -216,8 +215,14 @@
                             </a>
                         </li>
                         <li class="nav-item-2">
-                            <a th:href="@{/admin/sub-roles}" class="nav-link" data-id="sub-roles">
+                            <a th:href="@{/admin/user-sub-roles}" class="nav-link" data-id="employee-type">
                                 <i class="nav-icon fa-solid fa-user-gear"></i>
+                                <p>Phân Quyền</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/sub-roles}" class="nav-link" data-id="sub-roles">
+                                <i class="nav-icon fa-solid fa-user-tag"></i>
                                 <p>Vai Trò</p>
                             </a>
                         </li>

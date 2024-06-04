@@ -22,6 +22,7 @@ public class SubCategory {
     @ManyToOne
     @JoinColumn(name = "category",referencedColumnName = "id", nullable = false)
     private Category category;
+
     public SubCategory(){
 
     }

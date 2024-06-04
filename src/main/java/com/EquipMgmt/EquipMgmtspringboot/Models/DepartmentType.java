@@ -5,9 +5,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "department_type")
 public class DepartmentType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -15,20 +18,24 @@ public class DepartmentType {
 
     @Size(min = 3, max = 50)
     @Column(name = "department_type_name", nullable = false)
-    private String typeName;
+    private String nameDepartmentType;
 
     @NotNull
     @Column(name = "show_home", nullable = false)
     private String showHome;
 
+    @OneToMany(mappedBy = "departmentType", fetch = FetchType.EAGER)
+    private List<Department> departments;
+
     public DepartmentType(){
 
     }
 
-    public DepartmentType(Long id, String typeName, String showHome) {
+    public DepartmentType(Long id, String nameDepartmentType, String showHome, List<Department> departments) {
         this.id = id;
-        this.typeName = typeName;
+        this.nameDepartmentType = nameDepartmentType;
         this.showHome = showHome;
+        this.departments = departments;
     }
 
     public Long getId() {
@@ -39,19 +46,27 @@ public class DepartmentType {
         this.id = id;
     }
 
-    public String getTypeName() {
-        return typeName;
+    public @Size(min = 3, max = 50) String getNameDepartmentType() {
+        return nameDepartmentType;
     }
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
+    public void setNameDepartmentType(@Size(min = 3, max = 50) String nameDepartmentType) {
+        this.nameDepartmentType = nameDepartmentType;
     }
 
-    public String getShowHome() {
+    public @NotNull String getShowHome() {
         return showHome;
     }
 
-    public void setShowHome(String showHome) {
+    public void setShowHome(@NotNull String showHome) {
         this.showHome = showHome;
+    }
+
+    public List<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
     }
 }

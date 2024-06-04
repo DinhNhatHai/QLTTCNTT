@@ -19,7 +19,11 @@ import com.EquipMgmt.EquipMgmtspringboot.Models.User;
 public class CustomUserDetailService implements UserDetailsService {
 
     @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public CustomUserDetailService(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -32,7 +36,7 @@ public class CustomUserDetailService implements UserDetailsService {
         Set<UserSubRoles> subRoles = user.getUserSubRoles();
 
         for (UserSubRoles userSubRoles : subRoles) {
-            grantedAuthorities.add(new SimpleGrantedAuthority(userSubRoles.getSubRoles().getName()));
+            grantedAuthorities.add(new SimpleGrantedAuthority(userSubRoles.getSubRole().getName()));
         }
 
         return new CustomUserDetails(user, grantedAuthorities);

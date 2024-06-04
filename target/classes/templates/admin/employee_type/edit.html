@@ -29,11 +29,10 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form class="commonForm" th:action="@{/admin/employee-type/edit/{id}(id=${employeeType.id})}" method="post" th:object="${employeeType}">
+                <form class="commonForm" th:id="employeeTypeFormEdit" th:action="@{/admin/employee-type/edit/{id}(id=${employeeType.id})}" method="post" th:object="${employeeType}">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-<!--                                <input type="hidden" th:field="*{id}" />-->
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="name">Chức Vụ Nhân Viên</label>
@@ -62,7 +61,7 @@
                         </div>
                     </div>
                     <div class="pb-5 pt-3">
-                        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                        <button class="btn btn-primary" onclick="document.getElementById('employeeTypeFormEdit').submit()">Cập Nhật</button>
                         <a th:href="@{/admin/employee-type}" class="btn btn-outline-dark ml-3">Hủy</a>
                     </div>
                 </form>
