@@ -31,15 +31,14 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form th:action="@{/admin/sub-category/create}" method="post" th:object="${subCategory}">
+                <form class="commonForm" th:id="subCategoryFormCreate" th:action="@{/admin/sub-category/create}" method="post" th:object="${subCategory}">
                     <div class="card">
                         <div class="card-body">
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="name">Danh Mục Trang Thiết Bị</label>
-                                        <select class="form-control" id="category_name" name="category_name" >
+                                        <select th:field="*{category.id}" class="form-control" id="category_name" name="category_name" >
                                             <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nameCategory}"></option>
                                         </select>
                                         <p></p>
@@ -59,7 +58,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="name">Tên Loại Trang Thiết Bị</label>
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Tên loại trang thiết bị" th:field="*{nameSubCategory}">
+                                        <input type="text" th:field="*{nameSubCategory}" name="name" id="name" class="form-control" placeholder="Tên loại trang thiết bị">
                                         <p></p>
                                     </div>
                                 </div>
@@ -68,7 +67,7 @@
                         </div>
                     </div>
                     <div class="pb-5 pt-3">
-                        <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                        <button class="btn btn-primary" onclick="document.getElementById('subCategoryFormCreate').submit()">Xác Nhận</button>
                         <a th:href="@{/admin/sub-category}" class="btn btn-outline-dark ml-3">Hủy</a>
                     </div>
                 </form>

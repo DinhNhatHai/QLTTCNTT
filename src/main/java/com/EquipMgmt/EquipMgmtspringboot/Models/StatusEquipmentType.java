@@ -30,16 +30,21 @@ public class StatusEquipmentType {
     @OneToMany(mappedBy = "statusEquipmentType", fetch = FetchType.EAGER)
     private List<StatusEquipment> statusEquipments;
 
+    @OneToMany(mappedBy = "statusEquipmentType", fetch = FetchType.EAGER)
+    private List<Device> devices;
+
     public StatusEquipmentType() {
     }
 
-    public StatusEquipmentType(Long id, String nameStatusType, String showHome, String description, List<StatusEquipment> statusEquipments) {
+    public StatusEquipmentType(Long id, String nameStatusType, String showHome, String description, List<StatusEquipment> statusEquipments, List<Device> devices) {
         this.id = id;
         this.nameStatusType = nameStatusType;
         this.showHome = showHome;
         this.description = description;
         this.statusEquipments = statusEquipments;
+        this.devices = devices;
     }
+
 
     public Long getId() {
         return id;
@@ -80,4 +85,13 @@ public class StatusEquipmentType {
     public void setStatusEquipments(List<StatusEquipment> statusEquipments) {
         this.statusEquipments = statusEquipments;
     }
+
+    public List<Device> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
+    }
+
 }

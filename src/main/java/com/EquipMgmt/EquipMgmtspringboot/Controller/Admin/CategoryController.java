@@ -27,11 +27,11 @@ public class CategoryController {
 
     @GetMapping()
     public String index(Model model, @Param("keyword") String keyword) {
-        List<Category> list = this.categoryService.getAll();
+        List<Category> categories = this.categoryService.getAll();
         if (keyword != null) {
-            list = this.categoryService.search(keyword);
+            categories = this.categoryService.search(keyword);
         }
-        model.addAttribute("list", list);
+        model.addAttribute("categories", categories);
         return "admin/category/list";
     }
     @GetMapping("/excel")

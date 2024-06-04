@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "status_equipment")
 public class StatusEquipment {
@@ -30,6 +32,9 @@ public class StatusEquipment {
     @Column(name = "depreciation")
     private Double depreciation;
 
+    @OneToMany(mappedBy = "statusEquipment", fetch = FetchType.EAGER)
+    private List<Device> devices;
+
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name = "status_equipment_type_id", nullable = false)
     private StatusEquipmentType statusEquipmentType;
@@ -37,14 +42,16 @@ public class StatusEquipment {
     public StatusEquipment() {
     }
 
-    public StatusEquipment(Long id, String nameStatus, String description, String showHome, Double depreciation, StatusEquipmentType statusEquipmentType) {
+    public StatusEquipment(Long id, String nameStatus, String description, String showHome, Double depreciation, List<Device> devices, StatusEquipmentType statusEquipmentType) {
         this.id = id;
         this.nameStatus = nameStatus;
         this.description = description;
         this.showHome = showHome;
         this.depreciation = depreciation;
+        this.devices = devices;
         this.statusEquipmentType = statusEquipmentType;
     }
+
 
     public Long getId() {
         return id;
@@ -92,5 +99,13 @@ public class StatusEquipment {
 
     public void setStatusEquipmentType(StatusEquipmentType statusEquipmentType) {
         this.statusEquipmentType = statusEquipmentType;
+    }
+
+    public List<Device> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
     }
 }

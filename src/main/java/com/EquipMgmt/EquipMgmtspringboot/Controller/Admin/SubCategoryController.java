@@ -1,16 +1,13 @@
 package com.EquipMgmt.EquipMgmtspringboot.Controller.Admin;
 
-import com.EquipMgmt.EquipMgmtspringboot.Models.Category;
 import com.EquipMgmt.EquipMgmtspringboot.Models.SubCategory;
-import com.EquipMgmt.EquipMgmtspringboot.Services.CategoryService;
-import com.EquipMgmt.EquipMgmtspringboot.Services.SubCategoryService;
+import com.EquipMgmt.EquipMgmtspringboot.Services.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin/sub-category")
@@ -20,55 +17,54 @@ public class SubCategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping()
-    public String index(Model model, @Param("keyword") String keyword) {
-        List<SubCategory> list = this.subCategoryService.getAll();
-        if (keyword != null) {
-            list = this.subCategoryService.search(keyword);
-        }
-        model.addAttribute("listSubCategory", list);
+    @GetMapping
+    public String listSubCategory (Model model) {
+        model.addAttribute("subCategories", subCategoryService.findAll());
         return "admin/sub_category/list";
     }
 
-
     @GetMapping("/create")
-    public String add(Model model){
-        SubCategory subCategory = new SubCategory();
-        model.addAttribute("subCategory",subCategory);
-        model.addAttribute("categories",categoryService.getAll());
+    public String createSubCategoryForm(Model model) {
+        model.addAttribute("subCategory", new SubCategory());
+        model.addAttribute("categories", categoryService.getAll());
         return "admin/sub_category/create";
     }
-    @PostMapping("/create")
-    public String save(@ModelAttribute("subCategory") SubCategory subCategory ){
-        if(this.subCategoryService.create(subCategory)){
-            return "admin/sub_category/create";
-        }else {
-            return "redirect:/admin/sub-category";
-        }
-    }
-    @GetMapping("/edit/{id}")
-    public String edit(Model model, @PathVariable("id") Long id){
-        SubCategory subCategory = subCategoryService.findById(id);
-        List<Category> listCate = this.categoryService.getAll();
-        model.addAttribute("subCategory",subCategory);
-        model.addAttribute("listcate",listCate);
 
+    @PostMapping("/create")
+    public String createSubCategoryForm(@Valid @ModelAttribute SubCategory subCategory, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("categories", categoryService.getAll());
+            return "admin/sub_category/create";
+        }
+        subCategoryService.save(subCategory);
+        return "redirect:/admin/sub-category";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editSubCategoryForm(@PathVariable Long id, Model model) {
+        SubCategory subCategory = subCategoryService.getSubCategoryById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Không tồn tại loại trang thiết bị có Id: " + id));
+        model.addAttribute("subCategory", subCategory);
+        model.addAttribute("categories", categoryService.getAll());
         return "admin/sub_category/edit";
     }
-    @PostMapping("/edit")
-    public String update(@ModelAttribute("subCategory")SubCategory subCategory){
-        if(this.subCategoryService.update(subCategory)){
+
+    @PostMapping("/edit/{id}")
+    public String updateSubCategory(@PathVariable Long id, @Valid @ModelAttribute SubCategory subCategory, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("categories", categoryService.getAll());
             return "admin/sub_category/edit";
-        }else {
-            return "redirect:/admin/sub-category";
         }
+        subCategory.setId(id);
+        subCategoryService.save(subCategory);
+        return "redirect:/admin/sub-category";
     }
+
     @GetMapping("/delete/{id}")
-    public String delete(Model model, @PathVariable("id") Long id){
-        if(this.subCategoryService.delete(id)){
-            return "redirect:/admin/sub-category";
-        }else {
-            return "redirect:/admin/sub-category";
-        }
+    public String deleteSubCategory (@PathVariable Long id) {
+        SubCategory subCategory = subCategoryService.getSubCategoryById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Không tồn tại loại trang thiết bị có Id" + id));
+        subCategoryService.deleteById(id);
+        return "redirect:/admin/sub-category";
     }
 }
