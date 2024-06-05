@@ -14,7 +14,7 @@ public class SubCategory {
     @Column(name = "id")
     private Long id;
 
-    @Size(min = 5, max = 50)
+    @Size(min = 2, max = 50)
     @Column(name = "name", length = 50)
     private String nameSubCategory;
 
@@ -26,18 +26,17 @@ public class SubCategory {
     private Category category;
 
     @OneToMany(mappedBy = "subCategory", fetch = FetchType.EAGER)
-    private List<Device> devices;
+    private List<Equipment> equipments;
 
     public SubCategory(){
-
     }
 
-    public SubCategory(Long id, String nameSubCategory, Boolean showHome, Category category, List<Device> devices) {
+    public SubCategory(Long id, String nameSubCategory, Boolean showHome, Category category, List<Equipment> equipments) {
         this.id = id;
         this.nameSubCategory = nameSubCategory;
         this.showHome = showHome;
         this.category = category;
-        this.devices = devices;
+        this.equipments = equipments;
     }
 
     public Long getId() {
@@ -48,11 +47,11 @@ public class SubCategory {
         this.id = id;
     }
 
-    public String getNameSubCategory() {
+    public @Size(min = 2, max = 50) String getNameSubCategory() {
         return nameSubCategory;
     }
 
-    public void setNameSubCategory(String nameSubCategory) {
+    public void setNameSubCategory(@Size(min = 2, max = 50) String nameSubCategory) {
         this.nameSubCategory = nameSubCategory;
     }
 
@@ -72,11 +71,11 @@ public class SubCategory {
         this.category = category;
     }
 
-    public List<Device> getDevices() {
-        return devices;
+    public List<Equipment> getEquipments() {
+        return equipments;
     }
 
-    public void setDevices(List<Device> devices) {
-        this.devices = devices;
+    public void setEquipments(List<Equipment> equipments) {
+        this.equipments = equipments;
     }
 }

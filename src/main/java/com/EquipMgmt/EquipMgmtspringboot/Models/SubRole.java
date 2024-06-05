@@ -22,7 +22,6 @@ public class SubRole {
     @OneToMany(mappedBy = "subRole", fetch = FetchType.EAGER )
     private Set<UserSubRoles> userSubRoles;
 
-
     public SubRole () {
     }
 

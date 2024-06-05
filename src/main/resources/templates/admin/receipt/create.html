@@ -47,6 +47,10 @@
                                                 <p></p>
                                             </div>
                                             <div class="mb-3">
+                                                <label for="name_receipt">Tên Phiếu Nhập Kho</label>
+                                                <input type="text" th:name="name_receipt" id="name_receipt" class="form-control" placeholder="Tên phiếu nhập kho">
+                                            </div>
+                                            <div class="mb-3">
                                                 <label for="sub_category_id">Loại Trang Thiết Bị</label>
                                                 <select name="sub_category_id" id="sub_category_id" class="form-control">
                                                     <option>Chọn loại trang thiết bị</option>
@@ -62,14 +66,20 @@
                                                 </select>
                                                 <p></p>
                                             </div>
+
+                                            <div class="mb-3">
+                                                <label for="name_equipment">Tên Trang Thiết Bị</label>
+                                                <input type="text" th:name="name_equipment" id="name_equipment" class="form-control" placeholder="Tên trang thiết bị">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="date_add_storage">Ngày Nhập Trang Thiết Bị</label>
                                                 <input autocomplete="off" type="text" th:name="date_add_storage" id="date_add_storage" class="form-control" placeholder="Ngày nhập trang thiết bị">
                                                 <p></p>
                                             </div>
-                                        </div>
-
-                                        <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="quality">Số Lượng</label>
                                                 <input type="text" th:name="quality" id="quality" class="form-control" placeholder="Số Lượng">
@@ -77,6 +87,15 @@
                                             <div class="mb-3">
                                                 <label for="price">Đơn Giá</label>
                                                 <input type="text" th:name="price" id="price" class="form-control" placeholder="Đơn giá">
+                                                <p></p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="vendor_id">Nhà Cung Cấp</label>
+                                                <select name="vendor_id" id="vendor_id" class="form-control">
+                                                    <option>Chọn nhà cung cấp</option>
+                                                    <option>FPT Shop</option>
+                                                    <option>Điện Máy Xanh</option>
+                                                </select>
                                                 <p></p>
                                             </div>
                                             <div class="mb-3">
