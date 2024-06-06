@@ -22,44 +22,57 @@ public class ReplacementUpgradeTicket {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "location_outside")
+    private String nameLocationOutside;
+
+    @Column(name = "original_equipment_name")
+    private String nameOriginalEquipment;
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "replacement_upgrade_ticket_id", nullable = false)
+    @JoinColumn(name = "replacement_upgrade_ticket_type_id", nullable = false)
     private ReplacementUpgradeTicketType replacementUpgradeTicketType;
 
-    @ManyToOne(fetch = FetchType.EAGER )
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "original_equipment_type_id", nullable = false)
-    private EquipmentType originalEquipmentTypeId;
+    private EquipmentType originalEquipmentType;
 
-    @ManyToOne(fetch = FetchType.EAGER )
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "new_equipment_type_id", nullable = false)
-    private EquipmentType newEquipmentTypeId;
+    private EquipmentType newEquipmentType;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "original_equipment_id", nullable = false)
-    private Equipment originalEquipmentId;
+    private Equipment originalEquipment;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "new_equipment_id", nullable = false)
-    private Equipment newEquipmentId;
+    private Equipment newEquipment;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "employee_id", nullable = false)
+    @JoinColumn(name = "employee_name", nullable = false)
     private Employee employee;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
 
     public ReplacementUpgradeTicket() {
     }
 
-    public ReplacementUpgradeTicket(Long id, String receivedDate, String actionDate, String description, ReplacementUpgradeTicketType replacementUpgradeTicketType, EquipmentType originalEquipmentTypeId, EquipmentType newEquipmentTypeId, Equipment originalEquipmentId, Equipment newEquipmentId, Employee employee) {
+    public ReplacementUpgradeTicket(Long id, String receivedDate, String actionDate, String description, String nameLocationOutside, String nameOriginalEquipment, ReplacementUpgradeTicketType replacementUpgradeTicketType, EquipmentType originalEquipmentType, EquipmentType newEquipmentType, Equipment originalEquipment, Equipment newEquipment, Employee employee, Department department) {
         this.id = id;
         this.receivedDate = receivedDate;
         this.actionDate = actionDate;
         this.description = description;
+        this.nameLocationOutside = nameLocationOutside;
+        this.nameOriginalEquipment = nameOriginalEquipment;
         this.replacementUpgradeTicketType = replacementUpgradeTicketType;
-        this.originalEquipmentTypeId = originalEquipmentTypeId;
-        this.newEquipmentTypeId = newEquipmentTypeId;
-        this.originalEquipmentId = originalEquipmentId;
-        this.newEquipmentId = newEquipmentId;
+        this.originalEquipmentType = originalEquipmentType;
+        this.newEquipmentType = newEquipmentType;
+        this.originalEquipment = originalEquipment;
+        this.newEquipment = newEquipment;
         this.employee = employee;
+        this.department = department;
     }
 
     public Long getId() {
@@ -94,6 +107,14 @@ public class ReplacementUpgradeTicket {
         this.description = description;
     }
 
+    public String getNameOriginalEquipment() {
+        return nameOriginalEquipment;
+    }
+
+    public void setNameOriginalEquipment(String nameOriginalEquipment) {
+        this.nameOriginalEquipment = nameOriginalEquipment;
+    }
+
     public ReplacementUpgradeTicketType getReplacementUpgradeTicketType() {
         return replacementUpgradeTicketType;
     }
@@ -102,36 +123,36 @@ public class ReplacementUpgradeTicket {
         this.replacementUpgradeTicketType = replacementUpgradeTicketType;
     }
 
-    public EquipmentType getOriginalEquipmentTypeId() {
-        return originalEquipmentTypeId;
+    public EquipmentType getOriginalEquipmentType() {
+        return originalEquipmentType;
     }
 
-    public void setOriginalEquipmentTypeId(EquipmentType originalEquipmentTypeId) {
-        this.originalEquipmentTypeId = originalEquipmentTypeId;
+    public void setOriginalEquipmentType(EquipmentType originalEquipmentType) {
+        this.originalEquipmentType = originalEquipmentType;
     }
 
-    public EquipmentType getNewEquipmentTypeId() {
-        return newEquipmentTypeId;
+    public EquipmentType getNewEquipmentType() {
+        return newEquipmentType;
     }
 
-    public void setNewEquipmentTypeId(EquipmentType newEquipmentTypeId) {
-        this.newEquipmentTypeId = newEquipmentTypeId;
+    public void setNewEquipmentType(EquipmentType newEquipmentType) {
+        this.newEquipmentType = newEquipmentType;
     }
 
-    public Equipment getOriginalEquipmentId() {
-        return originalEquipmentId;
+    public Equipment getOriginalEquipment() {
+        return originalEquipment;
     }
 
-    public void setOriginalEquipmentId(Equipment originalEquipmentId) {
-        this.originalEquipmentId = originalEquipmentId;
+    public void setOriginalEquipment(Equipment originalEquipment) {
+        this.originalEquipment = originalEquipment;
     }
 
-    public Equipment getNewEquipmentId() {
-        return newEquipmentId;
+    public Equipment getNewEquipment() {
+        return newEquipment;
     }
 
-    public void setNewEquipmentId(Equipment newEquipmentId) {
-        this.newEquipmentId = newEquipmentId;
+    public void setNewEquipment(Equipment newEquipment) {
+        this.newEquipment = newEquipment;
     }
 
     public Employee getEmployee() {
@@ -140,5 +161,21 @@ public class ReplacementUpgradeTicket {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public String getNameLocationOutside() {
+        return nameLocationOutside;
+    }
+
+    public void setNameLocationOutside(String nameLocationOutside) {
+        this.nameLocationOutside = nameLocationOutside;
     }
 }

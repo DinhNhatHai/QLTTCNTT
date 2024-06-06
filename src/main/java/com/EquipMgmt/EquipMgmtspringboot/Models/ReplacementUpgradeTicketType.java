@@ -17,7 +17,7 @@ public class ReplacementUpgradeTicketType {
 
     @Size(min = 3, max = 50, message = "Employee type name must be between 3 and 50 characters")
     @Column(name = "name", length = 50, nullable = false)
-    private String nameReplacementUpgrade;
+    private String nameReplacementUpgradeTicketType;
 
     @NotBlank
     @Column(name = "show_home", nullable = false)
@@ -29,9 +29,9 @@ public class ReplacementUpgradeTicketType {
     public ReplacementUpgradeTicketType() {
     }
 
-    public ReplacementUpgradeTicketType(Long id, String nameReplacementUpgrade, String showHome, List<ReplacementUpgradeTicket> replacementUpgradeTickets) {
+    public ReplacementUpgradeTicketType(Long id, String nameReplacementUpgradeTicketType, String showHome, List<ReplacementUpgradeTicket> replacementUpgradeTickets) {
         this.id = id;
-        this.nameReplacementUpgrade = nameReplacementUpgrade;
+        this.nameReplacementUpgradeTicketType = nameReplacementUpgradeTicketType;
         this.showHome = showHome;
         this.replacementUpgradeTickets = replacementUpgradeTickets;
     }
@@ -44,12 +44,12 @@ public class ReplacementUpgradeTicketType {
         this.id = id;
     }
 
-    public @Size(min = 3, max = 50, message = "Employee type name must be between 3 and 50 characters") String getNameReplacementUpgrade() {
-        return nameReplacementUpgrade;
+    public @Size(min = 3, max = 50, message = "Employee type name must be between 3 and 50 characters") String getNameReplacementUpgradeTicketType() {
+        return nameReplacementUpgradeTicketType;
     }
 
-    public void setNameReplacementUpgrade(@Size(min = 3, max = 50, message = "Employee type name must be between 3 and 50 characters") String nameReplacementUpgrade) {
-        this.nameReplacementUpgrade = nameReplacementUpgrade;
+    public void setNameReplacementUpgradeTicketType(@Size(min = 3, max = 50, message = "Employee type name must be between 3 and 50 characters") String nameReplacementUpgradeTicketType) {
+        this.nameReplacementUpgradeTicketType = nameReplacementUpgradeTicketType;
     }
 
     public @NotBlank String getShowHome() {

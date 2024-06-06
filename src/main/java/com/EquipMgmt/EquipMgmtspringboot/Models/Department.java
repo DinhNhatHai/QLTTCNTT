@@ -5,13 +5,15 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "department")
 public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "department_id")  // Ensure the column name matches the foreign key reference
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER )
@@ -29,24 +31,27 @@ public class Department {
     @Column(name = "show_home", nullable = false)
     private Boolean showHome;
 
+    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
+    private List<ReplacementUpgradeTicket> replacementUpgradeTickets;
+
+    public Department(){
+
+    }
+
+    public Department(Long id, DepartmentType departmentType, String departmentName, String location, Boolean showHome, List<ReplacementUpgradeTicket> replacementUpgradeTickets) {
+        this.id = id;
+        this.departmentType = departmentType;
+        this.departmentName = departmentName;
+        this.location = location;
+        this.showHome = showHome;
+        this.replacementUpgradeTickets = replacementUpgradeTickets;
+    }
 
     public Boolean getShowHome() {
         return showHome;
     }
 
     public void setShowHome(Boolean showHome) {
-        this.showHome = showHome;
-    }
-
-    public Department(){
-
-    }
-
-    public Department(Long id, DepartmentType departmentType, String departmentName, String location, Boolean showHome) {
-        this.id = id;
-        this.departmentType = departmentType;
-        this.departmentName = departmentName;
-        this.location = location;
         this.showHome = showHome;
     }
 
@@ -82,7 +87,13 @@ public class Department {
         this.location = location;
     }
 
+    public List<ReplacementUpgradeTicket> getReplacementUpgradeTickets() {
+        return replacementUpgradeTickets;
+    }
 
+    public void setReplacementUpgradeTickets(List<ReplacementUpgradeTicket> replacementUpgradeTickets) {
+        this.replacementUpgradeTickets = replacementUpgradeTickets;
+    }
 }
 
 

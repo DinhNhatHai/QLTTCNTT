@@ -30,17 +30,24 @@ public class EquipmentType {
     @OneToMany(mappedBy = "equipmentType", fetch = FetchType.EAGER)
     private List<Equipment> equipments;
 
+    @OneToMany(mappedBy = "originalEquipmentType", fetch = FetchType.EAGER)
+    private List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets;
+
+    @OneToMany(mappedBy = "newEquipmentType", fetch = FetchType.EAGER)
+    private List<ReplacementUpgradeTicket> newReplacementUpgradeTickets;
+
     public EquipmentType() {
     }
 
-    public EquipmentType(Long id, String nameEquipmentType, String showHome, String description, List<Equipment> equipments) {
+    public EquipmentType(Long id, String nameEquipmentType, String showHome, String description, List<Equipment> equipments, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets) {
         this.id = id;
         this.nameEquipmentType = nameEquipmentType;
         this.showHome = showHome;
         this.description = description;
         this.equipments = equipments;
+        this.originalReplacementUpgradeTickets = originalReplacementUpgradeTickets;
+        this.newReplacementUpgradeTickets = newReplacementUpgradeTickets;
     }
-
     public Long getId() {
         return id;
     }
@@ -73,11 +80,27 @@ public class EquipmentType {
         this.description = description;
     }
 
-    public List<Equipment> getEquipment() {
+    public List<Equipment> getEquipments() {
         return equipments;
     }
 
-    public void setEquipment(List<Equipment> equipments) {
+    public void setEquipments(List<Equipment> equipments) {
         this.equipments = equipments;
+    }
+
+    public List<ReplacementUpgradeTicket> getOriginalReplacementUpgradeTickets() {
+        return originalReplacementUpgradeTickets;
+    }
+
+    public void setOriginalReplacementUpgradeTickets(List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets) {
+        this.originalReplacementUpgradeTickets = originalReplacementUpgradeTickets;
+    }
+
+    public List<ReplacementUpgradeTicket> getNewReplacementUpgradeTickets() {
+        return newReplacementUpgradeTickets;
+    }
+
+    public void setNewReplacementUpgradeTickets(List<ReplacementUpgradeTicket> newReplacementUpgradeTickets) {
+        this.newReplacementUpgradeTickets = newReplacementUpgradeTickets;
     }
 }

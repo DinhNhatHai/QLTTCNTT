@@ -18,7 +18,7 @@
             <div class="container-fluid my-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Tạo Thêm Lịch Sử Nâng Cấp | Thay Thế</h1>
+                        <h1>Tạo Thêm Phiếu Nâng Cấp | Thay Thế</h1>
                     </div>
                     <div class="col-sm-6 text-right">
                         <a th:href="@{/admin/replacement-upgrade-ticket}" class="btn btn-primary">Trở Lại</a>
@@ -31,67 +31,84 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form class="commonForm" th:action="@{/admin/replacement-upgrade-ticket/create}" method="post" th:object="${equipmentSystem}">
+                <form class="commonForm" th:action="@{/admin/replacement-upgrade-ticket/create}" method="post" th:object="${replacementUpgradeTicket}">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <div class="mb-3">
-                                        <label for="equipment_type_id">Loại Trang Thiết Bị</label>
-                                        <select id="equipment_type_id" class="form-control">
-                                            <option>Hệ Thống Thiết Bị</option>
+                                        <label for="ticket_type_id">Loại Phiếu Nâng Cấp | Thay Thế</label>
+                                        <select th:field="*{replacementUpgradeTicketType.id}" id="ticket_type_id" class="form-control">
+                                            <option th:each="replacementUpgradeTicketType : ${replacementUpgradeTicketTypes}" th:value="${replacementUpgradeTicketType.id}" th:text="${replacementUpgradeTicketType.nameReplacementUpgradeTicketType}"></option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="device_id">ID Trang Thiết Bị Được Nâng Cấp | Thay Thế</label>
-                                        <input type="text" th:name="device_id" id="device_id" class="form-control" placeholder="ID trang thiết bị">
+                                        <label for="original_equipment_type_id">Loại Trang Thiết Bị</label>
+                                        <select th:field="*{originalEquipmentType.id}" id="original_equipment_type_id" class="form-control">
+                                            <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
+                                        </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="date_add_storage">Ngày Nhận Trang Thiết Bị</label>
-                                        <input autocomplete="off" type="text" th:name="date_add_storage" id="date_add_storage" class="form-control" placeholder="Ngày nhận trang thiết bị">
+                                        <label for="original_equipment_id">ID Trang Thiết Bị Được Nâng Cấp | Thay Thế</label>
+                                        <select th:field="*{originalEquipment.id}" id="original_equipment_id" class="form-control">
+                                            <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="original_equipment_name">Tên Hoặc Mã Thiết Bị Cũ Trong Hệ Thống (Bỏ trống nếu không có)</label>
+                                        <input autocomplete="off" th:field="*{nameOriginalEquipment}" type="text" id="original_equipment_name" class="form-control" placeholder="Tên thiết bị cũ">
                                         <p></p>
                                     </div>
+
                                     <div class="mb-3">
-                                        <label for="model">Nhân Viên Thực Hiện</label>
-                                        <input type="text" th:name="model" id="model" class="form-control" placeholder="Nhân viên thực hiện">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <label for="equipment_type_id_2">Loại Trang Thiết Bị</label>
-                                        <select id="equipment_type_id_2" class="form-control">
-                                            <option>Hệ Thống Thiết Bị</option>
+                                        <label for="department_id">Đơn Vị Gửi</label>
+                                        <select th:field="*{department.id}" id="department_id" class="form-control">
+                                            <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.departmentName}"></option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="accessory_name">ID Linh Phụ Kiện Dùng Nâng Cấp | Thay Thế</label>
-                                        <input type="text" th:name="accessory_name" id="accessory_name" class="form-control" placeholder="ID trang thiết bị được dùng">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="date_use">Ngày Thực Hiện</label>
-                                        <input autocomplete="off" type="text" th:name="date_use" id="date_use" class="form-control" placeholder="Ngày thực hiện">
-                                        <p></p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="category_upgrade_replacement">Loại Phiếu Nâng Cấp | Thay Thế</label>
-                                        <select id="category_upgrade_replacement" class="form-control">
-                                            <option>Nâng Cấp</option>
-                                            <option>Thay Thế</option>
+                                        <label for="employee_id">Nhân Viên Thực Hiện</label>
+                                        <select th:field="*{employee.id}" id="employee_id" class="form-control">
+                                            <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name}"></option>
                                         </select>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card mb-3">
-                                <div class="card-body">
                                     <div class="mb-3">
                                         <label for="description">Mô Tả</label>
-                                        <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                        <textarea th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="new_equipment_type_id">Loại Trang Thiết Bị</label>
+                                        <select th:field="*{newEquipmentType.id}" id="new_equipment_type_id" class="form-control">
+                                            <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="new_equipment_id">ID Trang Thiết Bị Dùng Nâng Cấp | Thay Thế</label>
+                                        <select th:field="*{newEquipment.id}" id="new_equipment_id" class="form-control">
+                                            <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="received_date">Ngày Nhận Trang Thiết Bị</label>
+                                        <input autocomplete="off" th:field="*{receivedDate}" type="text" id="received_date" class="form-control" placeholder="Ngày nhận trang thiết bị">
+                                        <p></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="action_date">Ngày Thực Hiện</label>
+                                        <input autocomplete="off" th:field="*{actionDate}" type="text" id="action_date" class="form-control" placeholder="Ngày thực hiện">
+                                        <p></p>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="action_date">Nơi Thực Hiện Bên Ngoài (Bỏ trống nếu không có)</label>
+                                        <input th:field="*{nameLocationOutside}" type="text" id="" class="form-control" placeholder="Nơi thực hiện bên ngoài">
+                                        <p></p>
                                     </div>
                                 </div>
                             </div>
@@ -115,6 +132,40 @@
 <!-- jQuery -->
 
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+<script>
+    document.getElementById('original_equipment_type_id').addEventListener('change', function() {
+        var typeId = this.value;
+        fetch('/admin/equipment/getEquipmentsByType?typeId=' + typeId)
+            .then(response => response.json())
+            .then(data => {
+                var equipmentSelect = document.getElementById('original_equipment_id');
+                equipmentSelect.innerHTML = '';
+                data.forEach(equipment => {
+                    var option = document.createElement('option');
+                    option.value = equipment.id;
+                    option.text = equipment.equipmentId;
+                    equipmentSelect.appendChild(option);
+                });
+            });
+    });
+
+    document.getElementById('new_equipment_type_id').addEventListener('change', function() {
+        var typeId = this.value;
+        fetch('/admin/equipment/getEquipmentsByType?typeId=' + typeId)
+            .then(response => response.json())
+            .then(data => {
+                var equipmentSelect = document.getElementById('new_equipment_id');
+                equipmentSelect.innerHTML = '';
+                data.forEach(equipment => {
+                    var option = document.createElement('option');
+                    option.value = equipment.id;
+                    option.text = equipment.equipmentId;
+                    equipmentSelect.appendChild(option);
+                });
+            });
+    });
+</script>
 
 </body>
 </html>

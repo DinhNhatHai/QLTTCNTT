@@ -28,29 +28,33 @@ public class ReplacementUpgradeTicketController {
     @Autowired
     private ReplacementUpgradeTicketTypeService replacementUpgradeTicketTypeService;
 
+    @Autowired
+    private DepartmentService departmentService;
+
     @GetMapping
-    public String listReplacementUpgradeTickets (Model model) {
+    public String listReplacementUpgradeTickets(Model model) {
         model.addAttribute("replacementUpgradeTickets", replacementUpgradeTicketService.findAll());
         return "admin/replacement_upgrade_ticket/list";
     }
 
-
     @GetMapping("/create")
-    public String createReplacementUpgradeTicketForm (Model model) {
+    public String createReplacementUpgradeTicketForm(Model model) {
         model.addAttribute("replacementUpgradeTicket", new ReplacementUpgradeTicket());
         model.addAttribute("replacementUpgradeTicketTypes", replacementUpgradeTicketTypeService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
+        model.addAttribute("departments", departmentService.findAll());
         model.addAttribute("equipments", equipmentService.findAll());
         model.addAttribute("employees", employeeService.findAll());
         return "admin/replacement_upgrade_ticket/create";
     }
 
     @PostMapping("/create")
-    public String createReplacementUpgradeTicketForm(@Valid @ModelAttribute ReplacementUpgradeTicket replacementUpgradeTicket, BindingResult result, Model model) {
+    public String createReplacementUpgradeTicket(@Valid @ModelAttribute ReplacementUpgradeTicket replacementUpgradeTicket, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("replacementUpgradeTicketTypes", replacementUpgradeTicketTypeService.findAll());
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-            model.addAttribute("equipmentTypes", equipmentService.findAll());
+            model.addAttribute("departments", departmentService.findAll());
+            model.addAttribute("equipments", equipmentService.findAll());
             model.addAttribute("employees", employeeService.findAll());
             return "admin/replacement_upgrade_ticket/create";
         }
@@ -58,24 +62,26 @@ public class ReplacementUpgradeTicketController {
         return "redirect:/admin/replacement-upgrade-ticket";
     }
 
-
     @GetMapping("/edit/{id}")
-    public String editReplacementUpgradeTicketForm (@PathVariable Long id, Model model) {
+    public String editReplacementUpgradeTicketForm(@PathVariable Long id, Model model) {
         ReplacementUpgradeTicket replacementUpgradeTicket = replacementUpgradeTicketService.getReplacementUpgradeTicketById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Không tồn tại phiếu có Id: " + id));
+        model.addAttribute("replacementUpgradeTicket", replacementUpgradeTicket);
         model.addAttribute("replacementUpgradeTicketTypes", replacementUpgradeTicketTypeService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-        model.addAttribute("equipmentTypes", equipmentService.findAll());
+        model.addAttribute("departments", departmentService.findAll());
+        model.addAttribute("equipments", equipmentService.findAll());
         model.addAttribute("employees", employeeService.findAll());
         return "admin/replacement_upgrade_ticket/edit";
     }
 
     @PostMapping("/edit/{id}")
-    public String updateReplacementUpgradeTicket (@PathVariable Long id, @Valid @ModelAttribute ReplacementUpgradeTicket replacementUpgradeTicket, BindingResult result, Model model) {
+    public String updateReplacementUpgradeTicket(@PathVariable Long id, @Valid @ModelAttribute ReplacementUpgradeTicket replacementUpgradeTicket, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("replacementUpgradeTicketTypes", replacementUpgradeTicketTypeService.findAll());
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-            model.addAttribute("equipmentTypes", equipmentService.findAll());
+            model.addAttribute("departments", departmentService.findAll());
+            model.addAttribute("equipments", equipmentService.findAll());
             model.addAttribute("employees", employeeService.findAll());
             return "admin/replacement_upgrade_ticket/edit";
         }
@@ -86,9 +92,9 @@ public class ReplacementUpgradeTicketController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteReplacementUpgradeTicket (@PathVariable Long id) {
+    public String deleteReplacementUpgradeTicket(@PathVariable Long id) {
         ReplacementUpgradeTicket replacementUpgradeTicket = replacementUpgradeTicketService.getReplacementUpgradeTicketById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Không tồn tại phiếu có Id:" + id));
+                .orElseThrow(() -> new IllegalArgumentException("Không tồn tại phiếu có Id: " + id));
         replacementUpgradeTicketService.deleteById(id);
         return "redirect:/admin/replacement-upgrade-ticket";
     }

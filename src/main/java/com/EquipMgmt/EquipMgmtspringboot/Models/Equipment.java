@@ -3,6 +3,8 @@ package com.EquipMgmt.EquipMgmtspringboot.Models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "equipment")
 public class Equipment {
@@ -49,10 +51,16 @@ public class Equipment {
     @JoinColumn(name = "sub_category_id", nullable = false)
     private SubCategory subCategory;
 
+    @OneToMany(mappedBy = "originalEquipment", fetch = FetchType.EAGER)
+    private List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets;
+
+    @OneToMany(mappedBy = "newEquipment", fetch = FetchType.EAGER)
+    private List<ReplacementUpgradeTicket> newReplacementUpgradeTickets;
+
     public Equipment() {
     }
 
-    public Equipment(Long id, String equipmentId, String model, String nameEquipment, String description, EquipmentType equipmentType, Brand brand, StatusEquipmentType statusEquipmentType, StatusEquipment statusEquipment, Category category, SubCategory subCategory) {
+    public Equipment(Long id, String equipmentId, String model, String nameEquipment, String description, EquipmentType equipmentType, Brand brand, StatusEquipmentType statusEquipmentType, StatusEquipment statusEquipment, Category category, SubCategory subCategory, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets) {
         this.id = id;
         this.equipmentId = equipmentId;
         this.model = model;
@@ -64,8 +72,9 @@ public class Equipment {
         this.statusEquipment = statusEquipment;
         this.category = category;
         this.subCategory = subCategory;
+        this.originalReplacementUpgradeTickets = originalReplacementUpgradeTickets;
+        this.newReplacementUpgradeTickets = newReplacementUpgradeTickets;
     }
-
     public Long getId() {
         return id;
     }
@@ -152,5 +161,21 @@ public class Equipment {
 
     public void setSubCategory(SubCategory subCategory) {
         this.subCategory = subCategory;
+    }
+
+    public List<ReplacementUpgradeTicket> getOriginalReplacementUpgradeTickets() {
+        return originalReplacementUpgradeTickets;
+    }
+
+    public void setOriginalReplacementUpgradeTickets(List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets) {
+        this.originalReplacementUpgradeTickets = originalReplacementUpgradeTickets;
+    }
+
+    public List<ReplacementUpgradeTicket> getNewReplacementUpgradeTickets() {
+        return newReplacementUpgradeTickets;
+    }
+
+    public void setNewReplacementUpgradeTickets(List<ReplacementUpgradeTicket> newReplacementUpgradeTickets) {
+        this.newReplacementUpgradeTickets = newReplacementUpgradeTickets;
     }
 }

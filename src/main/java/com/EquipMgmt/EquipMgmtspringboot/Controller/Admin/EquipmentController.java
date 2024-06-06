@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin/equipment")
 public class EquipmentController {
@@ -107,5 +109,11 @@ public class EquipmentController {
                 .orElseThrow(() -> new IllegalArgumentException("Không tồn tại hệ thống thiết bị có Id:" + id));
         equipmentService.deleteById(id);
         return "redirect:/admin/equipment";
+    }
+
+    @GetMapping("/getEquipmentsByType")
+    @ResponseBody
+    public List<Equipment> getEquipmentsByType(@RequestParam("typeId") Long typeId) {
+        return equipmentService.findEquipmentsByType(typeId);
     }
 }

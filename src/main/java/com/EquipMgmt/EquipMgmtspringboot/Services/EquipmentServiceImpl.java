@@ -12,25 +12,30 @@ import java.util.Optional;
 public class EquipmentServiceImpl implements EquipmentService {
 
     @Autowired
-    private EquipmentRepository equipmentSystemRepository;
+    private EquipmentRepository equipmentRepository;
 
     @Override
     public List<Equipment> findAll() {
-        return equipmentSystemRepository.findAll();
+        return equipmentRepository.findAll();
     }
 
     @Override
     public Optional<Equipment> getEquipmentById(Long id) {
-        return equipmentSystemRepository.findById(id);
+        return equipmentRepository.findById(id);
     }
 
     @Override
     public void save(Equipment accessory) {
-        equipmentSystemRepository.save(accessory);
+        equipmentRepository.save(accessory);
     }
 
     @Override
     public void deleteById(Long id) {
-        equipmentSystemRepository.deleteById(id);
+        equipmentRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Equipment> findEquipmentsByType(Long equipmentTypeId) {
+        return equipmentRepository.findByEquipmentTypeId(equipmentTypeId);
     }
 }

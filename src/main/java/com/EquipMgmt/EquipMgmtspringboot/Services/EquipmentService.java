@@ -13,4 +13,5 @@ public interface EquipmentService {
     Optional<Equipment> getEquipmentById(Long id);
     void save(Equipment equipment);
     void deleteById(Long id);
+    List<Equipment> findEquipmentsByType(Long equipmentTypeId);  // Thêm phương thức này
 }
