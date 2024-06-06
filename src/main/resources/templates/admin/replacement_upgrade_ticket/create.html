@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tạo Thêm Lịch Sử Nâng Cấp | Thay Thế</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/replacement-upgrade-ticket}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <form class="commonForm" th:action="@{/admin/replacement-upgrade-ticket/create}" method="post" th:object="${equipmentSystem}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="equipment_type_id">Loại Trang Thiết Bị</label>
+                                        <select id="equipment_type_id" class="form-control">
+                                            <option>Hệ Thống Thiết Bị</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="device_id">ID Trang Thiết Bị Được Nâng Cấp | Thay Thế</label>
+                                        <input type="text" th:name="device_id" id="device_id" class="form-control" placeholder="ID trang thiết bị">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="date_add_storage">Ngày Nhận Trang Thiết Bị</label>
+                                        <input autocomplete="off" type="text" th:name="date_add_storage" id="date_add_storage" class="form-control" placeholder="Ngày nhận trang thiết bị">
+                                        <p></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="model">Nhân Viên Thực Hiện</label>
+                                        <input type="text" th:name="model" id="model" class="form-control" placeholder="Nhân viên thực hiện">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="equipment_type_id_2">Loại Trang Thiết Bị</label>
+                                        <select id="equipment_type_id_2" class="form-control">
+                                            <option>Hệ Thống Thiết Bị</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="accessory_name">ID Linh Phụ Kiện Dùng Nâng Cấp | Thay Thế</label>
+                                        <input type="text" th:name="accessory_name" id="accessory_name" class="form-control" placeholder="ID trang thiết bị được dùng">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="date_use">Ngày Thực Hiện</label>
+                                        <input autocomplete="off" type="text" th:name="date_use" id="date_use" class="form-control" placeholder="Ngày thực hiện">
+                                        <p></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="category_upgrade_replacement">Loại Phiếu Nâng Cấp | Thay Thế</label>
+                                        <select id="category_upgrade_replacement" class="form-control">
+                                            <option>Nâng Cấp</option>
+                                            <option>Thay Thế</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="description">Mô Tả</label>
+                                        <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pb-5 pt-3">
+                        <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                        <a th:href="@{/admin/replacement-upgrade-ticket}" class="btn btn-outline-dark ml-3">Hủy</a>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+</body>
+</html>

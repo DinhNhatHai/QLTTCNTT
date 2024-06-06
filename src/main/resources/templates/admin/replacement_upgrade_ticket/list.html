@@ -18,10 +18,10 @@
             <div class="container-fluid my-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Phiếu Sửa Chữa - Thay Trang Thiết Bị</h1>
+                        <h1>Lịch Sử Nâng Cấp - Thay Thế Trang Thiết Bị</h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a th:href="@{/admin/replacement-repair-ticket/create}" class="btn btn-primary">Thêm Mới</a>
+                        <a th:href="@{/admin/replacement-upgrade-ticket/create}" class="btn btn-primary">Thêm Mới</a>
                     </div>
                 </div>
             </div>
@@ -58,13 +58,12 @@
                                     <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Loại Trang Thiết Bị</th>
-                                        <th>ID Trang Thiết Bị</th>
-                                        <th>Đơn Vị Gửi</th>
-                                        <th>Ngày Nhận</th>
-                                        <th>Nơi Sửa Chữa</th>
-                                        <th>Thời Gian Xử Lý</th>
+                                        <th>ID T.Thiết Bị Được Nâng Cấp</th>
+                                        <th>ID Linh Phụ Kiện Dùng Nâng Cấp</th>
                                         <th>Nhân Viên Thực Hiện</th>
+                                        <th>Ngày Nhận Thiết Bị</th>
+                                        <th>Ngày Nâng Cấp</th>
+                                        <th>Mô Tả</th>
                                         <th>Tác Vụ</th>
                                     </tr>
                                     </thead>
@@ -72,15 +71,14 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Bo Mạch Chủ</td>
+                                            <td>TTB123</td>
                                             <td>LPK23</td>
-                                            <td>Phòng Kế Toán</td>
-                                            <td>21/02/2024</td>
-                                            <td>Phòng CNTT</td>
-                                            <td>3 Ngày</td>
                                             <td>Trần Văn A</td>
+                                            <td>21/02/2024</td>
+                                            <td>01/03/2024</td>
+                                            <td>Nâng thêm 8gb ram</td>
                                             <td>
-                                                <a th:href="@{/admin/replacement-repair-ticket/edit}">
+                                                <a th:href="@{/admin/replacement-upgrade-ticket/edit}">
                                                     <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                         <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
                                                     </svg>
