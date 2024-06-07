@@ -8,9 +8,7 @@
     <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
     <!-- /.navbar -->
     <!-- Main Sidebar Container -->
-
     <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -18,10 +16,10 @@
             <div class="container-fluid my-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Tạo Thêm Loại Trang Thiết Bị</h1>
+                        <h1>Tạo Thêm Tình Trạng Bảo Trì</h1>
                     </div>
                     <div class="col-sm-6 text-right">
-                        <a th:href="@{/admin/sub-category}" class="btn btn-primary">Trở Lại</a>
+                        <a th:href="@{/admin/maintenance-status}" class="btn btn-primary">Trở Lại</a>
                     </div>
                 </div>
             </div>
@@ -31,16 +29,14 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form class="commonForm" th:id="subCategoryFormCreate" th:action="@{/admin/sub-category/create}" method="post" th:object="${subCategory}">
+                <form class="commonForm" th:id="maintenanceStatusFormCreate"  th:action="@{/admin/maintenance-status/create}" method="post" th:object="${maintenanceStatus}">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="name">Danh Mục Trang Thiết Bị</label>
-                                        <select th:field="*{category.id}" class="form-control" id="category_name" name="category_name" >
-                                            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nameCategory}"></option>
-                                        </select>
+                                        <label for="name">Tên Tình Trạng Bảo Trì</label>
+                                        <input type="text" th:field="*{nameMaintenanceStatus}" id="name" class="form-control" placeholder="Tên tình trạng bảo trì">
                                         <p></p>
                                     </div>
                                 </div>
@@ -48,18 +44,17 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="showHome">Hiển Thị Ở Trang Chủ</label>
-                                        <select name="showHome" id="showHome" class="form-control">
-                                            <option th:field="*{showHome}" value="1">Có</option>
-                                            <option th:field="*{showHome}" value="0">Không</option>
+                                        <select th:field="*{showHome}" id="showHome" class="form-control">
+                                            <option th:value="1">Có</option>
+                                            <option th:value="0">Không</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label for="name">Tên Loại Trang Thiết Bị</label>
-                                        <input type="text" th:field="*{nameSubCategory}" name="name" id="name" class="form-control" placeholder="Tên loại trang thiết bị">
-                                        <p></p>
+                                        <label for="description">Mô Tả</label>
+                                        <textarea th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
                                     </div>
                                 </div>
 
@@ -67,8 +62,8 @@
                         </div>
                     </div>
                     <div class="pb-5 pt-3">
-                        <button class="btn btn-primary" onclick="document.getElementById('subCategoryFormCreate').submit()">Xác Nhận</button>
-                        <a th:href="@{/admin/sub-category}" class="btn btn-outline-dark ml-3">Hủy</a>
+                        <button class="btn btn-primary" onclick="document.getElementById('maintenanceStatusFormCreate').submit()">Xác Nhận</button>
+                        <a th:href="@{/admin/maintenance-status}" class="btn btn-outline-dark ml-3">Hủy</a>
                     </div>
                 </form>
             </div>
@@ -84,7 +79,6 @@
 <!-- jQuery -->
 
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
-
 
 </body>
 </html>

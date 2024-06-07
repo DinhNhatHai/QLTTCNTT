@@ -31,9 +31,6 @@ public class EquipmentController {
     private StatusEquipmentService statusEquipmentService;
 
     @Autowired
-    private SubCategoryService subCategoryService;
-
-    @Autowired
     private EquipmentTypeService equipmentTypeService;
 
 
@@ -52,7 +49,6 @@ public class EquipmentController {
         model.addAttribute("statusEquipments", statusEquipmentService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
         model.addAttribute("categories", categoryService.getAll());
-        model.addAttribute("subCategories", subCategoryService.findAll());
         return "admin/equipment/create";
     }
 
@@ -64,7 +60,6 @@ public class EquipmentController {
             model.addAttribute("statusEquipments", statusEquipmentService.findAll());
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
             model.addAttribute("categories", categoryService.getAll());
-            model.addAttribute("subCategories", subCategoryService.findAll());
             return "admin/equipment/create";
         }
         equipmentService.save(equipment);
@@ -82,7 +77,6 @@ public class EquipmentController {
         model.addAttribute("statusEquipments", statusEquipmentService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
         model.addAttribute("categories", categoryService.getAll());
-        model.addAttribute("subCategories", subCategoryService.findAll());
         return "admin/equipment/edit";
     }
 
@@ -94,7 +88,6 @@ public class EquipmentController {
             model.addAttribute("statusEquipments", statusEquipmentService.findAll());
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
             model.addAttribute("categories", categoryService.getAll());
-            model.addAttribute("subCategories", subCategoryService.findAll());
             return "admin/equipment/edit";
         }
 

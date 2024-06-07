@@ -43,10 +43,6 @@ public class Receipt {
     @JoinColumn(name = "warehouse_id", nullable = false)
     private Warehouse warehouse;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "sub_category_id", nullable = false)
-    private SubCategory subCategory;
-
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name = "equipment_id", nullable = false)
     private Equipment equipment;

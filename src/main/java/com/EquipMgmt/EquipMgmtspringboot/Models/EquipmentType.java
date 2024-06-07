@@ -27,6 +27,10 @@ public class EquipmentType {
     @Column(name = "description")
     private String description;
 
+    @ManyToOne(fetch = FetchType.EAGER )
+    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    private Category category;
+
     @OneToMany(mappedBy = "equipmentType", fetch = FetchType.EAGER)
     private List<Equipment> equipments;
 
@@ -39,15 +43,17 @@ public class EquipmentType {
     public EquipmentType() {
     }
 
-    public EquipmentType(Long id, String nameEquipmentType, String showHome, String description, List<Equipment> equipments, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets) {
+    public EquipmentType(Long id, String nameEquipmentType, String showHome, String description, Category category, List<Equipment> equipments, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets) {
         this.id = id;
         this.nameEquipmentType = nameEquipmentType;
         this.showHome = showHome;
         this.description = description;
+        this.category = category;
         this.equipments = equipments;
         this.originalReplacementUpgradeTickets = originalReplacementUpgradeTickets;
         this.newReplacementUpgradeTickets = newReplacementUpgradeTickets;
     }
+
     public Long getId() {
         return id;
     }
@@ -102,5 +108,13 @@ public class EquipmentType {
 
     public void setNewReplacementUpgradeTickets(List<ReplacementUpgradeTicket> newReplacementUpgradeTickets) {
         this.newReplacementUpgradeTickets = newReplacementUpgradeTickets;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

@@ -10,8 +10,8 @@ import java.util.Optional;
 @Service
 public interface EquipmentService {
     List<Equipment> findAll();
+    List<Equipment> findEquipmentsByType(Long equipmentTypeId);
     Optional<Equipment> getEquipmentById(Long id);
     void save(Equipment equipment);
     void deleteById(Long id);
-    List<Equipment> findEquipmentsByType(Long equipmentTypeId);  // Thêm phương thức này
 }

@@ -53,6 +53,7 @@
               <thead>
                 <tr>
                   <th>STT</th>
+                  <th>Danh Mục Trang Thiết Bị</th>
                   <th>Tên Loại Trang Thiết Bị</th>
                   <th>Mô Tả</th>
                   <th>Hiện Thị Ở Trang Chủ</th>
@@ -62,6 +63,7 @@
               <tbody>
                 <tr th:each="equipmentType, numberStart : ${equipmentTypes}">
                   <td th:text="${numberStart.index + 1}"></td>
+                  <td th:text="${equipmentType.category.nameCategory}"></td>
                   <td th:text="${equipmentType.nameEquipmentType}"></td>
                   <td th:text="${equipmentType.description}"></td>
                   <td th:if="${equipmentType.showHome}">Có</td>

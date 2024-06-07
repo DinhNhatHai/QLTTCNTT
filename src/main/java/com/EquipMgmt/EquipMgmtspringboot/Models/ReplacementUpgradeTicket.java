@@ -47,6 +47,18 @@ public class ReplacementUpgradeTicket {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "new_equipment_id", nullable = false)
     private Equipment newEquipment;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "equipment_id")
+//    private Equipment equipment;
+//
+//    @Column(name = "original_equipment_id")
+//    private String originalEquipment;
+//
+//    @Column(name = "new_equipment_id")
+//    private String newEquipment;
+
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employee_name", nullable = false)

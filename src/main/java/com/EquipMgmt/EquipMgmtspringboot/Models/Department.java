@@ -13,7 +13,7 @@ public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "department_id")  // Ensure the column name matches the foreign key reference
+    @Column(name = "department_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER )

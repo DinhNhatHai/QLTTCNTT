@@ -29,24 +29,23 @@ public class Category {
     private String description;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
-    private Set<SubCategory> subCategory;
+    private Set<EquipmentType> equipmentTypes;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Equipment> equipments;
 
-
-    public Category(){
-
-    }
-
-    public Category(Long id, String nameCategory, Boolean showHome, String image, String description, Set<SubCategory> subCategory, List<Equipment> equipments) {
+    public Category(Long id, String nameCategory, Boolean showHome, String image, String description, Set<EquipmentType> equipmentTypes, List<Equipment> equipments) {
         this.id = id;
         this.nameCategory = nameCategory;
         this.showHome = showHome;
         this.image = image;
         this.description = description;
-        this.subCategory = subCategory;
+        this.equipmentTypes = equipmentTypes;
         this.equipments = equipments;
+    }
+
+    public Category(){
+
     }
 
     public Long getId() {
@@ -89,19 +88,19 @@ public class Category {
         this.description = description;
     }
 
-    public Set<SubCategory> getSubCategory() {
-        return subCategory;
+    public Set<EquipmentType> getEquipmentTypes() {
+        return equipmentTypes;
     }
 
-    public void setSubCategory(Set<SubCategory> subCategory) {
-        this.subCategory = subCategory;
+    public void setEquipmentTypes(Set<EquipmentType> equipmentTypes) {
+        this.equipmentTypes = equipmentTypes;
     }
 
-    public List<Equipment> getEquipment() {
+    public List<Equipment> getEquipments() {
         return equipments;
     }
 
-    public void setEquipment(List<Equipment> equipments) {
+    public void setEquipments(List<Equipment> equipments) {
         this.equipments = equipments;
     }
 }

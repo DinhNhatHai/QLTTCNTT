@@ -15,7 +15,6 @@ public class MaintenanceType {
     @Column(name = "name", length = 50)
     private String nameMaintenanceType;
 
-
     @Column(name = "show_home")
     private String showHome;
 

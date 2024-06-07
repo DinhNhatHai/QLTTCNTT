@@ -31,6 +31,10 @@ public class Equipment {
     @JoinColumn(name = "equipment_type_id", nullable = false)
     private EquipmentType equipmentType;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
@@ -43,24 +47,19 @@ public class Equipment {
     @JoinColumn(name = "status_equipment_id", nullable = false)
     private StatusEquipment statusEquipment;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "sub_category_id", nullable = false)
-    private SubCategory subCategory;
-
     @OneToMany(mappedBy = "originalEquipment", fetch = FetchType.EAGER)
     private List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets;
 
     @OneToMany(mappedBy = "newEquipment", fetch = FetchType.EAGER)
     private List<ReplacementUpgradeTicket> newReplacementUpgradeTickets;
 
+    @OneToMany(mappedBy = "equipment", fetch = FetchType.EAGER)
+    private List<Maintenance> maintenances;
+
     public Equipment() {
     }
 
-    public Equipment(Long id, String equipmentId, String model, String nameEquipment, String description, EquipmentType equipmentType, Brand brand, StatusEquipmentType statusEquipmentType, StatusEquipment statusEquipment, Category category, SubCategory subCategory, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets) {
+    public Equipment(Long id, String equipmentId, String model, String nameEquipment, String description, EquipmentType equipmentType, Brand brand, StatusEquipmentType statusEquipmentType, StatusEquipment statusEquipment, Category category, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets, List<Maintenance> maintenances) {
         this.id = id;
         this.equipmentId = equipmentId;
         this.model = model;
@@ -71,10 +70,19 @@ public class Equipment {
         this.statusEquipmentType = statusEquipmentType;
         this.statusEquipment = statusEquipment;
         this.category = category;
-        this.subCategory = subCategory;
         this.originalReplacementUpgradeTickets = originalReplacementUpgradeTickets;
         this.newReplacementUpgradeTickets = newReplacementUpgradeTickets;
+        this.maintenances = maintenances;
     }
+
+    public List<Maintenance> getMaintenances() {
+        return maintenances;
+    }
+
+    public void setMaintenances(List<Maintenance> maintenances) {
+        this.maintenances = maintenances;
+    }
+
     public Long getId() {
         return id;
     }
@@ -153,14 +161,6 @@ public class Equipment {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public SubCategory getSubCategory() {
-        return subCategory;
-    }
-
-    public void setSubCategory(SubCategory subCategory) {
-        this.subCategory = subCategory;
     }
 
     public List<ReplacementUpgradeTicket> getOriginalReplacementUpgradeTickets() {

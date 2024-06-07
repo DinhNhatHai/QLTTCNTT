@@ -35,6 +35,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
+                                        <label for="name">Danh Mục Trang Thiết Bị</label>
+                                        <select th:field="*{category.id}" class="form-control" id="category_name" name="category_name" >
+                                            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nameCategory}"></option>
+                                        </select>
+                                        <p></p>
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="name">Tên Loại Trang Thiết Bị</label>
                                         <input type="text" th:field="*{nameEquipmentType}" id="name" class="form-control" placeholder="Tên loại trang thiết bị">
                                         <p th:if="${#fields.hasErrors('nameEquipmentType')}" th:errors="*{nameEquipmentType}" class="text-danger"></p>
