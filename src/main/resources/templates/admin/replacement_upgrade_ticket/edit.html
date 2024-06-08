@@ -107,8 +107,8 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="action_date">Nơi Thực Hiện Bên Ngoài (Bỏ trống nếu không có)</label>
-                                        <input th:field="*{nameLocationOutside}" type="text" id="" class="form-control" placeholder="Nơi thực hiện bên ngoài">
+                                        <label for="action_date">Nơi Thực Hiện (Có thể bỏ trống)</label>
+                                        <input th:field="*{nameLocationOutside}" type="text" id="" class="form-control" placeholder="Nơi thực hiện">
                                         <p></p>
                                     </div>
                                 </div>
@@ -134,31 +134,31 @@
 
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
 
-<script>
-    $(document).ready(function () {
-        $('#original_equipment_type_id').change(function () {
-            var typeId = $(this).val();
-            $.ajax({
-                url: '/admin/equipment/getEquipmentsByType',
-                type: 'GET',
-                data: {
-                    typeId: typeId
-                },
-                success: function (data) {
-                    var $equipmentSelect = $('#original_equipment_id');
-                    $equipmentSelect.empty();  // Clear the existing options
-                    $equipmentSelect.append('<option value="">Chọn thiết bị</option>');  // Add a default option
-                    $.each(data, function (index, equipment) {
-                        $equipmentSelect.append('<option value="' + equipment.id + '">' + equipment.equipmentId + '</option>');
-                    });
-                },
-                error: function () {
-                    alert('Error retrieving equipment list.');
-                }
-            });
-        });
-    });
-</script>
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $('#original_equipment_type_id').change(function () {-->
+<!--            var typeId = $(this).val();-->
+<!--            $.ajax({-->
+<!--                url: '/admin/equipment/getEquipmentsByType',-->
+<!--                type: 'GET',-->
+<!--                data: {-->
+<!--                    typeId: typeId-->
+<!--                },-->
+<!--                success: function (data) {-->
+<!--                    var $equipmentSelect = $('#original_equipment_id');-->
+<!--                    $equipmentSelect.empty();  // Clear the existing options-->
+<!--                    $equipmentSelect.append('<option value="">Chọn thiết bị</option>');  // Add a default option-->
+<!--                    $.each(data, function (index, equipment) {-->
+<!--                        $equipmentSelect.append('<option value="' + equipment.id + '">' + equipment.equipmentId + '</option>');-->
+<!--                    });-->
+<!--                },-->
+<!--                error: function () {-->
+<!--                    alert('Error retrieving equipment list.');-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 
 </body>
 </html>

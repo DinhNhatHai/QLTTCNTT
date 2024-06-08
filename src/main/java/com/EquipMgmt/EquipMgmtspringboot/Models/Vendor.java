@@ -4,6 +4,8 @@ import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 @Entity
 @Table(name = "vendor")
 public class Vendor {
@@ -34,17 +36,23 @@ public class Vendor {
     @Column(name = "description")
     private String description;
 
+    @OneToMany(mappedBy = "vendor", fetch = FetchType.EAGER)
+    private List<Guarantee> guarantees;
+
     public Vendor() {
     }
 
-    public Vendor(Long id, String vendorName, String telephone, String email, String address, String description) {
+    public Vendor(Long id, String vendorName, String telephone, String email, String address, String description, List<Guarantee> guarantees) {
         this.id = id;
         this.vendorName = vendorName;
         this.telephone = telephone;
         this.email = email;
         this.address = address;
         this.description = description;
+        this.guarantees = guarantees;
     }
+
+
 
     public Long getId() {
         return id;
@@ -92,5 +100,13 @@ public class Vendor {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Guarantee> getGuarantees() {
+        return guarantees;
+    }
+
+    public void setGuarantees(List<Guarantee> guarantees) {
+        this.guarantees = guarantees;
     }
 }

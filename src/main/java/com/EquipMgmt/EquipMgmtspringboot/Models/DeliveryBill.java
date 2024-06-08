@@ -3,30 +3,26 @@ package com.EquipMgmt.EquipMgmtspringboot.Models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import java.util.List;
 
 
 @Entity
-@Table(name = "receipt")
-public class Receipt {
+@Table(name = "delivery_bill")
+public class DeliveryBill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "receipt_id", nullable = false)
-    private String receiptId;
+    @Column(name = "delivery_bill_id", nullable = false)
+    private String deliveryBillId;
 
-    @Column(name = "date_add", nullable = false)
-    private String dateAdd;
+    @Column(name = "send_date", nullable = false)
+    private String sendDate;
 
     @NotNull
     @Column(name = "quantity", nullable = false)
     private Long quantity;
-
-    @Column(name = "price")
-    private Long price;
 
     @Size(max = 255, message = "Description must be less than 255 characters")
     @Column(name = "description")
@@ -37,8 +33,8 @@ public class Receipt {
     private Employee employee;
 
     @ManyToOne(fetch = FetchType.EAGER )
-    @JoinColumn(name = "vendor_id", nullable = false)
-    private Vendor vendor;
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
 
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name = "warehouse_id", nullable = false)
@@ -52,18 +48,17 @@ public class Receipt {
     @JoinColumn(name = "equipment_id", referencedColumnName = "id", nullable = false)
     private Equipment equipment;
 
-    public Receipt() {
+    public DeliveryBill() {
     }
 
-    public Receipt(Long id, String receiptId, String dateAdd, Long quantity, Long price, String description, Employee employee, Vendor vendor, Warehouse warehouse, EquipmentType equipmentType, Equipment equipment) {
+    public DeliveryBill(Long id, String deliveryBillId, String sendDate, Long quantity, String description, Employee employee, Department department, Warehouse warehouse, EquipmentType equipmentType, Equipment equipment) {
         this.id = id;
-        this.receiptId = receiptId;
-        this.dateAdd = dateAdd;
+        this.deliveryBillId = deliveryBillId;
+        this.sendDate = sendDate;
         this.quantity = quantity;
-        this.price = price;
         this.description = description;
         this.employee = employee;
-        this.vendor = vendor;
+        this.department = department;
         this.warehouse = warehouse;
         this.equipmentType = equipmentType;
         this.equipment = equipment;
@@ -77,20 +72,20 @@ public class Receipt {
         this.id = id;
     }
 
-    public String getReceiptId() {
-        return receiptId;
+    public String getDeliveryBillId() {
+        return deliveryBillId;
     }
 
-    public void setReceiptId(String receiptId) {
-        this.receiptId = receiptId;
+    public void setDeliveryBillId(String deliveryBillId) {
+        this.deliveryBillId = deliveryBillId;
     }
 
-    public String getDateAdd() {
-        return dateAdd;
+    public String getSendDate() {
+        return sendDate;
     }
 
-    public void setDateAdd(String dateAdd) {
-        this.dateAdd = dateAdd;
+    public void setSendDate(String sendDate) {
+        this.sendDate = sendDate;
     }
 
     public @NotNull Long getQuantity() {
@@ -101,13 +96,6 @@ public class Receipt {
         this.quantity = quantity;
     }
 
-    public Long getPrice() {
-        return price;
-    }
-
-    public void setPrice(Long price) {
-        this.price = price;
-    }
 
     public @Size(max = 255, message = "Description must be less than 255 characters") String getDescription() {
         return description;
@@ -125,12 +113,12 @@ public class Receipt {
         this.employee = employee;
     }
 
-    public Vendor getVendor() {
-        return vendor;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setVendor(Vendor vendor) {
-        this.vendor = vendor;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Warehouse getWarehouse() {

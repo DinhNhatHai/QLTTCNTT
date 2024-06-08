@@ -79,7 +79,7 @@
                                             <div class="mb-3">
                                                 <label for="start_date_id">Ngày Bắt Đầu</label>
                                                 <select th:field="*{startDate}" id="start_date_id" class="form-control">
-<!--                                                    <option value="" disabled selected>Chọn ngày bắt đầu</option>-->
+                                                    <option value="" disabled selected>Chọn ngày bắt đầu</option>
                                                     <option th:each="maintenanceSchedule : ${maintenanceSchedules}" th:value="${maintenanceSchedule.startDate}" th:text="${maintenanceSchedule.startDate}"></option>
                                                 </select>
                                             </div>
@@ -87,7 +87,7 @@
                                             <div class="mb-3">
                                                 <label for="end_date_id">Ngày Kết Thúc</label>
                                                 <select th:field="*{endDate}" id="end_date_id" class="form-control">
-<!--                                                    <option value="" disabled selected>Chọn ngày kết thúc</option>-->
+                                                    <option value="" disabled selected>Chọn ngày kết thúc</option>
                                                     <option th:each="maintenanceSchedule : ${maintenanceSchedules}" th:value="${maintenanceSchedule.endDate}" th:text="${maintenanceSchedule.endDate}"></option>
                                                 </select>
                                             </div>
