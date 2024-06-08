@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tạo Thêm Phiếu Nhập Kho</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/receipt-test}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <form class="commonForm"  th:id="receiptFormCreate" th:action="@{/admin/receipt-test/create}" method="post">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h2 class="h4 mb-3">Thông Tin Phiếu Nhập Kho</h2>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="warehouse_id">Kho</label>
+                                                <select id="warehouse_id" class="form-control">
+                                                    <option>Chọn Kho</option>
+                                                    <option>Kho CNTT</option>
+                                                    <option>Kho CNTT 2</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="receipt_id">Mã Số Phiếu Nhập Kho</label>
+                                                <input type="text"   th:name="receipt_id" id="receipt_id" class="form-control" placeholder="Mã số phiếu nhập kho">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="vendor_id">Nhà Cung Cấp</label>
+                                                <select id="vendor_id" class="form-control">
+                                                    <option value="" disabled selected>Chọn nhà cung cấp</option>
+                                                    <option>FPT</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="date_add">Ngày Nhập Trang Thiết Bị</label>
+                                                <input autocomplete="off"  type="text" id="date_add" class="form-control datetimepicker-input" placeholder="Ngày nhập trang thiết bị" data-target="#received_date" data-toggle="datetimepicker">
+                                                <p></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="quantity">Số Lượng</label>
+                                                <input type="text" th:name="quantity" id="quantity" class="form-control" placeholder="Số Lượng">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="price">Đơn Giá (VNĐ)</label>
+                                                <input type="text" th:name="price" id="price" class="form-control" placeholder="Đơn giá">
+                                                <p></p>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="employee_id">Nhân Viên Thực Hiện</label>
+                                                <select  id="employee_id" class="form-control">
+                                                    <option>Trần Văn A</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="description">Mô Tả</label>
+                                        <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-3">
+                            <form class="commonForm"  th:id="equipmentFormInReceiptCreate" th:action="@{/admin/receipt-test/create}" method="post">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h2 class="h4 mb-3">Thông Tin Trang Thiết Bị</h2>
+                                        <div class="mb-3">
+                                            <label for="category_id">Danh Mục Trang Thiết Bị</label>
+                                            <select id="category_id" class="form-control">
+                                                <option>Phần Cứng</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="equipment_type_id">Loại Trang Thiết Bị</label>
+                                            <select id="equipment_type_id" class="form-control">
+                                                <option>Chọn Loại Trang Thiéết Bị</option>
+                                                <option>Linh Kiện</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="equipment_name">Tên Trang Thiết Bị</label>
+                                            <input type="text"   th:name="receipt_id" id="equipment_name" class="form-control" placeholder="Tên trang thiết bị">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="equipment_id">Serial Number</label>
+                                            <input type="text"  id="equipment_id" class="form-control" placeholder="Serial Number">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="model">Mã Model</label>
+                                            <input type="text" th:name="model" id="model" class="form-control" placeholder="Mã model">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="brand_id">Thương Hiệu</label>
+                                            <select id="brand_id" class="form-control">
+                                                <option>Kingston</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="status_equipment_type_id">Danh Mục Tình Trạng</label>
+                                            <select  id="status_equipment_type_id" class="form-control">
+                                                <option>Mới Nhập Hàng</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="status_equipment_id">Tình Trạng Trang Thiết Bị</label>
+                                            <select id="status_equipment_id" class="form-control">
+                                                <option>Mới 100%</option>
+                                            </select>
+                                        </div>
+                                        <div class="pb-2 pt-3">
+                                            <button class="btn btn-primary" onclick="document.getElementById('equipmentFormInReceiptCreate').submit()">Thêm Vào Danh Sách</button>
+                                            <a href="#" class="btn btn-outline-dark ml-3">Reset</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h2 class="h4 mb-3">Danh Sách Trang Thiết Bị</h2>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 30px;">STT</th>
+                                                <th>Danh Mục</th>
+                                                <th>Loại</th>
+                                                <th>Tên</th>
+                                                <th>Serial Number</th>
+                                                <th>Mã Model</th>
+                                                <th>Thương Hiệu</th>
+                                                <th>Danh Mục Tình Trạng</th>
+                                                <th>Tình Trạng</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pb-5 pt-3">
+                        <button class="btn btn-primary" onclick="document.getElementById('receiptFormCreate').submit()">Xác Nhận</button>
+                        <a th:href="@{/admin/receipt-test}" class="btn btn-outline-dark ml-3">Hủy</a>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+<script>
+    $(document).ready(function() {
+        $('#price').on('input', function() {
+            var value = $(this).val().replace(/\D/g, '');
+            if (value) {
+                var formattedValue = new Intl.NumberFormat('vi-VN').format(value);
+                $(this).val(formattedValue);
+            }
+        });
+
+        $('#receiptFormCreate').on('submit', function() {
+            var value = $('#price').val().replace(/\D/g, '');
+            $('#price').val(value);
+        });
+    });
+</script>
+</body>
+</html>

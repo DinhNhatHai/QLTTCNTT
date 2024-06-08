@@ -33,6 +33,7 @@
             <div class="container-fluid">
                 <form class="commonForm" th:id="equipmentFormEdit" th:action="@{/admin/equipment/edit/{id}(id=${equipment.id})}" method="post" th:object="${equipment}">
                     <div class="row">
+
                         <div class="col-md-8">
                             <div class="card mb-3">
                                 <div class="card-body">
@@ -51,16 +52,18 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label for="equipment_id">ID Trang Thiết Bị</label>
-                                                <input type="text"  th:field="*{equipmentId}" th:name="equipment_id" id="equipment_id" class="form-control" placeholder="ID trang thiết bị">
-                                            </div>
-                                        </div>
+
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="name">Tên Trang Thiết Bị</label>
                                                 <input type="text" th:field="*{nameEquipment}" th:name="name" id="name" class="form-control" placeholder="Tên hệ thống thiết bị ">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="equipment_id">Serial Number</label>
+                                                <input type="text"  th:field="*{equipmentId}" th:name="equipment_id" id="equipment_id" class="form-control" placeholder="Serial Number">
                                             </div>
                                         </div>
 
@@ -82,6 +85,7 @@
                         </div>
 
                         <div class="col-md-4">
+
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <div class="mb-3">
@@ -92,6 +96,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <h2 class="h4 mb-3">Tình Trạng Trang Thiết Bị</h2>
@@ -109,10 +114,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="pb-5 pt-3">
-                                <button class="btn btn-primary" onclick="document.getElementById('equipmentFormEdit').submit()">Cập Nhật</button>
-                                <a th:href="@{/admin/equipment}" class="btn btn-outline-dark ml-3">Hủy</a>
-                            </div>
+
+                        </div>
+                        <div class="pb-5 pt-3">
+                            <button class="btn btn-primary" onclick="document.getElementById('equipmentFormCreate').submit()">Xác Nhận</button>
+                            <a th:href="@{/admin/equipment}" class="btn btn-outline-dark ml-3">Hủy</a>
                         </div>
                     </div>
                 </form>

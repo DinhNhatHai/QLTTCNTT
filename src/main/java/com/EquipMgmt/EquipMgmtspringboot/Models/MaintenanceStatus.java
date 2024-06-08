@@ -28,14 +28,26 @@ public class MaintenanceStatus {
     @OneToMany(mappedBy = "maintenanceStatus", fetch = FetchType.EAGER)
     private Set<Maintenance> maintenances;
 
+    @OneToMany(mappedBy = "maintenanceStatus", fetch = FetchType.EAGER)
+    private Set<MaintenancePlan> maintenancePlans;
+
     public MaintenanceStatus() {}
 
-    public MaintenanceStatus(Long id, String nameMaintenanceStatus, String description, String showHome, Set<Maintenance> maintenances) {
+    public MaintenanceStatus(Long id, String nameMaintenanceStatus, String description, String showHome, Set<Maintenance> maintenances, Set<MaintenancePlan> maintenancePlans) {
         this.id = id;
         this.nameMaintenanceStatus = nameMaintenanceStatus;
         this.description = description;
         this.showHome = showHome;
         this.maintenances = maintenances;
+        this.maintenancePlans = maintenancePlans;
+    }
+
+    public Set<MaintenancePlan> getMaintenancePlans() {
+        return maintenancePlans;
+    }
+
+    public void setMaintenancePlans(Set<MaintenancePlan> maintenancePlans) {
+        this.maintenancePlans = maintenancePlans;
     }
 
     public Long getId() {

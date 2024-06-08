@@ -1,5 +1,6 @@
 package com.EquipMgmt.EquipMgmtspringboot.Config;
 
+import com.EquipMgmt.EquipMgmtspringboot.Models.CurrencyUtils;
 import com.EquipMgmt.EquipMgmtspringboot.Security.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -55,6 +56,11 @@ public class SecurityConfig implements WebMvcConfigurer {
     @Bean
     WebSecurityCustomizer webSecurityCustomizer(){
         return (web) -> web.ignoring().requestMatchers("/static/**","/uploads/**");
+    }
+
+    @Bean
+    public CurrencyUtils currencyUtils() {
+        return new CurrencyUtils();
     }
 }
 

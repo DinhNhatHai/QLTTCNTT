@@ -1,56 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="admin/fragments/head :: head"></head>
+<head th:replace="~{admin/fragments/head :: head}"></head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Right navbar links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-            </li>
-        </ul>
-        <div class="navbar-nav pl-2">
-            <!-- <ol class="breadcrumb p-0 m-0 bg-white">
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol> -->
-        </div>
-
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                    <i class="fas fa-expand-arrows-alt"></i>
-                </a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link p-0 pr-3" data-toggle="dropdown" href="#">
-                    <img th:src="@{/admin-assets/img/avatar5.png}" class='img-circle elevation-2' width="40" height="40" alt="">
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-3">
-                    <h4 class="h4 mb-0"></h4>
-                    <div class="mb-3"></div>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-user-cog mr-2"></i> Settings
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-lock mr-2"></i> Change Password
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item text-danger">
-                        <i class="fas fa-sign-out-alt mr-2"></i> Logout
-                    </a>
-                </div>
-            </li>
-        </ul>
-    </nav>
-    <!-- /.navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
     <!-- Main Sidebar Container -->
 
-    <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -72,52 +30,68 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form th:action="@{/warranty}" method="post" id="createWarrantyForm" name="createGuaranteeForm">
+                <form class="commonForm" th:action="@{/admin/warranty/edit/{id}(id=${warranty.id})}" method="post" id="createWarrantyForm" name="createGuaranteeForm" th:object="${warranty}">
                     <div class="card">
                         <div class="card-body">
-
                             <div class="row">
-
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="warranty_id">ID Phiếu Bảo Hành</label>
-                                        <input type="text" th:name="warranty_id" id="warranty_id" class="form-control" placeholder="ID bảo hành">
+                                        <input type="text" th:field="*{warrantyId}" th:name="warranty_id" id="warranty_id" class="form-control" placeholder="ID phiếu bảo hành">
                                     </div>
-                                </div>
 
-                                <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="guarantee_id">ID Bảo Hành</label>
-                                        <input type="text" th:name="guarantee_id" id="guarantee_id" class="form-control" placeholder="ID bảo hành">
+                                        <select th:field="*{guarantee.id}" id="guarantee_id" class="form-control">
+                                            <option th:each="guarantee : ${guarantees}" th:value="${guarantee.id}" th:text="${guarantee.guaranteeId}"></option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="equipment_type_id">Loại Trang Thiết Bị</label>
+                                        <select th:field="*{equipmentType.id}" id="equipment_type_id" class="form-control">
+                                            <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="equipment_id">ID Trang Thiết Bị</label>
+                                        <select th:field="*{equipment.id}" id="equipment_id" class="form-control">
+                                            <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="date_take">Ngày Mang Đi</label>
-                                        <input type="text" th:name="date_take" id="date_take" class="form-control" placeholder="Ngày mang đi">
+                                        <input autocomplete="off" th:field="*{dateTake}" type="text" id="date_take" class="form-control datetimepicker-input" lang={'vn'} placeholder="Ngày mang đi" data-target="#date_take" data-toggle="datetimepicker">
+                                        <p></p>
                                     </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="equipment_id">ID Trang Thiết Bị</label>
-                                        <input type="text" th:name="equipment_id" id="equipment_id" class="form-control" placeholder="ID trang thiết bị">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="date_return">Ngày Mang Về</label>
-                                        <input type="text" th:name="date_return" id="date_return" class="form-control" placeholder="Ngày mang về">
+                                        <input autocomplete="off" th:field="*{dateReturn}" type="text" id="date_return" class="form-control datetimepicker-input" lang={'vn'} placeholder="Ngày mang về" data-target="#date_return" data-toggle="datetimepicker">
+                                        <p></p>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="employee_id">Nhân Viên Thực Hiện</label>
+                                        <select th:field="*{employee.id}" id="employee_id" class="form-control">
+                                            <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name}"></option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="location">Nơi Bảo Hành</label>
+                                        <input type="text" th:field="*{location}" th:name="location" id="location" class="form-control" placeholder="Nơi bảo hành">
+                                        <p></p>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="employee">Nhân Viên</label>
-                                        <input type="text" th:name="employee" id="employee" class="form-control" placeholder="Nhân viên">
-                                        <p></p>
+                                        <label for="description">Mô tả</label>
+                                        <textarea  th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Nội dung mô tả"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -136,14 +110,12 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <div th:replace="admin/fragments/footer :: footer"></div>
-
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
 </div>
 <!-- ./wrapper -->
 <!-- jQuery -->
 
-<div th:replace="admin/fragments/scripts :: scripts"></div>
-
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
 <script type="text/javascript">
     $.ajaxSetup({
         headers: {

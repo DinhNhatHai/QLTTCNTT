@@ -103,10 +103,4 @@ public class EquipmentController {
         equipmentService.deleteById(id);
         return "redirect:/admin/equipment";
     }
-
-    @GetMapping("/getEquipmentsByType")
-    @ResponseBody
-    public List<Equipment> getEquipmentsByType(@RequestParam("typeId") Long typeId) {
-        return equipmentService.findEquipmentsByType(typeId);
-    }
 }

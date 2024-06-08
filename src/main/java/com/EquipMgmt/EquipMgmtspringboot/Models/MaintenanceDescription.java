@@ -27,15 +27,19 @@ public class MaintenanceDescription {
     @OneToMany(mappedBy = "maintenanceDescription", fetch = FetchType.EAGER)
     private List<Maintenance> maintenances;
 
+    @OneToMany(mappedBy = "maintenanceDescription", fetch = FetchType.EAGER)
+    private List<MaintenancePlan> maintenancePlans;
+
     public MaintenanceDescription() {
     }
 
-    public MaintenanceDescription(Long id, String nameMaintenanceDescription, String description, String showHome, List<Maintenance> maintenances) {
+    public MaintenanceDescription(Long id, String nameMaintenanceDescription, String description, String showHome, List<Maintenance> maintenances, List<MaintenancePlan> maintenancePlans) {
         this.id = id;
         this.nameMaintenanceDescription = nameMaintenanceDescription;
         this.description = description;
         this.showHome = showHome;
         this.maintenances = maintenances;
+        this.maintenancePlans = maintenancePlans;
     }
 
     public Long getId() {
@@ -76,5 +80,13 @@ public class MaintenanceDescription {
 
     public void setMaintenances(List<Maintenance> maintenances) {
         this.maintenances = maintenances;
+    }
+
+    public List<MaintenancePlan> getMaintenancePlans() {
+        return maintenancePlans;
+    }
+
+    public void setMaintenancePlans(List<MaintenancePlan> maintenancePlans) {
+        this.maintenancePlans = maintenancePlans;
     }
 }
