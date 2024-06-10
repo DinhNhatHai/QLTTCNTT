@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+  <!-- /.navbar -->
+  <!-- Main Sidebar Container -->
+  <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid my-2">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Edit Maintenance Plan</h1>
+          </div>
+          <div class="col-sm-6 text-right">
+            <a th:href="@{/admin/maintenance-plan}" class="btn btn-primary">Trở lại</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <form th:action="@{/admin/maintenance-plan/edit}" method="post">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="maintenancePlanId">ID</label>
+                    <input type="text" class="form-control" id="maintenancePlanId" name="maintenancePlanId" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="deviceName">Tên thiết bị</label>
+                    <input type="text" class="form-control" id="deviceName" name="deviceName" placeholder="Enter device name">
+                  </div>
+                  <div class="form-group">
+                    <label for="performingUnit">Đơn vị thực hiện</label>
+                    <input type="text" class="form-control" id="performingUnit" name="performingUnit" placeholder="Enter performing unit">
+                  </div>
+                  <div class="form-group">
+                    <label for="cycle">Chu kì</label>
+                    <input type="text" class="form-control" id="cycle" name="cycle" placeholder="Enter cycle">
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Mô tả</label>
+                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description"></textarea>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- /.content-wrapper -->
+
+  <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+</body>
+</html>

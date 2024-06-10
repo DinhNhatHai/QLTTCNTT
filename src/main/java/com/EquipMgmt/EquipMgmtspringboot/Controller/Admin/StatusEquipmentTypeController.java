@@ -22,3 +22,6 @@ public class StatusEquipmentTypeController {
         return  "admin/status_equipment_type/edit";
     }
 }
+
+
+

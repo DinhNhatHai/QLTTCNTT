@@ -5,20 +5,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/qr-code")
-public class QRcodeController {
+@RequestMapping("/admin/maintenance-schedule")
+
+public class Maintenance_scheduleController {
     @GetMapping
     public String index() {
-        return  "admin/qr_code/list";
+        return  "admin/maintenance_schedule/list";
     }
-
     @GetMapping("/create")
     public String create() {
-        return  "admin/qr_code/create";
+        return  "admin/maintenance_schedule/create";
     }
-
     @GetMapping("/edit")
     public String edit() {
-        return  "admin/qr_code/edit";
+        return  "admin/maintenance_schedule/edit";
     }
 }

@@ -33,4 +33,9 @@ public class VendorServiceImpl implements VendorService {
     public void deleteById(Long id) {
         vendorRepository.deleteById(id);
     }
+
+    @Override
+    public List<Vendor> searchVendorsByName(String name) {
+        return vendorRepository.findByVendorNameContainingIgnoreCase(name);
+    }
 }

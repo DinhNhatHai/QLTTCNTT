@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin/vendor")
 public class VendorController {
@@ -17,8 +19,14 @@ public class VendorController {
     private VendorService vendorService;
 
     @GetMapping
-    public String listVendors(Model model) {
-        model.addAttribute("vendors", vendorService.findAll());
+    public String listVendors(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+        List<Vendor> vendors;
+        if (keyword != null && !keyword.isEmpty()) {
+            vendors = vendorService.searchVendorsByName(keyword);
+        } else {
+            vendors = vendorService.findAll();
+        }
+        model.addAttribute("vendors", vendors);
         return "admin/vendor/list";
     }
 

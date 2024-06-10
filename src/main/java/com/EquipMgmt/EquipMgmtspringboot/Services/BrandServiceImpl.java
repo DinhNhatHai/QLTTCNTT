@@ -4,11 +4,10 @@ import com.EquipMgmt.EquipMgmtspringboot.Models.Brand;
 import com.EquipMgmt.EquipMgmtspringboot.Repository.BrandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
-public class BrandServiceImpl implements  BrandService{
+public class BrandServiceImpl implements BrandService {
 
     @Autowired
     private BrandRepository brandRepository;
@@ -29,5 +28,7 @@ public class BrandServiceImpl implements  BrandService{
         brandRepository.deleteById(id);
     }
 
-
+    public List<Brand> searchBrandsByName(String name) {
+        return brandRepository.findByNameContainingIgnoreCase(name);
+    }
 }

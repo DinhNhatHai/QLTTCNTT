@@ -1,12 +1,11 @@
 package com.EquipMgmt.EquipMgmtspringboot.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+
+import java.util.Set;
 
 @Entity
 public class Employee {
@@ -23,8 +22,8 @@ public class Employee {
 
     @Email(message = "Email không đuược để trống")
     private String email;
-
-
+//    @OneToMany(mappedBy = "employee")
+//    private Set<Employee> employees;
     private String address;
     private  String employeeCode;
     private String employeeType;

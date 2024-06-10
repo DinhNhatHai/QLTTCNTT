@@ -17,8 +17,13 @@ public class BrandController {
     private BrandService brandService;
 
     @GetMapping
-    public String getAllBrands(Model model) {
-        List<Brand> brands = brandService.getAllBrands();
+    public String getAllBrands(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
+        List<Brand> brands;
+        if (keyword != null && !keyword.isEmpty()) {
+            brands = brandService.searchBrandsByName(keyword);
+        } else {
+            brands = brandService.getAllBrands();
+        }
         model.addAttribute("brands", brands);
         return "admin/brand/list";
     }

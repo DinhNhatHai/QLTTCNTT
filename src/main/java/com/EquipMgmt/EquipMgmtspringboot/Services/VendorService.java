@@ -10,4 +10,5 @@ public interface VendorService {
     Optional<Vendor> getVendorById(Long id);
     void save(Vendor vendor);
     void deleteById(Long id);
+    List<Vendor> searchVendorsByName(String name);
 }
