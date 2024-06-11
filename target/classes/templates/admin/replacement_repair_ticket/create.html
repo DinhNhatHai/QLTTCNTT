@@ -31,7 +31,7 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form class="commonForm" th:action="@{/admin/replacement-repair-ticket/create}" method="post" th:object="${equipmentSystem}">
+                <form class="commonForm" th:action="@{/admin/replacement-repair-ticket/create}" method="post" th:object="${replacementRepair}">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card mb-3">
@@ -40,31 +40,35 @@
                                         <div class="col-md-6">
 
                                             <div class="mb-3">
-                                                <label for="sub_category">Loại Trang Thiết Bị</label>
-                                                <select th:name="sub_category" id="sub_category" class="form-control">
-                                                    <option value="">Mobile</option>
-                                                    <option value="">Home Theater</option>
-                                                    <option value="">Headphones</option>
+                                                <label for="date_add_storage">Id phiếu sửa chữa</label>
+                                                <input autocomplete="off" type="text" th:name="Id_ticket" id="Id_ticket" class="form-control" placeholder="Id phiếu sửa chữa" th:field="*{replaceRepairTicketId}">
+                                                <p></p>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="equimentType">Loại Trang Thiết Bị</label>
+                                                <select th:name="equimentType" id="equimentType" class="form-control" th:field="*{equipmentType}">
+                                                    <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
                                                 </select>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="device_id">ID Trang Thiết Bị Được Sửa Chữa</label>
-                                                <input type="text" th:name="device_id" id="device_id" class="form-control" placeholder="ID trang thiết bị được sữa chửa">
+                                                <label >ID Trang Thiết Bị Được Sửa Chữa</label>
+                                                <select th:name="equipment" id="equipment" class="form-control" th:field="*{equipment}">
+                                                    <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.nameEquipment}"></option>
+                                                </select>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="department_id">Đơn Vị Gửi</label>
-                                                <select th:name="department_id" id="department_id" class="form-control">
-                                                    <option value="">Chọn Đơn Vị Gửi</option>
-                                                    <option value="">Kế Toán</option>
-                                                    <option value="">Phòng Cấp Cứu</option>
+                                                <select th:name="department_id" id="department_id" class="form-control" th:field="*{department}">
+                                                    <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.departmentName}"></option>
                                                 </select>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="date_add_storage">Ngày Nhận Trang Thiết Bị</label>
-                                                <input autocomplete="off" type="text" th:name="date_add_storage" id="date_add_storage" class="form-control" placeholder="Ngày nhận trang thiết bị">
+                                                <input th:field="*{receivedDate}" autocomplete="off" type="text" th:name="date_add_storage" id="date_add_storage" class="form-control" placeholder="Ngày nhận trang thiết bị">
                                                 <p></p>
                                             </div>
                                         </div>
@@ -72,32 +76,34 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="time">Thời Gian Xử Lý</label>
-                                                <input type="text" th:name="time" id="time" class="form-control" placeholder="Thời gian xử lý">
+                                                <input th:field="*{processingTime}" type="text" th:name="time" id="time" class="form-control" placeholder="Thời gian xử lý">
                                                 <p></p>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="location">Nơi Sửa Chữa</label>
-                                                <input type="text" th:name="location" id="location" class="form-control" placeholder="Nơi sửa chữa">
+                                                <input th:field="*{repairPlace}" type="text" th:name="location" id="location" class="form-control" placeholder="Nơi sửa chữa">
                                                 <p></p>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="model">Nhân Viên Thực Hiện</label>
-                                                <input type="text" th:name="model" id="model" class="form-control" placeholder="Nhân viên thực hiện">
+                                                <label for="Employee">Nhân Viên Thực Hiện</label>
+                                                <select th:name="Employee" id="Employee" class="form-control" th:field="*{employee}">
+                                                    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name}"></option>
+                                                </select>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="description">Đánh Giá</label>
-                                                <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Đánh giá"></textarea>
+                                                <textarea th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Đánh giá"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="">Nhận Xét</label>
-                                                <textarea name="" id="" cols="30" rows="10" class="summernote" placeholder="Nhận Xét"></textarea>
+                                                <textarea th:field="*{comment}" name="" id="" cols="30" rows="10" class="summernote" placeholder="Nhận Xét"></textarea>
                                             </div>
                                         </div>
                                     </div>

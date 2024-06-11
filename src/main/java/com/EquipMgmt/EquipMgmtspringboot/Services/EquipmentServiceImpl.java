@@ -24,6 +24,8 @@ public class EquipmentServiceImpl implements EquipmentService {
         return equipmentRepository.findById(id);
     }
 
+
+
     @Override
     public void save(Equipment accessory) {
         equipmentRepository.save(accessory);

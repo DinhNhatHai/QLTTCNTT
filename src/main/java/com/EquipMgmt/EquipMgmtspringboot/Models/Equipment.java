@@ -55,24 +55,35 @@ public class Equipment {
 
     @OneToMany(mappedBy = "equipment", fetch = FetchType.EAGER)
     private List<Maintenance> maintenances;
+    @OneToMany(mappedBy = "equipment", fetch = FetchType.EAGER)
+    private List<ReplacementRepairTicket> replacementRepairTickets;
 
     public Equipment() {
     }
 
-    public Equipment(Long id, String equipmentId, String model, String nameEquipment, String description, EquipmentType equipmentType, Brand brand, StatusEquipmentType statusEquipmentType, StatusEquipment statusEquipment, Category category, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets, List<Maintenance> maintenances) {
+    public Equipment(Long id, String equipmentId, String model, String nameEquipment, String description, EquipmentType equipmentType, Category category, Brand brand, StatusEquipmentType statusEquipmentType, StatusEquipment statusEquipment, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets, List<Maintenance> maintenances, List<ReplacementRepairTicket> replacementRepairTickets) {
         this.id = id;
         this.equipmentId = equipmentId;
         this.model = model;
         this.nameEquipment = nameEquipment;
         this.description = description;
         this.equipmentType = equipmentType;
+        this.category = category;
         this.brand = brand;
         this.statusEquipmentType = statusEquipmentType;
         this.statusEquipment = statusEquipment;
-        this.category = category;
         this.originalReplacementUpgradeTickets = originalReplacementUpgradeTickets;
         this.newReplacementUpgradeTickets = newReplacementUpgradeTickets;
         this.maintenances = maintenances;
+        this.replacementRepairTickets = replacementRepairTickets;
+    }
+
+    public List<ReplacementRepairTicket> getReplacementRepairTickets() {
+        return replacementRepairTickets;
+    }
+
+    public void setReplacementRepairTickets(List<ReplacementRepairTicket> replacementRepairTickets) {
+        this.replacementRepairTickets = replacementRepairTickets;
     }
 
     public List<Maintenance> getMaintenances() {

@@ -39,11 +39,13 @@ public class EquipmentType {
 
     @OneToMany(mappedBy = "newEquipmentType", fetch = FetchType.EAGER)
     private List<ReplacementUpgradeTicket> newReplacementUpgradeTickets;
+    @OneToMany(mappedBy = "equipmentType", fetch = FetchType.EAGER)
+    private List<ReplacementRepairTicket> replacementRepairTickets;
 
     public EquipmentType() {
     }
 
-    public EquipmentType(Long id, String nameEquipmentType, String showHome, String description, Category category, List<Equipment> equipments, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets) {
+    public EquipmentType(Long id, String nameEquipmentType, String showHome, String description, Category category, List<Equipment> equipments, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets, List<ReplacementRepairTicket> replacementRepairTickets) {
         this.id = id;
         this.nameEquipmentType = nameEquipmentType;
         this.showHome = showHome;
@@ -52,6 +54,15 @@ public class EquipmentType {
         this.equipments = equipments;
         this.originalReplacementUpgradeTickets = originalReplacementUpgradeTickets;
         this.newReplacementUpgradeTickets = newReplacementUpgradeTickets;
+        this.replacementRepairTickets = replacementRepairTickets;
+    }
+
+    public List<ReplacementRepairTicket> getReplacementRepairTickets() {
+        return replacementRepairTickets;
+    }
+
+    public void setReplacementRepairTickets(List<ReplacementRepairTicket> replacementRepairTickets) {
+        this.replacementRepairTickets = replacementRepairTickets;
     }
 
     public Long getId() {

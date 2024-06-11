@@ -34,6 +34,12 @@ public class Category {
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Equipment> equipments;
 
+
+
+    public Category(){
+
+    }
+
     public Category(Long id, String nameCategory, Boolean showHome, String image, String description, Set<EquipmentType> equipmentTypes, List<Equipment> equipments) {
         this.id = id;
         this.nameCategory = nameCategory;
@@ -42,11 +48,12 @@ public class Category {
         this.description = description;
         this.equipmentTypes = equipmentTypes;
         this.equipments = equipments;
-    }
-
-    public Category(){
 
     }
+
+
+
+
 
     public Long getId() {
         return id;

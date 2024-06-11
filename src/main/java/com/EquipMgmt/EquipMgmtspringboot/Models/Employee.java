@@ -2,6 +2,8 @@ package com.EquipMgmt.EquipMgmtspringboot.Models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "employee")
 public class Employee {
@@ -33,11 +35,12 @@ public class Employee {
 
     @Column(name = "address")
     private String address;
-
+    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
+    private List<ReplacementRepairTicket> replacementRepairTickets;
     public Employee() {
     }
 
-    public Employee(Long id, EmployeeType employeeType, User user, String name, String employeeCode, String email, String telephone, String address) {
+    public Employee(Long id, EmployeeType employeeType, User user, String name, String employeeCode, String email, String telephone, String address, List<ReplacementRepairTicket> replacementRepairTickets) {
         this.id = id;
         this.employeeType = employeeType;
         this.user = user;
@@ -46,6 +49,15 @@ public class Employee {
         this.email = email;
         this.telephone = telephone;
         this.address = address;
+        this.replacementRepairTickets = replacementRepairTickets;
+    }
+
+    public List<ReplacementRepairTicket> getReplacementRepairTickets() {
+        return replacementRepairTickets;
+    }
+
+    public void setReplacementRepairTickets(List<ReplacementRepairTicket> replacementRepairTickets) {
+        this.replacementRepairTickets = replacementRepairTickets;
     }
 
     public User getUser() {

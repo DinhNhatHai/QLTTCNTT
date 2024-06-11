@@ -2,6 +2,7 @@ package com.EquipMgmt.EquipMgmtspringboot.Controller.Admin;
 
 import com.EquipMgmt.EquipMgmtspringboot.Models.ReplacementUpgradeTicket;
 import com.EquipMgmt.EquipMgmtspringboot.Services.*;
+import com.google.gson.Gson;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

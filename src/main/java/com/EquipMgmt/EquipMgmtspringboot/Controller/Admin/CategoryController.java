@@ -95,7 +95,7 @@ public class CategoryController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete (Model model, @PathVariable("id") Long id){
+    public String delete ( @PathVariable("id") Long id){
         if (this.categoryService.delete(id)) {
             return "redirect:/admin/category";
         } else {
