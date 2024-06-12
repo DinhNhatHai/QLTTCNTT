@@ -40,7 +40,7 @@ public class DeliveryBillController {
     public String createDeliveryBillForm(Model model) {
         model.addAttribute("deliveryBill", new DeliveryBill());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-        model.addAttribute("equipments", equipmentService.findAll());
+        model.addAttribute("equipments", equipmentService.getAllEquipments());
         model.addAttribute("warehouses", warehouseService.findAll());
         model.addAttribute("employees", employeeService.findAll());
         model.addAttribute("departments", departmentService.findAll());
@@ -51,7 +51,7 @@ public class DeliveryBillController {
     public String createReceipt(@Valid @ModelAttribute DeliveryBill deliveryBill, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-            model.addAttribute("equipments", equipmentService.findAll());
+            model.addAttribute("equipments", equipmentService.getAllEquipments());
             model.addAttribute("warehouses", warehouseService.findAll());
             model.addAttribute("employees", employeeService.findAll());
             model.addAttribute("departments", departmentService.findAll());
@@ -67,7 +67,7 @@ public class DeliveryBillController {
                 .orElseThrow(() -> new IllegalArgumentException("Không tồn tại phiếu xuất kho có Id: " + id));
         model.addAttribute("deliveryBill", deliveryBill);
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-        model.addAttribute("equipments", equipmentService.findAll());
+        model.addAttribute("equipments", equipmentService.getAllEquipments());
         model.addAttribute("warehouses", warehouseService.findAll());
         model.addAttribute("employees", employeeService.findAll());
         model.addAttribute("departments", departmentService.findAll());
@@ -78,7 +78,7 @@ public class DeliveryBillController {
     public String updateDeliveryBill (@PathVariable Long id, @Valid @ModelAttribute DeliveryBill deliveryBill, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-            model.addAttribute("equipments", equipmentService.findAll());
+            model.addAttribute("equipments", equipmentService.getAllEquipments());
             model.addAttribute("warehouses", warehouseService.findAll());
             model.addAttribute("employees", employeeService.findAll());
             model.addAttribute("departments", departmentService.findAll());

@@ -6,11 +6,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public interface EquipmentService {
-    List<Equipment> findAll();
+    Equipment saveEquipment(Equipment equipment);
     Optional<Equipment> getEquipmentById(Long id);
-    void save(Equipment equipment);
-    void deleteById(Long id);
+    List<Equipment> getAllEquipments();
+    void deleteEquipment(Long id);
+    List<Equipment> getAllEquipmentsByIds(List<Long> ids);
+    List<Equipment> saveAllEquipments(List<Equipment> equipments);
 }

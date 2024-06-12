@@ -49,9 +49,9 @@
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="original_equipment_id">ID Trang Thiết Bị Được Nâng Cấp | Thay Thế</label>
+                                        <label for="original_equipment_id">Serial Number Trang Thiết Bị Được Nâng Cấp | Thay Thế</label>
                                         <select th:field="*{originalEquipment.id}" id="original_equipment_id" class="form-control">
-                                            <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
+                                            <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.serialNumber}"></option>
                                         </select>
                                     </div>
                                     <div class="mb-3">
@@ -83,9 +83,9 @@
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="new_equipment_id">ID Trang Thiết Bị Dùng Nâng Cấp | Thay Thế</label>
+                                        <label for="new_equipment_id">Serial Number Trang Thiết Bị Dùng Nâng Cấp | Thay Thế</label>
                                         <select th:field="*{newEquipment.id}" id="new_equipment_id" class="form-control">
-                                            <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
+                                            <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.serialNumber}"></option>
                                         </select>
                                     </div>
                                     <div class="mb-3">

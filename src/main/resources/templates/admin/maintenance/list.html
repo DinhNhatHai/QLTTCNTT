@@ -68,11 +68,12 @@
                                         </tr>
                                     </thead>
 
+
                                     <tbody>
                                         <tr th:each="maintenance, numberStart : ${maintenances}">
                                             <td th:text="${numberStart.index + 1}"></td>
                                             <td th:text="${maintenance.maintenanceType.nameMaintenanceType}"></td>
-                                            <td th:text="${maintenance.equipment.equipmentId}"></td>
+                                            <td th:text="${maintenance.equipment.serialNumber}"></td>
                                             <td th:text="${maintenance.receivedDate}"></td>
                                             <td th:text="${maintenance.startDate}"></td>
                                             <td th:text="${maintenance.endDate}"></td>

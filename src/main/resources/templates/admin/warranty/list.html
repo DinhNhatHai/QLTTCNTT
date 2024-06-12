@@ -72,7 +72,7 @@
                                     <td th:text="${warranty.warrantyId}"></td>
                                     <td th:text="${warranty.dateTake}"></td>
                                     <td th:text="${warranty.dateReturn}"></td>
-                                    <td th:text="${warranty.equipment.equipmentId}"></td>
+                                    <td th:text="${warranty.equipment.serialNumber}"></td>
                                     <td th:text="${warranty.employee.name}"></td>
                                     <td>
                                         <a th:href="@{/admin/warranty/edit/{id}(id=${warranty.id})}">

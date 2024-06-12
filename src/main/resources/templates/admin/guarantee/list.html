@@ -60,7 +60,7 @@
                                 <th>ID Bảo Hành</th>
                                 <th>Thời Gian Bảo Hành</th>
                                 <th>Ngày Bắt Đầu Bảo Hành</th>
-                                <th>ID Trang Thiết Bị</th>
+                                <th>SerialNumber Trang Thiết Bị</th>
                                 <th>Nhà Cung Cấp</th>
                                 <th>Nơi Bảo Hành</th>
                                 <th>Tác Vụ</th>
@@ -72,7 +72,7 @@
                                     <td th:text="${guarantee.guaranteeId}"></td>
                                     <td th:text="${guarantee.warrantyPeriod}"></td>
                                     <td th:text="${guarantee.startDate}"></td>
-                                    <td th:text="${guarantee.equipment.equipmentId}"></td>
+                                    <td th:text="${guarantee.equipment.serialNumber}"></td>
                                     <td th:text="${guarantee.vendor.vendorName}"></td>
                                     <td th:text="${guarantee.location}"></td>
                                     <td>

@@ -9,15 +9,16 @@ import java.util.List;
 @Entity
 @Table(name = "receipt")
 public class Receipt {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "receipt_id", nullable = false)
-    private String receiptId;
+    @NotNull
+    @Column(name = "receipt_code", nullable = false)
+    private String receiptCode;
 
+    @NotNull
     @Column(name = "date_add", nullable = false)
     private String dateAdd;
 
@@ -44,20 +45,16 @@ public class Receipt {
     @JoinColumn(name = "warehouse_id", nullable = false)
     private Warehouse warehouse;
 
-    @ManyToOne(fetch = FetchType.EAGER )
-    @JoinColumn(name = "equipment_type_id", nullable = false)
-    private EquipmentType equipmentType;
+//    @ManyToOne(fetch = FetchType.EAGER )
+//    @JoinColumn(name = "equipment_type_id", nullable = false)
+//    private EquipmentType equipmentType;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "equipment_id", referencedColumnName = "id", nullable = false)
-    private Equipment equipment;
+    @OneToMany(mappedBy = "receipt", cascade = CascadeType.ALL)
+    private List<Equipment> equipments;
 
-    public Receipt() {
-    }
-
-    public Receipt(Long id, String receiptId, String dateAdd, Long quantity, Long price, String description, Employee employee, Vendor vendor, Warehouse warehouse, EquipmentType equipmentType, Equipment equipment) {
+    public Receipt(Long id, String receiptCode, String dateAdd, Long quantity, Long price, String description, Employee employee, Vendor vendor, Warehouse warehouse, EquipmentType equipmentType, List<Equipment> equipments) {
         this.id = id;
-        this.receiptId = receiptId;
+        this.receiptCode = receiptCode;
         this.dateAdd = dateAdd;
         this.quantity = quantity;
         this.price = price;
@@ -65,8 +62,18 @@ public class Receipt {
         this.employee = employee;
         this.vendor = vendor;
         this.warehouse = warehouse;
-        this.equipmentType = equipmentType;
-        this.equipment = equipment;
+        this.equipments = equipments;
+    }
+
+    public Receipt() {
+    }
+
+    public @NotNull String getReceiptCode() {
+        return receiptCode;
+    }
+
+    public void setReceiptCode(@NotNull String receiptCode) {
+        this.receiptCode = receiptCode;
     }
 
     public Long getId() {
@@ -75,14 +82,6 @@ public class Receipt {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getReceiptId() {
-        return receiptId;
-    }
-
-    public void setReceiptId(String receiptId) {
-        this.receiptId = receiptId;
     }
 
     public String getDateAdd() {
@@ -141,19 +140,12 @@ public class Receipt {
         this.warehouse = warehouse;
     }
 
-    public EquipmentType getEquipmentType() {
-        return equipmentType;
+
+    public List<Equipment> getEquipments() {
+        return equipments;
     }
 
-    public void setEquipmentType(EquipmentType equipmentType) {
-        this.equipmentType = equipmentType;
-    }
-
-    public Equipment getEquipment() {
-        return equipment;
-    }
-
-    public void setEquipment(Equipment equipment) {
-        this.equipment = equipment;
+    public void setEquipments(List<Equipment> equipments) {
+        this.equipments = equipments;
     }
 }

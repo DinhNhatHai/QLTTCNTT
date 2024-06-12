@@ -52,9 +52,9 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="equipment_id">ID Trang Thiết Bị</label>
-                                                <select th:field="*{equipment.id}" id="equipment_id" class="form-control">
-                                                    <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
+                                                <label for="serial_number">Serial Number</label>
+                                                <select th:field="*{equipment.id}" id="serial_number" class="form-control">
+                                                    <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.serialNumber}"></option>
                                                 </select>
                                             </div>
 

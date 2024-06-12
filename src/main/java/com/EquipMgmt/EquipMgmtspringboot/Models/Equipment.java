@@ -16,10 +16,10 @@ public class Equipment {
     private Long id;
 
     @NotNull
-    @Column(name = "equipment_id", nullable = false)
-    private String equipmentId;
+    @Column(name = "serial_number", nullable = false, unique = true)
+    private String serialNumber;
 
-    @Column(name = "model", nullable = false)
+    @Column(name = "model", nullable = true)
     private String model;
 
     @Column(name = "name_equipment", nullable = false)
@@ -58,8 +58,9 @@ public class Equipment {
     @OneToMany(mappedBy = "equipment", fetch = FetchType.EAGER)
     private List<Maintenance> maintenances;
 
-    @OneToOne(mappedBy = "equipment")
-    private Receipt Receipt;
+    @ManyToOne
+    @JoinColumn(name = "receipt_id", nullable = true)
+    private Receipt receipt;
 
     @OneToOne(mappedBy = "equipment")
     private DeliveryBill deliveryBill;
@@ -70,9 +71,9 @@ public class Equipment {
     public Equipment() {
     }
 
-    public Equipment(Long id, String equipmentId, String model, String nameEquipment, String description, EquipmentType equipmentType, Category category, Brand brand, StatusEquipmentType statusEquipmentType, StatusEquipment statusEquipment, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets, List<Maintenance> maintenances, com.EquipMgmt.EquipMgmtspringboot.Models.Receipt receipt, DeliveryBill deliveryBill, Guarantee guarantee) {
+    public Equipment(Long id, String serialNumber, String model, String nameEquipment, String description, EquipmentType equipmentType, Category category, Brand brand, StatusEquipmentType statusEquipmentType, StatusEquipment statusEquipment, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets, List<Maintenance> maintenances, Receipt receipt, DeliveryBill deliveryBill, Guarantee guarantee) {
         this.id = id;
-        this.equipmentId = equipmentId;
+        this.serialNumber = serialNumber;
         this.model = model;
         this.nameEquipment = nameEquipment;
         this.description = description;
@@ -84,7 +85,7 @@ public class Equipment {
         this.originalReplacementUpgradeTickets = originalReplacementUpgradeTickets;
         this.newReplacementUpgradeTickets = newReplacementUpgradeTickets;
         this.maintenances = maintenances;
-        Receipt = receipt;
+        this.receipt = receipt;
         this.deliveryBill = deliveryBill;
         this.guarantee = guarantee;
     }
@@ -97,12 +98,12 @@ public class Equipment {
         this.id = id;
     }
 
-    public @NotNull String getEquipmentId() {
-        return equipmentId;
+    public @NotNull String getSerialNumber() {
+        return serialNumber;
     }
 
-    public void setEquipmentId(@NotNull String equipmentId) {
-        this.equipmentId = equipmentId;
+    public void setSerialNumber(@NotNull String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public String getModel() {
@@ -193,20 +194,12 @@ public class Equipment {
         this.maintenances = maintenances;
     }
 
-    public com.EquipMgmt.EquipMgmtspringboot.Models.Receipt getReceipt() {
-        return Receipt;
+    public Receipt getReceipt() {
+        return receipt;
     }
 
-    public void setReceipt(com.EquipMgmt.EquipMgmtspringboot.Models.Receipt receipt) {
-        Receipt = receipt;
-    }
-
-    public Guarantee getGuarantee() {
-        return guarantee;
-    }
-
-    public void setGuarantee(Guarantee guarantee) {
-        this.guarantee = guarantee;
+    public void setReceipt(Receipt receipt) {
+        this.receipt = receipt;
     }
 
     public DeliveryBill getDeliveryBill() {
@@ -215,5 +208,13 @@ public class Equipment {
 
     public void setDeliveryBill(DeliveryBill deliveryBill) {
         this.deliveryBill = deliveryBill;
+    }
+
+    public Guarantee getGuarantee() {
+        return guarantee;
+    }
+
+    public void setGuarantee(Guarantee guarantee) {
+        this.guarantee = guarantee;
     }
 }

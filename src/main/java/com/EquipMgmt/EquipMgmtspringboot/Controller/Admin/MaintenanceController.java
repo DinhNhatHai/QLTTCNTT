@@ -1,5 +1,6 @@
 package com.EquipMgmt.EquipMgmtspringboot.Controller.Admin;
 
+import com.EquipMgmt.EquipMgmtspringboot.Models.CurrencyUtils;
 import com.EquipMgmt.EquipMgmtspringboot.Models.Employee;
 import com.EquipMgmt.EquipMgmtspringboot.Models.Maintenance;
 import com.EquipMgmt.EquipMgmtspringboot.Services.*;
@@ -41,6 +42,7 @@ public class MaintenanceController {
     @GetMapping
     public String listMaintenances (Model model) {
         model.addAttribute("maintenances", maintenanceService.findAll());
+//        model.addAttribute("utils", new CurrencyUtils());
         return "admin/maintenance/list";
     }
 
@@ -52,7 +54,7 @@ public class MaintenanceController {
         model.addAttribute("maintenanceStatuses", maintenanceStatusService.findAll());
         model.addAttribute("maintenanceTypes", maintenanceTypeService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-        model.addAttribute("equipments", equipmentService.findAll());
+        model.addAttribute("equipments", equipmentService.getAllEquipments());
         model.addAttribute("employees", employeeService.findAll());
         return "admin/maintenance/create";
     }
@@ -66,7 +68,7 @@ public class MaintenanceController {
             model.addAttribute("maintenanceStatuses", maintenanceStatusService.findAll());
             model.addAttribute("maintenanceTypes", maintenanceTypeService.findAll());
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-            model.addAttribute("equipments", equipmentService.findAll());
+            model.addAttribute("equipments", equipmentService.getAllEquipments());
             model.addAttribute("employees", employeeService.findAll());
             return "admin/maintenance/create";
         }
@@ -86,7 +88,7 @@ public class MaintenanceController {
         model.addAttribute("maintenanceStatuses", maintenanceStatusService.findAll());
         model.addAttribute("maintenanceTypes", maintenanceTypeService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-        model.addAttribute("equipments", equipmentService.findAll());
+        model.addAttribute("equipments", equipmentService.getAllEquipments());
         model.addAttribute("employees", employeeService.findAll());
         return "admin/maintenance/edit";
     }
@@ -100,7 +102,7 @@ public class MaintenanceController {
             model.addAttribute("maintenanceStatuses", maintenanceStatusService.findAll());
             model.addAttribute("maintenanceTypes", maintenanceTypeService.findAll());
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-            model.addAttribute("equipments", equipmentService.findAll());
+            model.addAttribute("equipments", equipmentService.getAllEquipments());
             model.addAttribute("employees", employeeService.findAll());
             return "admin/maintenance/edit"; // Đảm bảo trả về đúng view
         }

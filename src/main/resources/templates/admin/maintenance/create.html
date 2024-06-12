@@ -31,7 +31,7 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form class="commonForm" th:action="@{/admin/maintenance/create}" method="post" th:object="${maintenance}">
+                <form class="commonForm" th:id="formMaintenanceCreate" th:action="@{/admin/maintenance/create}" method="post" th:object="${maintenance}">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card mb-3">
@@ -52,9 +52,9 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="equipment_id">ID Trang Thiết Bị</label>
-                                                <select th:field="*{equipment.id}" id="equipment_id" class="form-control">
-                                                    <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
+                                                <label for="serial_number">Serial Number</label>
+                                                <select th:field="*{equipment.id}" id="serial_number" class="form-control">
+                                                    <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.serialNumber}"></option>
                                                 </select>
                                             </div>
 
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                     <div class="pb-5 pt-3">
-                        <button class="btn btn-primary">Xác Nhận</button>
+                        <button class="btn btn-primary" onclick="document.getElementById('formMaintenanceCreate').submit()">Xác Nhận</button>
                         <a th:href="@{/admin/maintenance}" class="btn btn-outline-dark ml-3">Hủy</a>
                     </div>
                 </form>
@@ -147,5 +147,21 @@
 
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
 
+<!--<script>-->
+<!--    $(document).ready(function() {-->
+<!--        $('#cost').on('input', function() {-->
+<!--            var value = $(this).val().replace(/\D/g, '');-->
+<!--            if (value) {-->
+<!--                var formattedValue = new Intl.NumberFormat('vi-VN').format(value);-->
+<!--                $(this).val(formattedValue);-->
+<!--            }-->
+<!--        });-->
+
+<!--        $('#formMaintenanceCreate').on('submit', function() {-->
+<!--            var value = $('#cost').val().replace(/\D/g, '');-->
+<!--            $('#price').val(value);-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>

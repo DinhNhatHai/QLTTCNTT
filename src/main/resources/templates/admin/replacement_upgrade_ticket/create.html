@@ -48,14 +48,16 @@
                                             <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
                                         </select>
                                     </div>
+
                                     <div class="mb-3">
-                                        <label for="original_equipment_id">ID Trang Thiết Bị Được Nâng Cấp | Thay Thế</label>
+                                        <label for="original_equipment_id">Serial Number Trang Thiết Bị Được Nâng Cấp | Thay Thế</label>
                                         <select th:field="*{originalEquipment.id}" id="original_equipment_id" class="form-control">
-                                            <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
+                                            <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.serialNumber}"></option>
                                         </select>
                                     </div>
+
                                     <div class="mb-3">
-                                        <label for="original_equipment_name">Tên Hoặc Mã Thiết Bị Cũ Trong Hệ Thống (Bỏ trống nếu không có)</label>
+                                        <label for="original_equipment_name">Tên Hoặc Serial Number Thiết Bị Cũ Trong Hệ Thống (Bỏ trống nếu không có)</label>
                                         <input autocomplete="off" th:field="*{nameOriginalEquipment}" type="text" id="original_equipment_name" class="form-control" placeholder="Tên thiết bị cũ">
                                         <p></p>
                                     </div>
@@ -82,12 +84,14 @@
                                             <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
                                         </select>
                                     </div>
+
                                     <div class="mb-3">
-                                        <label for="new_equipment_id">ID Trang Thiết Bị Dùng Nâng Cấp | Thay Thế</label>
+                                        <label for="new_equipment_id">Serial Number Trang Thiết Bị Dùng Nâng Cấp | Thay Thế</label>
                                         <select th:field="*{newEquipment.id}" id="new_equipment_id" class="form-control">
-                                            <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
+                                            <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.serialNumber}"></option>
                                         </select>
                                     </div>
+
                                     <div class="mb-3">
                                         <label for="received_date">Ngày Nhận Trang Thiết Bị</label>
                                         <input autocomplete="off" th:field="*{receivedDate}" type="text" id="received_date" class="form-control datetimepicker-input" placeholder="Ngày nhận trang thiết bị" data-target="#received_date" data-toggle="datetimepicker">

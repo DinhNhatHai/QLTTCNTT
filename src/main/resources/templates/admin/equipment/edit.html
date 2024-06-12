@@ -31,9 +31,8 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form class="commonForm" th:id="equipmentFormEdit" th:action="@{/admin/equipment/edit/{id}(id=${equipment.id})}" method="post" th:object="${equipment}">
+                <form class="commonForm" th:action="@{/admin/equipment/edit/{id}(id=${equipment.id})}" method="post" th:object="${equipment}">
                     <div class="row">
-
                         <div class="col-md-8">
                             <div class="card mb-3">
                                 <div class="card-body">
@@ -45,38 +44,32 @@
                                                     <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nameCategory}"></option>
                                                 </select>
                                             </div>
+
                                             <div class="mb-3">
                                                 <label for="equipment_type_id">Loại Trang Thiết Bị</label>
                                                 <select th:field="*{equipmentType.id}" id="equipment_type_id" class="form-control">
                                                     <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
                                                 </select>
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="name">Tên Trang Thiết Bị</label>
-                                                <input type="text" th:field="*{nameEquipment}" th:name="name" id="name" class="form-control" placeholder="Tên hệ thống thiết bị ">
+                                                <input type="text" th:field="*{nameEquipment}" id="name" class="form-control" placeholder="Tên thiết bị">
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label for="equipment_id">Serial Number</label>
-                                                <input type="text"  th:field="*{equipmentId}" th:name="equipment_id" id="equipment_id" class="form-control" placeholder="Serial Number">
+                                                <label for="serial_number">Serial Number</label>
+                                                <input type="text" th:field="*{serialNumber}" id="serial_number" class="form-control" placeholder="Serial Number">
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="model">Mã Model</label>
-                                                <input type="text" th:field="*{model}" th:name="model" id="model" class="form-control" placeholder="Mã model">
+                                                <input type="text" th:field="*{model}" id="model" class="form-control" placeholder="Mã model">
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
+
                                             <div class="mb-3">
                                                 <label for="description">Mô Tả</label>
-                                                <textarea th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                                <textarea th:field="*{description}" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -85,7 +78,6 @@
                         </div>
 
                         <div class="col-md-4">
-
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <div class="mb-3">
@@ -114,12 +106,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                        </div>
-                        <div class="pb-5 pt-3">
-                            <button class="btn btn-primary" onclick="document.getElementById('equipmentFormCreate').submit()">Xác Nhận</button>
-                            <a th:href="@{/admin/equipment}" class="btn btn-outline-dark ml-3">Hủy</a>
-                        </div>
+                    <div class="pb-5 pt-3">
+                        <button class="btn btn-primary" type="submit">Cập Nhật</button>
+                        <a th:href="@{/admin/department-type}" class="btn btn-outline-dark ml-3">Hủy</a>
                     </div>
                 </form>
             </div>

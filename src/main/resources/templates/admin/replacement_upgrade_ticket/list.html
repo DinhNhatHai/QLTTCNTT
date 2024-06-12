@@ -73,8 +73,8 @@
                                         <tr th:each="replacementUpgradeTicket, numberStart : ${replacementUpgradeTickets}">
                                             <td th:text="${numberStart.index + 1}"></td>
                                             <td th:text="${replacementUpgradeTicket.replacementUpgradeTicketType.nameReplacementUpgradeTicketType}"></td>
-                                            <td th:text="${replacementUpgradeTicket.originalEquipment.equipmentId}"></td>
-                                            <td th:text="${replacementUpgradeTicket.newEquipment.equipmentId}"></td>
+                                            <td th:text="${replacementUpgradeTicket.originalEquipment.serialNumber}"></td>
+                                            <td th:text="${replacementUpgradeTicket.newEquipment.serialNumber}"></td>
                                             <td th:text="${replacementUpgradeTicket.employee.name}"></td>
                                             <td th:text="${replacementUpgradeTicket.actionDate}"></td>
 <!--                                            <td th:text="${replacementUpgradeTicket.receivedDate}"></td>-->

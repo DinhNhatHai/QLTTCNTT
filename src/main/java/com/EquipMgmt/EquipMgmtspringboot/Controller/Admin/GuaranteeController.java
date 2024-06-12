@@ -37,7 +37,7 @@ public class GuaranteeController {
     public String createGuaranteeForm(Model model) {
         model.addAttribute("guarantee", new Guarantee());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-        model.addAttribute("equipments", equipmentService.findAll());
+        model.addAttribute("equipments", equipmentService.getAllEquipments());
         model.addAttribute("vendors", vendorService.findAll());
         return "admin/guarantee/create";
     }
@@ -46,7 +46,7 @@ public class GuaranteeController {
     public String createGuaranteeForm(@Valid @ModelAttribute Guarantee guarantee, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-            model.addAttribute("equipments", equipmentService.findAll());
+            model.addAttribute("equipments", equipmentService.getAllEquipments());
             model.addAttribute("vendors", vendorService.findAll());
             return "admin/guarantee/create";
         }
@@ -60,7 +60,7 @@ public class GuaranteeController {
                 .orElseThrow(() -> new IllegalArgumentException("Không tồn tại bảo hành bị có Id: " + id));
         model.addAttribute("guarantee", guarantee);
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-        model.addAttribute("equipments", equipmentService.findAll());
+        model.addAttribute("equipments", equipmentService.getAllEquipments());
         model.addAttribute("vendors", vendorService.findAll());
         return "admin/guarantee/edit";
     }
@@ -69,7 +69,7 @@ public class GuaranteeController {
     public String updateGuarantee (@PathVariable Long id, @Valid @ModelAttribute Guarantee guarantee, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-            model.addAttribute("equipments", equipmentService.findAll());
+            model.addAttribute("equipments", equipmentService.getAllEquipments());
             model.addAttribute("vendors", vendorService.findAll());
             return "admin/guarantee/edit";
         }

@@ -17,6 +17,9 @@ public class EquipmentRepairTicket {
     @Column(name = "received_date")
     private String receivedDate;
 
+    @Column(name = "complete_date")
+    private String completeDate;
+
     @Column(name = "processing_time")
     private String processingTime;
 
@@ -49,10 +52,11 @@ public class EquipmentRepairTicket {
 
     }
 
-    public EquipmentRepairTicket(Long id, String equipmentRepairTicketId, String receivedDate, String processingTime, String description, String comment, String repairPlace, Employee employee, Equipment equipment, Department department, EquipmentType equipmentType) {
+    public EquipmentRepairTicket(Long id, String equipmentRepairTicketId, String completeDate ,String receivedDate, String processingTime, String description, String comment, String repairPlace, Employee employee, Equipment equipment, Department department, EquipmentType equipmentType) {
         this.id = id;
         this.equipmentRepairTicketId = equipmentRepairTicketId;
         this.receivedDate = receivedDate;
+        this.completeDate = completeDate;
         this.processingTime = processingTime;
         this.description = description;
         this.comment = comment;
@@ -97,6 +101,14 @@ public class EquipmentRepairTicket {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getCompleteDate() {
+        return completeDate;
+    }
+
+    public void setCompleteDate(String completeDate) {
+        this.completeDate = completeDate;
     }
 
     public void setDescription(String description) {

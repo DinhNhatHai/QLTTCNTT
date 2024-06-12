@@ -71,7 +71,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="quantity">Số Lượng</label>
-                                                <input type="text" th:name="quantity" id="quantity" class="form-control" placeholder="Số Lượng">
+                                                <input type="text" th:name="quantity" id="quantity" class="form-control" placeholder="Số lượng">
                                             </div>
 
                                             <div class="mb-3">
@@ -104,53 +104,121 @@
                         </div>
 
 
+<!--                        <div class="col-md-3">-->
+<!--                            <form class="commonForm"  th:id="equipmentFormInReceiptCreate" th:action="@{/admin/receipt-test/create}" method="post">-->
+<!--                                <div class="card mb-3">-->
+<!--                                    <div class="card-body">-->
+<!--                                        <h2 class="h4 mb-3">Thông Tin Trang Thiết Bị</h2>-->
+<!--                                        <div class="mb-3">-->
+<!--                                            <label for="category_id">Danh Mục Trang Thiết Bị</label>-->
+<!--                                            <select id="category_id" class="form-control">-->
+<!--                                                <option>Phần Cứng</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="mb-3">-->
+<!--                                            <label for="equipment_type_id">Loại Trang Thiết Bị</label>-->
+<!--                                            <select id="equipment_type_id" class="form-control">-->
+<!--                                                <option>Chọn loại trang thiết bị</option>-->
+<!--                                                <option>Linh kiện máy tính</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="mb-3">-->
+<!--                                            <label for="equipment_name">Tên Trang Thiết Bị</label>-->
+<!--                                            <input type="text"   th:name="receipt_id" id="equipment_name" class="form-control" placeholder="Tên trang thiết bị">-->
+<!--                                        </div>-->
+
+<!--                                        <div class="mb-3">-->
+<!--                                            <label for="equipment_id">Serial Number</label>-->
+<!--                                            <input type="text"  id="equipment_id" class="form-control" placeholder="Serial Number">-->
+<!--                                        </div>-->
+
+<!--                                        <div class="mb-3">-->
+<!--                                            <label for="model">Mã Model</label>-->
+<!--                                            <input type="text" th:name="model" id="model" class="form-control" placeholder="Mã model">-->
+<!--                                        </div>-->
+
+<!--                                        <div class="mb-3">-->
+<!--                                            <label for="brand_id">Thương Hiệu</label>-->
+<!--                                            <select id="brand_id" class="form-control">-->
+<!--                                                <option>Kingston</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="mb-3">-->
+<!--                                            <label for="status_equipment_type_id">Danh Mục Tình Trạng</label>-->
+<!--                                            <select  id="status_equipment_type_id" class="form-control">-->
+<!--                                                <option>Mới Nhập Hàng</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+
+<!--                                        <div class="mb-3">-->
+<!--                                            <label for="status_equipment_id">Tình Trạng Trang Thiết Bị</label>-->
+<!--                                            <select id="status_equipment_id" class="form-control">-->
+<!--                                                <option>Mới 100%</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                        <div class="pb-2 pt-3">-->
+<!--                                            <button class="btn btn-primary" onclick="document.getElementById('equipmentFormInReceiptCreate').submit()">Thêm Vào Danh Sách</button>-->
+<!--                                            <a href="#" class="btn btn-outline-dark ml-3">Reset</a>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </form>-->
+<!--                        </div>-->
 
                         <div class="col-md-3">
-                            <form class="commonForm"  th:id="equipmentFormInReceiptCreate" th:action="@{/admin/receipt-test/create}" method="post">
+                            <form class="commonForm"  th:id="equipmentFormInReceiptCreate" th:action="@{/admin/receipt/createEquipment}" method="post">
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <h2 class="h4 mb-3">Thông Tin Trang Thiết Bị</h2>
                                         <div class="mb-3">
                                             <label for="category_id">Danh Mục Trang Thiết Bị</label>
-                                            <select id="category_id" class="form-control">
-                                                <option>Phần Cứng</option>
+                                            <select th:field="*{category.id}" id="category_id" class="form-control">
+                                                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nameCategory}"></option>
                                             </select>
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="equipment_type_id">Loại Trang Thiết Bị</label>
-                                            <select id="equipment_type_id" class="form-control">
-                                                <option>Chọn Loại Trang Thiéết Bị</option>
-                                                <option>Linh Kiện</option>
+                                            <select th:field="*{equipmentType.id}" id="equipment_type_id" class="form-control">
+                                                <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
                                             </select>
                                         </div>
 
-                                        <div class="mb-3">
-                                            <label for="equipment_name">Tên Trang Thiết Bị</label>
-                                            <input type="text"   th:name="receipt_id" id="equipment_name" class="form-control" placeholder="Tên trang thiết bị">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="name">Tên Trang Thiết Bị</label>
+                                                <input type="text" th:field="*{nameEquipment}" th:name="name" id="name" class="form-control" placeholder="Tên thiết bị">
+                                            </div>
                                         </div>
 
-                                        <div class="mb-3">
-                                            <label for="equipment_id">Serial Number</label>
-                                            <input type="text"  id="equipment_id" class="form-control" placeholder="Serial Number">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="serial_number">Serial Number</label>
+                                                <input type="text"  th:field="*{serialNumber}" th:name="serial_number" id="serial_number" class="form-control" placeholder="Serial Number">
+                                            </div>
                                         </div>
 
-                                        <div class="mb-3">
-                                            <label for="model">Mã Model</label>
-                                            <input type="text" th:name="model" id="model" class="form-control" placeholder="Mã model">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="model">Mã Model</label>
+                                                <input type="text" th:field="*{model}" th:name="model" id="model" class="form-control" placeholder="Mã model">
+                                            </div>
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="brand_id">Thương Hiệu</label>
-                                            <select id="brand_id" class="form-control">
-                                                <option>Kingston</option>
+                                            <select th:field="*{brand.id}" id="brand_id" class="form-control">
+                                                <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.nameBrand}"></option>
                                             </select>
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="status_equipment_type_id">Danh Mục Tình Trạng</label>
-                                            <select  id="status_equipment_type_id" class="form-control">
-                                                <option>Mới Nhập Hàng</option>
+                                            <select th:field="*{statusEquipmentType.id}" id="status_equipment_type_id" class="form-control">
+                                                <option th:each="statusEquipmentType : ${statusEquipmentTypes}" th:value="${statusEquipmentType.id}" th:text="${statusEquipmentType.nameStatusType}"></option>
                                             </select>
                                         </div>
 
@@ -191,39 +259,17 @@
                                             <tbody>
                                             <tr>
                                                 <td>1</td>
+                                                <td>222222222222222222222222222222222</td>
+                                                <td>23333333333333333</td>
+                                                <td>3323232323232323</td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>23232323232</td>
+                                                <td>23232323232323</td>
                                             </tr>
                                             <tr>
                                                 <td>2</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
                                                 <td></td>
                                                 <td></td>
                                                 <td></td>

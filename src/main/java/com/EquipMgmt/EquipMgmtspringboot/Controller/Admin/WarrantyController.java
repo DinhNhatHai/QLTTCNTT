@@ -39,7 +39,7 @@ public class WarrantyController {
         model.addAttribute("warranty", new Warranty());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
         model.addAttribute("guarantees", guaranteeService.findAll());
-        model.addAttribute("equipments", equipmentService.findAll());
+        model.addAttribute("equipments", equipmentService.getAllEquipments());
         model.addAttribute("employees", employeeService.findAll());
         return "admin/warranty/create";
     }
@@ -49,7 +49,7 @@ public class WarrantyController {
         if (result.hasErrors()) {
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
             model.addAttribute("guarantees", guaranteeService.findAll());
-            model.addAttribute("equipments", equipmentService.findAll());
+            model.addAttribute("equipments", equipmentService.getAllEquipments());
             model.addAttribute("employees", employeeService.findAll());
             return "admin/warranty/create";
         }
@@ -64,7 +64,7 @@ public class WarrantyController {
         model.addAttribute("warranty", warranty);
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
         model.addAttribute("guarantees", guaranteeService.findAll());
-        model.addAttribute("equipments", equipmentService.findAll());
+        model.addAttribute("equipments", equipmentService.getAllEquipments());
         model.addAttribute("employees", employeeService.findAll());
         return "admin/warranty/edit";
     }
@@ -74,7 +74,7 @@ public class WarrantyController {
         if (result.hasErrors()) {
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
             model.addAttribute("guarantees", guaranteeService.findAll());
-            model.addAttribute("equipments", equipmentService.findAll());
+            model.addAttribute("equipments", equipmentService.getAllEquipments());
             model.addAttribute("employees", employeeService.findAll());
             return "admin/warranty/edit";
         }

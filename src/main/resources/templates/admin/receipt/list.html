@@ -60,8 +60,8 @@
                                         <th>STT</th>
                                         <th>ID Phiếu</th>
                                         <th>Kho</th>
-                                        <th>Loại Trang Thiết Bị</th>
-                                        <th>ID Trang Thiết Bị</th>
+<!--                                        <th>Loại Trang Thiết Bị</th>-->
+<!--                                        <th>ID Trang Thiết Bị</th>-->
                                         <th>Ngày Nhập</th>
                                         <th>Số Lượng</th>
                                         <th>Đơn Giá</th>
@@ -73,10 +73,10 @@
                                     <tbody>
                                         <tr th:each="receipt, numberStart : ${receipts}">
                                             <td th:text="${numberStart.index + 1}"></td>
-                                            <td th:text="${receipt.receiptId}"></td>
+                                            <td th:text="${receipt.receiptCode}"></td>
                                             <td th:text="${receipt.warehouse.name}"></td>
-                                            <td th:text="${receipt.equipmentType.nameEquipmentType}"></td>
-                                            <td th:text="${receipt.equipment.equipmentId}"></td>
+<!--                                            <td th:text="${receipt.equipmentType.nameEquipmentType}"></td>-->
+<!--                                            <td th:text="${receipt.equipment.serialNumber}"></td>-->
                                             <td th:text="${receipt.dateAdd}"></td>
                                             <td th:text="${receipt.quantity}"></td>
                                             <td th:text="${@currencyUtils.formatCurrency(receipt.price)}"></td>

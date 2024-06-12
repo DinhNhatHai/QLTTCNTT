@@ -51,7 +51,7 @@ public class MaintenancePlanController {
         model.addAttribute("maintenanceStatuses", maintenanceStatusService.findAll());
         model.addAttribute("maintenanceTypes", maintenanceTypeService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-        model.addAttribute("equipments", equipmentService.findAll());
+        model.addAttribute("equipments", equipmentService.getAllEquipments());
         model.addAttribute("employees", employeeService.findAll());
         return "admin/maintenance_plan/create";
     }
@@ -64,7 +64,7 @@ public class MaintenancePlanController {
             model.addAttribute("maintenanceStatuses", maintenanceStatusService.findAll());
             model.addAttribute("maintenanceTypes", maintenanceTypeService.findAll());
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-            model.addAttribute("equipments", equipmentService.findAll());
+            model.addAttribute("equipments", equipmentService.getAllEquipments());
             model.addAttribute("employees", employeeService.findAll());
             return "admin/maintenance_plan/create";
         }
@@ -84,7 +84,7 @@ public class MaintenancePlanController {
         model.addAttribute("maintenanceStatuses", maintenanceStatusService.findAll());
         model.addAttribute("maintenanceTypes", maintenanceTypeService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-        model.addAttribute("equipments", equipmentService.findAll());
+        model.addAttribute("equipments", equipmentService.getAllEquipments());
         model.addAttribute("employees", employeeService.findAll());
         return "admin/maintenance_plan/edit";
     }
@@ -98,7 +98,7 @@ public class MaintenancePlanController {
             model.addAttribute("maintenanceStatuses", maintenanceStatusService.findAll());
             model.addAttribute("maintenanceTypes", maintenanceTypeService.findAll());
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
-            model.addAttribute("equipments", equipmentService.findAll());
+            model.addAttribute("equipments", equipmentService.getAllEquipments());
             model.addAttribute("employees", employeeService.findAll());
             return "admin/maintenance_plan/edit";
         }

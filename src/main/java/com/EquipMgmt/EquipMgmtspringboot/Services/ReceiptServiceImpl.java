@@ -1,9 +1,12 @@
 package com.EquipMgmt.EquipMgmtspringboot.Services;
 
+import com.EquipMgmt.EquipMgmtspringboot.Models.Equipment;
 import com.EquipMgmt.EquipMgmtspringboot.Models.Receipt;
+import com.EquipMgmt.EquipMgmtspringboot.Repository.EquipmentRepository;
 import com.EquipMgmt.EquipMgmtspringboot.Repository.ReceiptRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +17,13 @@ public class ReceiptServiceImpl implements ReceiptService {
     @Autowired
     private ReceiptRepository receiptRepository;
 
+    @Autowired
+    private EquipmentRepository equipmentRepository;
+
     @Override
-    public List<Receipt> findAll() {
-        return receiptRepository.findAll();
+    @Transactional
+    public Receipt saveReceipt(Receipt receipt) {
+        return receiptRepository.save(receipt);
     }
 
     @Override
@@ -25,12 +32,26 @@ public class ReceiptServiceImpl implements ReceiptService {
     }
 
     @Override
-    public void save(Receipt receipt) {
-        receiptRepository.save(receipt);
+    public List<Receipt> getAllReceipts() {
+        return receiptRepository.findAll();
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteReceipt(Long id) {
         receiptRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public Receipt createReceiptWithEquipments(Receipt receipt, List<Equipment> equipments) {
+        // Set the receipt for each equipment
+        equipments.forEach(equipment -> equipment.setReceipt(receipt));
+        receipt.setEquipments(equipments);
+
+        // Save the receipt and equipments
+        Receipt savedReceipt = receiptRepository.save(receipt);
+        equipmentRepository.saveAll(equipments);
+
+        return savedReceipt;
     }
 }

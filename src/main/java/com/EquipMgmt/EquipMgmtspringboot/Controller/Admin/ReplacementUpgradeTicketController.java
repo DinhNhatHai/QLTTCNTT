@@ -43,7 +43,7 @@ public class ReplacementUpgradeTicketController {
         model.addAttribute("replacementUpgradeTicketTypes", replacementUpgradeTicketTypeService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
         model.addAttribute("departments", departmentService.findAll());
-        model.addAttribute("equipments", equipmentService.findAll());
+        model.addAttribute("equipments", equipmentService.getAllEquipments());
         model.addAttribute("employees", employeeService.findAll());
         return "admin/replacement_upgrade_ticket/create";
     }
@@ -54,7 +54,7 @@ public class ReplacementUpgradeTicketController {
             model.addAttribute("replacementUpgradeTicketTypes", replacementUpgradeTicketTypeService.findAll());
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
             model.addAttribute("departments", departmentService.findAll());
-            model.addAttribute("equipments", equipmentService.findAll());
+            model.addAttribute("equipments", equipmentService.getAllEquipments());
             model.addAttribute("employees", employeeService.findAll());
             return "admin/replacement_upgrade_ticket/create";
         }
@@ -70,7 +70,7 @@ public class ReplacementUpgradeTicketController {
         model.addAttribute("replacementUpgradeTicketTypes", replacementUpgradeTicketTypeService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
         model.addAttribute("departments", departmentService.findAll());
-        model.addAttribute("equipments", equipmentService.findAll());
+        model.addAttribute("equipments", equipmentService.getAllEquipments());
         model.addAttribute("employees", employeeService.findAll());
         return "admin/replacement_upgrade_ticket/edit";
     }
@@ -81,7 +81,7 @@ public class ReplacementUpgradeTicketController {
             model.addAttribute("replacementUpgradeTicketTypes", replacementUpgradeTicketTypeService.findAll());
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
             model.addAttribute("departments", departmentService.findAll());
-            model.addAttribute("equipments", equipmentService.findAll());
+            model.addAttribute("equipments", equipmentService.getAllEquipments());
             model.addAttribute("employees", employeeService.findAll());
             return "admin/replacement_upgrade_ticket/edit";
         }
