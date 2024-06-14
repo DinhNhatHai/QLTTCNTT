@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tạo Thêm Hoạt Động Bảo Trì</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/maintenance}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <form class="commonForm" th:action="@{/admin/maintenance/create}" method="post" th:object="${maintenance}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="maintenance_type">Loại Bảo Trì</label>
+                                                <select th:field="*{maintenanceType.id}" th:name="maintenance_type" id="maintenance_type"  class="form-control">
+                                                    <option th:each="maintenanceType : ${maintenanceTypes}" th:value="${maintenanceType.id}" th:text="${maintenanceType.nameMaintenanceType}"></option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="equipment_type_id">Loại Trang Thiết Bị</label>
+                                                <select th:field="*{equipmentType.id}" id="equipment_type_id" class="form-control">
+                                                    <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="equipment_id">ID Trang Thiết Bị</label>
+                                                <select th:field="*{equipment.id}" id="equipment_id" class="form-control">
+                                                    <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="received_date">Ngày Nhận Trang Thiết Bị</label>
+                                                <input autocomplete="off" th:field="*{receivedDate}" type="text" name="received_date" id="received_date" class="form-control" placeholder="Ngày nhận trang thiết bị">
+                                                <p></p>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="date_add_storage">Thời Gian Xử Lý</label>
+                                                <input autocomplete="off"  th:field="*{processingTime}" type="text" th:name="date_add_storage" id="date_add_storage" class="form-control" placeholder="Thời gian xử lý">
+                                                <p></p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="description">Nội Dung Bảo Trì</label>
+                                                <textarea  th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Nội Dung Bảo Trì"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="start_date_id">Ngày Bắt Đầu</label>
+                                                <select th:field="*{startDate}" id="start_date_id" class="form-control">
+                                                    <option value="" disabled selected>Chọn ngày bắt đầu</option>
+                                                    <option th:each="maintenanceSchedule : ${maintenanceSchedules}" th:value="${maintenanceSchedule.startDate}" th:text="${maintenanceSchedule.startDate}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="end_date_id">Ngày Kết Thúc</label>
+                                                <select th:field="*{endDate}" id="end_date_id" class="form-control">
+                                                    <option value="" disabled selected>Chọn ngày kết thúc</option>
+                                                    <option th:each="maintenanceSchedule : ${maintenanceSchedules}" th:value="${maintenanceSchedule.endDate}" th:text="${maintenanceSchedule.endDate}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="cost">Chi Phí (Bỏ trống nếu không có)</label>
+                                                <input type="text"  th:field="*{cost}" th:name="cost" id="cost" class="form-control" placeholder="Chi phí">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="maintenance_description">Mô Tả Bảo Trì</label>
+                                                <select th:field="*{maintenanceDescription.id}" id="maintenance_description" class="form-control">
+                                                    <option value="" disabled selected>Chọn mô tả</option>
+                                                    <option th:each="maintenanceDescription : ${maintenanceDescriptions}"
+                                                            th:value="${maintenanceDescription.id}"
+                                                            th:text="${maintenanceDescription.description}">
+                                                    </option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="employee_id">Nhân Viên Thực Hiện</label>
+                                                <select th:field="*{employee.id}" id="employee_id" class="form-control">
+                                                    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="maintenance_status_id">Trạng Thái</label>
+                                                <select th:field="*{maintenanceStatus.id}" id="maintenance_status_id" class="form-control">
+                                                    <option th:each="maintenanceStatus : ${maintenanceStatuses}" th:value="${maintenanceStatus.id}" th:text="${maintenanceStatus.nameMaintenanceStatus}"></option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pb-5 pt-3">
+                        <button class="btn btn-primary">Xác Nhận</button>
+                        <a th:href="@{/admin/maintenance}" class="btn btn-outline-dark ml-3">Hủy</a>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+</body>
+</html>

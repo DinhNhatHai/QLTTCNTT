@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Chỉnh Sửa Nhân Viên</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/employee}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <form class="commonForm" th:id="employeeFormEdit" th:action="@{/admin/employee/edit/{id}(id=${employee.id})}" method="post" th:object="${employee}">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="name">Tên Nhân Viên</label>
+                                        <input type="text"  th:field="*{name}" name="name" id="name" class="form-control" placeholder="Tên nhân viên">
+                                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="telephone">SĐT</label>
+                                        <input type="text" th:field="*{telephone}" name="telephone" id="telephone" class="form-control" placeholder="Số điện thoại">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="employee-id">Mã Nhân Viên</label>
+                                        <input type="text" th:field="*{employeeCode}" name="employee-id" id="employee-id" class="form-control" placeholder="Mã nhân viên">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="email">Email</label>
+                                        <input type="email" th:field="*{email}" name="email" id="email" class="form-control" placeholder="Email">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="employee_type_id">Chức Vụ Nhân Viên</label>
+                                        <select th:field="*{employeeType.id}" id="employee_type_id" class="form-control">
+                                            <option th:each="employeeType : ${employeeTypes}" th:value="${employeeType.id}" th:text="${employeeType.nameEmployeeType}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="address">Địa Chỉ</label>
+                                        <input type="text"  th:field="*{address}" name="address" id="address" class="form-control" placeholder="Địa chỉ">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="user_id">Tên Tài Khoản</label>
+                                        <select th:field="*{user.id}" id="user_id" class="form-control">
+                                            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.userName}"></option>
+                                        </select>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="pb-5 pt-3">
+                    <button class="btn btn-primary" onclick="document.getElementById('employeeFormEdit').submit()">Cập Nhật</button>
+                    <a th:href="@{/admin/employee}" class="btn btn-outline-dark ml-3">Thoát</a>
+                </div>
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+</body>
+</html>

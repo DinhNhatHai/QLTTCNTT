@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tạo Thêm Danh Mục Trang Thiết Bị</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/category}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <form class="commonForm" th:action="@{/admin/category/create}" method="post" id="categoryForm" name="categoryForm" th:object="${category}" enctype="multipart/form-data">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="name">Tên Danh Mục</label>
+                                        <input type="text" th:name="name" id="name" class="form-control" placeholder="Tên Danh Mục" th:field="*{nameCategory}">
+                                        <p></p>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="showHome">Hiển Thị Ở Trang Chủ</label>
+                                        <select th:name="showHome" id="showHome" class="form-control">
+                                            <option th:field="*{showHome}" value="1">Có</option>
+                                            <option th:field="*{showHome}" value="0">Không</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="profile-pic">Hình Ảnh</label>
+                                        <div id="profile-pic" class="dropzone dz-clickable">
+                                            <input name="fileImage" type="file" accept="image/*" id="input-file">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="description">Mô Tả</label>
+                                        <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả" th:field="*{description}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pb-5 pt-3">
+                        <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                        <a th:href="@{/admin/category}" class="btn btn-outline-dark ml-3">Hủy</a>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<script>
+    let profilePic = document.getElementById("profile-pic");
+    let inputFile = document.getElementById("input-file");
+    inputFile.onchange = function(){
+        profilePic.src = URL.createObjectURL(inputFile.files[0]);
+    }
+</script>
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+</body>
+</html>

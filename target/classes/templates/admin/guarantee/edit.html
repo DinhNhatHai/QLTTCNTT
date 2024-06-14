@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Sửa Thông Tin Bảo Hành</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/guarantee}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <form class="commonForm" th:action="@{/admin/guarantee/edit/{id}(id=${guarantee.id})}" method="post" th:object="${guarantee}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="guarantee_id">ID Bảo Hành</label>
+                                                <input type="text" th:field="*{guaranteeId}" th:name="guarantee_id" id="guarantee_id" class="form-control" placeholder="ID bảo hành">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="equipment_type_id">Loại Trang Thiết Bị</label>
+                                                <select th:field="*{equipmentType.id}" id="equipment_type_id" class="form-control">
+                                                    <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="equipment_id">ID Trang Thiết Bị</label>
+                                                <select th:field="*{equipment.id}" id="equipment_id" class="form-control">
+                                                    <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="description">Nội Dung Bảo Trì</label>
+                                                <textarea th:field="*{description}"  name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Nội dung bảo trì"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="guarantee_period">Thời Gian Bảo Hành</label>
+                                                <input type="text" th:field="*{warrantyPeriod}" th:name="guarantee_period" id="guarantee_period" class="form-control" placeholder="Thời gian bảo hành">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="start_date">Ngày Bắt Đầu</label>
+                                                <input autocomplete="off" th:field="*{startDate}" type="text" id="start_date" class="form-control datetimepicker-input" lang={'vn'} placeholder="Ngày bắt đầu" data-target="#start_date" data-toggle="datetimepicker">
+                                                <p></p>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="vendor_id">Nhà Cung Cấp</label>
+                                                <select th:field="*{vendor.id}" id="vendor_id" class="form-control">
+                                                    <option value="" disabled selected>Chọn nhà cung cấp</option>
+                                                    <option th:each="vendor : ${vendors}" th:value="${vendor.id}" th:text="${vendor.vendorName}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="location">Nơi Bảo Hành</label>
+                                                <input type="text" th:field="*{location}" th:name="location" id="location" class="form-control" placeholder="Nơi bảo hành">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pb-5 pt-3">
+                        <button class="btn btn-primary">Cập Nhật</button>
+                        <a th:href="@{/admin/guarantee}" class="btn btn-outline-dark ml-3">Hủy</a>
+                    </div>
+                </form>
+
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+</body>
+</html>
