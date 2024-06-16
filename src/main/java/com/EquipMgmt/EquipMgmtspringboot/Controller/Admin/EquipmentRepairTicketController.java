@@ -2,18 +2,21 @@ package com.EquipMgmt.EquipMgmtspringboot.Controller.Admin;
 
 import com.EquipMgmt.EquipMgmtspringboot.Models.EquipmentRepairTicket;
 import com.EquipMgmt.EquipMgmtspringboot.Services.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
+@CrossOrigin("*")
 @Controller
 @RequestMapping("/admin/equipment-repair-ticket")
 public class EquipmentRepairTicketController {
@@ -27,6 +30,12 @@ public class EquipmentRepairTicketController {
     private EmployeeService employeeService;
     @Autowired
     private DepartmentService departmentService;
+    @Autowired
+    private SpringTemplateEngine springTemplateEngine;
+    @Autowired
+    private PDFGenrateService pdfGenrateService;
+    @Autowired
+    private DataService dataService;
 
     @GetMapping
     public String index(Model model, @Param("keyword") String keyword) {
@@ -159,5 +168,24 @@ public class EquipmentRepairTicketController {
         } else {
             return "redirect:/admin/equipment-repair-ticket";
         }
+    }
+    @GetMapping("/preview/{id}")
+    public String preview (Model model, @PathVariable("id") Long id){
+        model.addAttribute("repairTickets",this.equipmentRepairTicketService.findById(id));
+        return "admin/equipment_repair_ticket/preview";
+    }
+    @PostMapping("/generate")
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    public String generatePdf(@RequestBody List<EquipmentRepairTicket> equipmentRepairTickets){
+        try{
+            String finalhtml = null;
+            Context data = dataService.setData(equipmentRepairTickets);
+            finalhtml = springTemplateEngine.process("preview",data);
+            pdfGenrateService.htmltopdf(finalhtml);
+            return "admin/equipment_repair_ticket/list";
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.hospital-name, .dept-name {
+    font-weight: bold;
+}
+
+h3 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.content {
+    margin-top: 20px;
+}
+
+.row, .rows {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.rows {
+    flex-direction: column;
+}
+
+.row span, .rows span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.dotted-line {
+    flex-grow: 1;
+    border-bottom: 1px dotted #000;
+    margin: 0 10px;
+    height: 20px;
+}
+
+.dotted-line.short {
+    width: 50px;
+    margin: 0 5px;
+}
+
+.checkboxes {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.checkboxes label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.text-area {
+    height: 60px;
+    border-bottom: 1px dotted #000;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5px;
+}
+
+.confirmation {
+    margin-top: 20px;
+}
+
+.confirmation h4 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.note {
+    font-size: 14px;
+    color: #555;
+    margin-top: 20px;
+}
+
+.row.align-bottom {
+    align-items: flex-end;
+}
+
+.left, .right {
+    display: inline-block;
+    width: 50%;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.signature-space {
+    margin-top: 40px;  /* Khoảng trắng để ký tên */
+    border-bottom: 1px dotted #000;  /* Đường chấm chấm để ký tên */
+    height: 40px;  /* Chiều cao khoảng trắng */
+}
+
+.row.right-align {
+    justify-content: flex-end;
+}
+
+.date-label {
+    margin-left: 10px;
+}
+.text-area {
+    height: 60px;
+    border-bottom: 1px dotted #000;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5px;
+}
+
+  </style>
+<body>
+<div th:object="${repairTickets}">
+    <input type="hidden" th:field="*{id}">
+
+    <div class="container">
+        <div class="header">
+            <div class="hospital-name">BỆNH VIỆN UNG BƯỚU</div>
+            <div class="dept-name">PHÒNG CÔNG NGHỆ THÔNG TIN</div>
+        </div>
+        <h3>PHIẾU SỬA CHỮA</h3>
+        <div class="content">
+            <div class="row">
+                <span>Đơn vị yêu cầu sửa chữa:</span>
+                <span class="dotted-line" >
+<!--                    <a class="element" title="department" th:value="*{department.departmentName}" th:text="*{department.departmentName}"></a>-->
+                </span>
+            </div>
+            <div class="row">
+                <span>Mã số quản lý thiết bị (nếu có):</span>
+                <span class="dotted-line">
+                    <a class="element" title="equipmentRepairTicketId" th:value="*{equipmentRepairTicketId}" th:text="*{equipmentRepairTicketId}"></a>
+                </span>
+            </div>
+            <div class="row">
+                <span>Nội dung sửa chữa:</span>
+            </div>
+            <div class="checkboxes">
+                <label><input type="checkbox" disabled> Máy tính</label>
+                <label><input type="checkbox" disabled> Máy in</label>
+                <label><input type="checkbox" disabled> Mạng</label>
+                <label><input type="checkbox" disabled> Sửa chữa khác</label>
+            </div>
+            <div class="row">
+                <span>Nội dung sửa chữa chi tiết:</span>
+            </div>
+            <div class="dotted-line">
+                <a class="element" title="description" th:value="*{description}" th:text="*{description}"></a>
+            </div>
+            <div class="dotted-line"></div>
+            <div class="dotted-line"></div>
+            <div class="row">
+                <span>Vật tư cần thiết để sửa chữa (sau khi CNTT kiểm tra):</span>
+            </div>
+            <div class="dotted-line"></div>
+            <div class="dotted-line"></div>
+            <div class="dotted-line"></div>
+            <div class="row">
+                <span>Mượn tạm thiết bị thay thế:</span>
+                <label><input type="checkbox" disabled></label>
+            </div>
+            <div class="row">
+                <span>Thời gian nhận sự cố:</span>
+                <span class="dotted-line">
+                     <a class="element" title="receivedDate" th:value="*{receivedDate}" th:text="*{receivedDate}"></a>
+                </span>
+            </div>
+            <div class="row">
+                <span>Thời gian xử lý:</span>
+                <span class="dotted-line">
+                    <a class="element" title="processingTime" th:value="*{processingTime}" th:text="*{processingTime}"></a>
+                </span>
+            </div>
+            <div class="row">
+                <span>Đánh giá:</span>
+            </div>
+            <div class="dotted-line">
+
+            </div>
+
+            <div class="row">
+                <span>Nhận xét:</span>
+            </div>
+            <div class="dotted-line">
+                <a class="element" title="comment" th:value="*{comment}" th:text="*{comment}"></a>
+            </div>
+
+            <div class="confirmation">
+                <h4>XÁC NHẬN ĐÃ HOÀN THÀNH CÔNG VIỆC SỬA CHỮA</h4>
+                <div class="row right-align">
+                    <span>Ngày:</span>
+                    <span class="date-label">.....</span>
+                    <span>tháng</span>
+                    <span class="date-label">.....</span>
+                    <span>năm</span>
+                    <span class="date-label">.....</span>
+                </div>
+                <div class="row">
+                    <div class="left">
+                        <span>PHÒNG CNTT</span>
+                        <div class="signature-space"></div>
+                    </div>
+                    <div class="right">
+                        <span>ĐƠN VỊ YÊU CẦU</span>
+                        <div class="signature-space"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="note">
+            Lưu ý: Phòng CNTT không chịu trách nhiệm về mất mát dữ liệu (nếu có) trên thiết bị nhận sửa chữa. Đề nghị Khoa/Phòng tự lưu trữ trước khi giao. Cảm ơn!
+        </p>
+    </div>
+</div>
+<button id="btn-submit">Tạo file PDF</button>
+
+
+</body>
+<script>
+  const btnSubmit = document.querySelector('#btn-submit');
+  console.log('btnSubmit',btnSubmit);
+  if (btnSubmit) {
+    btnSubmit.onclick = (e) => {
+      const payload = getData();
+      if (payload) callApi(payload)
+    }
+  }
+
+  function getData() {
+    const nodeList = document.querySelectorAll('.element');
+    const result = {};
+    if (nodeList && nodeList.length) {
+      nodeList.forEach((elementNode) => {
+        const key = elementNode.getAttribute('title');
+        const value = elementNode.getAttribute('value');
+        result[key] = value
+      })
+    }
+    return JSON.stringify([result]);
+    console.log('result', result);
+  }
+
+
+  async function callApi(payload) {
+    const res = await fetch(`http://localhost:8080/admin/equipment-repair-ticket/generate`, {
+      method: 'POST',
+      body: payload,
+      headers: {
+        'Content-Type': "application/json; charset=utf8"
+      }
+    });
+    console.log('res', res);
+  }
+</script>
+</html>
