@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Chỉnh Sửa Phiếu Nhập Kho</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/receipt}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <form class="commonForm"  th:id="receiptFormEdit" th:action="@{/admin/receipt/edit/{id}(id=${receipt.id})}" method="post" th:object="${receipt}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="warehouse_id">Kho</label>
+                                                <select th:field="*{warehouse.id}" id="warehouse_id" class="form-control">
+                                                    <option th:each="warehouse : ${warehouses}" th:value="${warehouse.id}" th:text="${warehouse.name}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="receipt_id">ID Phiếu Nhập Kho</label>
+                                                <input type="text"  th:field="*{receiptId}" th:name="receipt_id" id="receipt_id" class="form-control" placeholder="ID phiếu nhập kho">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="equipment_type_id">Loại Trang Thiết Bị</label>
+                                                <select th:field="*{equipmentType.id}" id="equipment_type_id" class="form-control">
+                                                    <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="serial_number">Serial Number</label>
+                                                <select th:field="*{equipment.id}" id="serial_number" class="form-control">
+                                                    <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.serialNumber}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="description">Mô Tả</label>
+                                                <textarea  th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="date_add">Ngày Nhập Trang Thiết Bị</label>
+                                                <input autocomplete="off" th:field="*{dateAdd}" type="text" id="date_add" class="form-control datetimepicker-input" placeholder="Ngày nhập trang thiết bị" data-target="#received_date" data-toggle="datetimepicker">
+                                                <p></p>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="quantity">Số Lượng</label>
+                                                <input type="text" th:field="*{quantity}" th:name="quantity" id="quantity" class="form-control" placeholder="Số Lượng">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="price">Đơn Giá (VNĐ)</label>
+                                                <input type="text" th:field="*{price}" th:name="price" id="price" class="form-control" placeholder="Đơn giá">
+                                                <p></p>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="vendor_id">Nhà Cung Cấp</label>
+                                                <select th:field="*{vendor.id}" id="vendor_id" class="form-control">
+                                                    <option value="" disabled selected>Chọn nhà cung cấp</option>
+                                                    <option th:each="vendor : ${vendors}" th:value="${vendor.id}" th:text="${vendor.vendorName}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="employee_id">Nhân Viên Thực Hiện</label>
+                                                <select th:field="*{employee.id}" id="employee_id" class="form-control">
+                                                    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pb-5 pt-3">
+                                <button class="btn btn-primary" onclick="document.getElementById('receiptFormEdit').submit()">Cập Nhật</button>
+                                <a th:href="@{/admin/receipt}" class="btn btn-outline-dark ml-3">Hủy</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+<script>
+    $(document).ready(function() {
+        // Function to format price field on page load
+        function formatPriceField() {
+            var value = $('#price').val().replace(/\D/g, '');
+            if (value) {
+                var formattedValue = new Intl.NumberFormat('vi-VN').format(value);
+                $('#price').val(formattedValue);
+            }
+        }
+
+        // Call the formatPriceField function on page load
+        formatPriceField();
+
+        // Format price field on input change
+        $('#price').on('input', function() {
+            var value = $(this).val().replace(/\D/g, '');
+            if (value) {
+                var formattedValue = new Intl.NumberFormat('vi-VN').format(value);
+                $(this).val(formattedValue);
+            }
+        });
+
+        // Submit form: remove comma before submitting
+        $('#rreceiptFormEdit').on('submit', function() {
+            var value = $('#price').val().replace(/\D/g, '');
+            $('#price').val(value);
+        });
+    });
+</script>
+</body>
+</html>

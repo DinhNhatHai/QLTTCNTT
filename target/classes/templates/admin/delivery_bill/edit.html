@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Chỉnh Sửa Phiếu Xuất Kho</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/delivery-bill}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <form class="commonForm" th:action="@{/admin/delivery-bill/edit/{id}(id=${deliveryBill.id})}" method="post" th:object="${deliveryBill}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="warehouse_id">Kho</label>
+                                                <select th:field="*{warehouse.id}" id="warehouse_id" class="form-control">
+                                                    <option th:each="warehouse : ${warehouses}" th:value="${warehouse.id}" th:text="${warehouse.name}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="delivery_bill_id">ID Phiếu Xuất Kho</label>
+                                                <input type="text"  th:field="*{deliveryBillId}" th:name="delivery_bill_id" id="delivery_bill_id" class="form-control" placeholder="ID xuất nhập kho">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="equipment_type_id">Loại Trang Thiết Bị</label>
+                                                <select th:field="*{equipmentType.id}" id="equipment_type_id" class="form-control">
+                                                    <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="equipment_id">ID Trang Thiết Bị</label>
+                                                <select th:field="*{equipment.id}" id="equipment_id" class="form-control">
+                                                    <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="send_date">Ngày Bàn Giao Trang Thiết Bị</label>
+                                                <input autocomplete="off" th:field="*{sendDate}" type="text" id="send_date" class="form-control datetimepicker-input" placeholder="Ngày bàn giao trang thiết bị" data-target="#received_date" data-toggle="datetimepicker">
+                                                <p></p>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="quantity">Số Lượng</label>
+                                                <input type="text" th:field="*{quantity}" th:name="quantity" id="quantity" class="form-control" placeholder="Số Lượng">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="department_id">Đơn Vị Tiếp Nhận</label>
+                                                <select th:field="*{department.id}" id="department_id" class="form-control">
+                                                    <option value="" disabled selected>Chọn đơn vị tiếp nhận</option>
+                                                    <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.departmentName}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="employee_id">Nhân Viên Thực Hiện</label>
+                                                <select th:field="*{employee.id}" id="employee_id" class="form-control">
+                                                    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="description">Mô Tả</label>
+                                            <textarea  th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pb-5 pt-3">
+                                <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                                <a th:href="@{/admin/delivery-bill}" class="btn btn-outline-dark ml-3">Hủy</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+</body>
+</html>

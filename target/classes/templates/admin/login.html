@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="~{admin/fragments/head :: head}"></head>
+
+<body class="hold-transition login-page">
+<div class="login-box">
+    <!-- /.login-logo -->
+    <!-- <div th:replace="admin/message :: message"></div> -->
+    <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+            <h3>Đăng Nhập Trang Quản Trị</h3>
+        </div>
+        <div class="card-body">
+            <p class="login-box-msg">Quản Lý Trang Thiết Bị CNTT - Bệnh Viện Ung Bướu</p>
+            <form th:action="@{/admin/login}" method="POST">
+                <!-- <input type="hidden" name="_csrf" th:value="${_csrf.token}"/> -->
+                <div class="input-group mb-3">
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Tên đăng nhập">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+
+                    <p class="invalid-feedback"></p>
+
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Mật khẩu">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                    <p class="invalid-feedback"></p>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-block">Đăng Nhập</button>
+                    </div>
+                </div>
+            </form>
+            <p class="mb-1 mt-3">
+                <a href="forgot-password.html">Quên Mật Khẩu</a>
+            </p>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+</body>
+</html>

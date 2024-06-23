@@ -1,0 +1,270 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" th:fragment="sidebar">
+    <!-- Brand Logo -->
+    <a th:href="@{/admin}" class="brand-link">
+        <img th:src="@{/admin-assets/img/logo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
+        <span class="brand-text">BV Ung Bướu</span>
+    </a>
+    <!-- Sidebar -->
+    <div class="sidebar ">
+        <!-- Sidebar user (optional) -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Dashboard -->
+                <li class="nav-item">
+                    <a th:href="@{/admin/dashboard}" class="nav-link" data-id="dashboard">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa-solid fa-toolbox"></i>
+                        <p>
+                            Nghiệp Vụ
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/profile-equipments}" class="nav-link" data-id="profile-equipments">
+                                <i class="nav-icon fa-solid fa-sheet-plastic"></i>
+                                <p>Hồ Sơ Trang Thiết Bị</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/equipment}" class="nav-link" data-id="equipment">
+                                <i class="nav-icon fa-solid fa-computer"></i>
+                                <p>Trang Thiết Bị</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/department-equipments}" class="nav-link" data-id="department-equipments">
+                                <i class="nav-icon fa-solid fa-house-laptop"></i>
+                                <p>Phòng Ban - Thiết Bị</p>
+                            </a>
+                        </li>
+<!--                        <li class="nav-item-2">-->
+<!--                            <a th:href="@{/admin/accessory}" class="nav-link" data-id="accessory">-->
+<!--                                <i class="nav-icon fa-solid fa-plug"></i>-->
+<!--                                <p>Linh Phụ Kiện</p>-->
+<!--                            </a>-->
+<!--                        </li>-->
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/replacement-upgrade-ticket}" class="nav-link" data-id="equipment-upgrade-history">
+                                <i class="nav-icon fa-solid fa-upload"></i>
+                                <p>Nâng Cấp - Thay Thế</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/equipment-repair-ticket}" class="nav-link" data-id="replacement-repair-ticket">
+                                <i class="nav-icon fa-regular fa-clipboard"></i>
+                                <p>Sửa Chữa T. Thiết Bị</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/maintenance}" class="nav-link" data-id="maintenance">
+                                <i class="nav-icon fa-solid fa-screwdriver-wrench"></i>
+                                <p>Bảo Trì</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/maintenance-plan}" class="nav-link" >
+                                <i class="nav-icon fa-regular fa-clipboard"></i>
+                                <p>Kế Hoạch Bảo Trì</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/maintenance-schedule}" class="nav-link" data-id="maintenance-schedule">
+                                <i class="nav-icon fa-solid fa-calendar-days"></i>
+                                <p>Lịch Bảo Trì</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/maintenance-description}" class="nav-link" data-id="maintenance-description">
+                                <i class="nav-icon fa-solid fa-file-pen"></i>
+                                <p>Mô Tả Bảo Trì</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/guarantee}" class="nav-link" data-id="guarantee">
+                                <i class="nav-icon fa-solid fa-medal"></i>
+                                <p>Bảo Hành</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/warranty}" class="nav-link" data-id="warranty">
+                                <i class="nav-icon fa-regular fa-clipboard"></i>
+                                <p>Phiếu Bảo Hành</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/receipt}" class="nav-link" data-id="receipt">
+                                <i class="nav-icon fa-solid fa-clipboard"></i>
+                                <p>Phiếu Nhập Kho</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/receipt-test}" class="nav-link" data-id="receipt">
+                                <i class="nav-icon fa-solid fa-clipboard"></i>
+                                <p>Phiếu Nhập Kho Test</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/delivery-bill}" class="nav-link" data-id="delivery-bill">
+                                <i class="nav-icon fa-regular fa-clipboard"></i>
+                                <p>Phiếu Xuất Kho</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa-solid fa-bars"></i>
+                        <p>
+                            Danh Mục
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/category}" class="nav-link" data-id="category">
+                                <i class="nav-icon fa-solid fa-layer-group"></i>
+                                <p>Danh Mục T. Thiết Bị</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/equipment-type}" class="nav-link" data-id="sub-category">
+                                <i class="nav-icon fa-solid fa-hard-drive"></i>
+                                <p>Loại Trang Thiết Bị</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/maintenance-status}" class="nav-link" data-id="maintenance-status">
+                                <i class="nav-icon fa-solid fa-paper-plane"></i>
+                                <p>Tình Trạng Bảo Trì</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/maintenance-type}" class="nav-link" data-id="maintenance-type">
+                                <i class="nav-icon fa-solid fa-gears"></i>
+                                <p>Loại Bảo Trì</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/status-equipment-type}" class="nav-link" data-id="status-equipment-type">
+                                <i class="nav-icon fa-solid fa-heart-circle-plus"></i>
+                                <p>Loại Tình Trạng</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/status-equipment}" class="nav-link" data-id="status-equipment">
+                                <i class="nav-icon fa-solid fa-heart-pulse"></i>
+                                <p>Tình Trạng</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/qr-code}" class="nav-link" data-id="qr-code">
+                                <i class="nav-icon fa-solid fa-qrcode"></i>
+                                <p>QR Code</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/brand}" class="nav-link" data-id="brand">
+                                <i class="nav-icon fa-solid fa-bookmark"></i>
+                                <p>Thương Hiệu</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/vendor}" class="nav-link" data-id="vendor">
+                                <i class="nav-icon fa-solid fa-truck-fast"></i>
+                                <p>Nhà Cung Cấp</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/department-type}" class="nav-link" data-id="category-department">
+                                <i class="nav-icon fa-regular fa-hospital"></i>
+                                <p>Loại phòng ban</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/department}" class="nav-link" data-id="department">
+                                <i class="nav-icon fa-regular fa-hospital"></i>
+                                <p>Phòng ban</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/warehouse}" class="nav-link" data-id="storage">
+                                <i class="nav-icon fa-solid fa-warehouse"></i>
+                                <p>Kho</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Quản Lý Người Dùng -->
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa-solid fa-users-gear"></i>
+                        <p>
+                            Quản Lý Người Dùng
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/employee-type}" class="nav-link" data-id="employee-type">
+                                <i class="nav-icon fa-solid fa-user-tag"></i>
+                                <p>Chức Vụ Nhân Viên</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/employee}" class="nav-link" data-id="employee">
+                                <i class="nav-icon fa-solid fa-user"></i>
+                                <p>Nhân Viên</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/user-sub-roles}" class="nav-link" data-id="employee-type">
+                                <i class="nav-icon fa-solid fa-user-gear"></i>
+                                <p>Phân Quyền</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/sub-roles}" class="nav-link" data-id="sub-roles">
+                                <i class="nav-icon fa-solid fa-user-tag"></i>
+                                <p>Vai Trò</p>
+                            </a>
+                        </li>
+                        <li class="nav-item-2">
+                            <a th:href="@{/admin/users}" class="nav-link" data-id="users">
+                                <i class="nav-icon fa-solid fa-user-group"></i>
+                                <p>Users</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/pages}" class="nav-link" data-id="pages">
+                        <i class="nav-icon far fa-file-alt"></i>
+                        <p>Pages</p>
+                    </a>
+                </li>
+
+                <!--                <li class="nav-item has-treeview">-->
+                <!--                    <a href="#" class="nav-link">-->
+                <!--                        <i class="nav-icon fas fa-tools"></i>-->
+                <!--                        <p>-->
+                <!--                            Bảo trì-->
+                <!--                            <i class="right fas fa-angle-left"></i>-->
+                <!--                        </p>-->
+                <!--                    </a>-->
+                <!--                    <ul class="nav nav-treeview">-->
+                <!--                    </ul>-->
+                <!--                </li>-->
+            </ul>
+        </nav>
+    </div>
+</aside>
