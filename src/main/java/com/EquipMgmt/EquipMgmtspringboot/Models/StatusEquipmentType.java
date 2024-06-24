@@ -31,21 +31,19 @@ public class StatusEquipmentType {
     private List<StatusEquipment> statusEquipments;
 
     @OneToMany(mappedBy = "statusEquipmentType", fetch = FetchType.EAGER)
-    private List<Device> devices;
+    private List<Equipment> equipments;
 
     public StatusEquipmentType() {
     }
 
-    public StatusEquipmentType(Long id, String nameStatusType, String showHome, String description, List<StatusEquipment> statusEquipments, List<Device> devices) {
+    public StatusEquipmentType(Long id, String nameStatusType, String showHome, String description, List<StatusEquipment> statusEquipments, List<Equipment> equipments) {
         this.id = id;
         this.nameStatusType = nameStatusType;
         this.showHome = showHome;
         this.description = description;
         this.statusEquipments = statusEquipments;
-        this.devices = devices;
+        this.equipments = equipments;
     }
-
-
     public Long getId() {
         return id;
     }
@@ -62,20 +60,20 @@ public class StatusEquipmentType {
         this.nameStatusType = nameStatusType;
     }
 
-    public @Size(max = 255, message = "Description must be less than 255 characters") String getDescription() {
-        return description;
-    }
-
-    public void setDescription(@Size(max = 255, message = "Description must be less than 255 characters") String description) {
-        this.description = description;
-    }
-
     public @NotBlank String getShowHome() {
         return showHome;
     }
 
     public void setShowHome(@NotBlank String showHome) {
         this.showHome = showHome;
+    }
+
+    public @Size(max = 255, message = "Description must be less than 255 characters") String getDescription() {
+        return description;
+    }
+
+    public void setDescription(@Size(max = 255, message = "Description must be less than 255 characters") String description) {
+        this.description = description;
     }
 
     public List<StatusEquipment> getStatusEquipments() {
@@ -86,12 +84,11 @@ public class StatusEquipmentType {
         this.statusEquipments = statusEquipments;
     }
 
-    public List<Device> getDevices() {
-        return devices;
+    public List<Equipment> getEquipments() {
+        return equipments;
     }
 
-    public void setDevices(List<Device> devices) {
-        this.devices = devices;
+    public void setEquipments(List<Equipment> equipments) {
+        this.equipments = equipments;
     }
-
 }

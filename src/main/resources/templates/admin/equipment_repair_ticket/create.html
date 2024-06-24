@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tạo Thêm Phiếu Sửa Chữa Trang Thiết Bị</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/equipment-repair-ticket}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <form class="commonForm" th:action="@{/admin/equipment-repair-ticket/create}" method="post" th:object="${replacementRepair}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="Id_ticket">Tên Phiếu Sửa Chữa</label>
+                                                <input type="text" th:name="Id_ticket" id="Id_ticket" class="form-control" placeholder="Tên phiếu sửa chữa" th:field="*{equipmentRepairTicketId}">
+                                                <p></p>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="equimentType">Loại Trang Thiết Bị</label>
+                                                <select th:name="equimentType" id="equimentType" class="form-control" th:field="*{equipmentType}">
+                                                    <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label >SerialNumber Trang Thiết Bị Được Sửa Chữa</label>
+                                                <select th:name="equipment" id="equipment" class="form-control" th:field="*{equipment}">
+                                                    <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.serialNumber}"></option>
+                                                </select>
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label for="received_date">Ngày Nhận Trang Thiết Bị</label>
+                                                <input autocomplete="off" th:field="*{receivedDate}" type="text" name="received_date" id="received_date" class="form-control" placeholder="Ngày nhận trang thiết bị">
+                                                <p></p>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="location">Nơi Sửa Chữa</label>
+                                                <input th:field="*{repairPlace}" type="text" th:name="location" id="location" class="form-control" placeholder="Nơi sửa chữa">
+                                                <p></p>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="Employee">Nhân Viên Thực Hiện</label>
+                                                <select th:name="Employee" id="Employee" class="form-control" th:field="*{employee}">
+                                                    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="department_id">Đơn Vị Gửi</label>
+                                                <select th:name="department_id" id="department_id" class="form-control" th:field="*{department}">
+                                                    <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.departmentName}"></option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="complete_date">Ngày Hoàn Thành</label>
+                                                <input autocomplete="off" th:field="*{completeDate}" type="text" name="complete_date" id="complete_date" class="form-control" placeholder="Ngày hoàn thành" readonly>
+                                                <p></p>
+                                            </div>
+                                            <input type="hidden" th:field="*{processingTime}" id="processingTime">
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="description">Đánh Giá</label>
+                                                <textarea th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Đánh giá"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="comment">Nhận Xét</label>
+                                                <textarea th:field="*{comment}" name="comment" id="comment" cols="30" rows="10" class="summernote" placeholder="Nhận Xét"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pb-5 pt-3">
+                                <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                                <a th:href="@{/admin/equipment-repair-ticket}" class="btn btn-outline-dark ml-3">Hủy</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+<script type="text/javascript">
+    function formatDateTime(date) {
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+
+
+        if (day < 10) {
+            day = '0' + day;
+        }
+        if (month < 10) {
+            month = '0' + month;
+        }
+        if (hours < 10) {
+            hours = '0' + hours;
+        }
+        if (minutes < 10) {
+            minutes = '0' + minutes;
+        }
+
+        return day + '/' + month + '/' + year + ' | ' + hours + ':' + minutes;
+    }
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const completeDateField = document.getElementById('complete_date');
+        if (completeDateField) {
+            const now = new Date();
+            completeDateField.value = formatDateTime(now);
+        }
+    });
+    function calculateProcessingTime() {
+    const receivedDate = document.getElementById('received_date').value;
+    const completeDate = document.getElementById('complete_date').value;
+    const processingTimeField = document.getElementById('processingTime');
+
+    if (receivedDate && completeDate) {
+        const receivedDateTime = parseDate(receivedDate);
+        const completeDateTime = parseDate(completeDate);
+
+        const processingTime = completeDateTime - receivedDateTime;
+
+        const processingTimeYears = completeDateTime.getFullYear() - receivedDateTime.getFullYear();
+        const processingTimeMonths = completeDateTime.getMonth() - receivedDateTime.getMonth() + (processingTimeYears * 12);
+        const processingTimeDays = Math.floor(processingTime / (1000 * 60 * 60 * 24));
+        const processingTimeHours = Math.floor((processingTime / (1000 * 60 * 60)) % 24);
+        const processingTimeMinutes = Math.floor((processingTime / (1000 * 60)) % 60);
+
+        let result = '';
+        if (processingTimeMonths >= 12) {
+            result += `${Math.floor(processingTimeMonths / 12)} năm `;
+        }
+        if (processingTimeMonths % 12 > 0) {
+            result += `${processingTimeMonths % 12} tháng `;
+        }
+        result += `${processingTimeDays % 30} ngày ${processingTimeHours} giờ ${processingTimeMinutes} phút`;
+
+        processingTimeField.value = result;
+    }
+}
+
+function parseDate(dateString) {
+    const [datePart, timePart] = dateString.split(' | ');
+    const [day, month, year] = datePart.split('/');
+    const [hours, minutes] = timePart.split(':');
+    return new Date(year, month - 1, day, hours, minutes);
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Tạo Thêm Trang Thiết Bị</h1>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <a th:href="@{/admin/equipment}" class="btn btn-primary">Trở Lại</a>
+                    </div>
+                </div>
+            </div>
+            <div th:replace="~{admin/fragments/message :: message}"></div>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <!-- Default box -->
+            <div class="container-fluid">
+                <form class="commonForm" th:id="equipmentFormCreate" th:action="@{/admin/equipment/create}" method="post" th:object="${equipmentForm}">
+                    <div id="equipment-list">
+                        <div th:each="equipment, iterStat : ${equipmentForm.equipments}">
+                            <div class="row equipment-item">
+                                <div class="col-md-8">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="category_id">Danh Mục Trang Thiết Bị</label>
+                                                        <select th:field="*{equipments[__${iterStat.index}__].category.id}" id="category_id" class="form-control">
+                                                            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nameCategory}"></option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="equipment_type_id">Loại Trang Thiết Bị</label>
+                                                        <select th:field="*{equipments[__${iterStat.index}__].equipmentType.id}" id="equipment_type_id" class="form-control">
+                                                            <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="name">Tên Trang Thiết Bị</label>
+                                                        <input type="text" th:field="*{equipments[__${iterStat.index}__].nameEquipment}" id="name" class="form-control" placeholder="Tên thiết bị">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="serial_number">Serial Number</label>
+                                                        <input type="text" th:field="*{equipments[__${iterStat.index}__].serialNumber}" id="serial_number" class="form-control" placeholder="Serial Number">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="model">Mã Model</label>
+                                                        <input type="text" th:field="*{equipments[__${iterStat.index}__].model}" id="model" class="form-control" placeholder="Mã model">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="description">Mô Tả</label>
+                                                        <textarea th:field="*{equipments[__${iterStat.index}__].description}" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <label for="brand_id">Thương Hiệu</label>
+                                                <select th:field="*{equipments[__${iterStat.index}__].brand.id}" id="brand_id" class="form-control">
+                                                    <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.nameBrand}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <h2 class="h4 mb-3">Tình Trạng Trang Thiết Bị</h2>
+                                            <div class="mb-3">
+                                                <label for="status_equipment_type_id">Danh Mục Tình Trạng</label>
+                                                <select th:field="*{equipments[__${iterStat.index}__].statusEquipmentType.id}" id="status_equipment_type_id" class="form-control">
+                                                    <option th:each="statusEquipmentType : ${statusEquipmentTypes}" th:value="${statusEquipmentType.id}" th:text="${statusEquipmentType.nameStatusType}"></option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="status_equipment_id">Tình Trạng Trang Thiết Bị</label>
+                                                <select th:field="*{equipments[__${iterStat.index}__].statusEquipment.id}" id="status_equipment_id" class="form-control">
+                                                    <option th:each="statusEquipment : ${statusEquipments}" th:value="${statusEquipment.id}" th:text="${statusEquipment.nameStatus}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pb-5 pt-3">
+                        <button class="btn btn-primary" type="submit">Xác Nhận</button>
+                        <a th:href="@{/admin/equipment}" class="btn btn-primary  ml-3">Trở Về Danh Sách</a>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </section>
+
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+</body>
+</html>

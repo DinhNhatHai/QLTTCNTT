@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="vn">
 <head th:replace="~{admin/fragments/head :: head}"></head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -31,34 +31,36 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card mb-3">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label for="start_date">Ngày Bắt Đầu</label>
-                                                            <select th:name="start_date" id="start_date"  class="form-control">
-                                                                <option value="">17/02/2024</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="end_date">Ngày Kết Thúc</label>
-                                                            <select th:name="end_date" id="end_date"  class="form-control">
-                                                                <option value="">17/02/2024</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="description">Mô Tả</label>
-                                                            <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                <form class="commonForm" th:action="@{/admin/maintenance-schedule/edit/{id}(id=${maintenanceSchedule.id})}" method="post" th:object="${maintenanceSchedule}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="start_date">Ngày Bắt Đầu</label>
+                                                <input autocomplete="off" th:field="*{startDate}" type="text" id="start_date" class="form-control datetimepicker-input" placeholder="Ngày bắt đầu" data-target="#start_date" data-toggle="datetimepicker">
+                                                <p></p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="description">Mô Tả</label>
+                                                <textarea th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="end_date">Ngày Kết Thúc</label>
+                                                <input autocomplete="off" th:field="*{endDate}" type="text" id="end_date" class="form-control datetimepicker-input" placeholder="Ngày kết thúc" data-target="#end_date" data-toggle="datetimepicker">
+                                                <p></p>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="showHome">Hiển Thị Ở Trang Chủ</label>
+                                                <select th:field="*{showHome}" id="showHome" class="form-control">
+                                                    <option th:value="Yes">Có</option>
+                                                    <option th:value="No">Không</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -66,11 +68,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="pb-5 pt-3">
-                    <button class="btn btn-primary">Cập Nhật</button>
-                    <a th:href="@{/admin/maintenance-schedule}" class="btn btn-outline-dark ml-3">Hủy</a>
-                </div>
+                    <div class="pb-5 pt-3">
+                        <button class="btn btn-primary">Cập Nhật</button>
+                        <a th:href="@{/admin/maintenance-schedule}" class="btn btn-outline-dark ml-3">Hủy</a>
+                    </div>
+                </form>
             </div>
             <!-- /.card -->
         </section>

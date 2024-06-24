@@ -10,7 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "status_equipment")
-public class StatusEquipment {
+    public class StatusEquipment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -33,25 +34,25 @@ public class StatusEquipment {
     private Double depreciation;
 
     @OneToMany(mappedBy = "statusEquipment", fetch = FetchType.EAGER)
-    private List<Device> devices;
+    private List<Equipment> equipments;
 
     @ManyToOne(fetch = FetchType.EAGER )
     @JoinColumn(name = "status_equipment_type_id", nullable = false)
     private StatusEquipmentType statusEquipmentType;
 
+
     public StatusEquipment() {
     }
 
-    public StatusEquipment(Long id, String nameStatus, String description, String showHome, Double depreciation, List<Device> devices, StatusEquipmentType statusEquipmentType) {
+    public StatusEquipment(Long id, String nameStatus, String description, String showHome, Double depreciation, List<Equipment> equipments, StatusEquipmentType statusEquipmentType) {
         this.id = id;
         this.nameStatus = nameStatus;
         this.description = description;
         this.showHome = showHome;
         this.depreciation = depreciation;
-        this.devices = devices;
+        this.equipments = equipments;
         this.statusEquipmentType = statusEquipmentType;
     }
-
 
     public Long getId() {
         return id;
@@ -93,19 +94,19 @@ public class StatusEquipment {
         this.depreciation = depreciation;
     }
 
+    public List<Equipment> getEquipments() {
+        return equipments;
+    }
+
+    public void setEquipments(List<Equipment> equipments) {
+        this.equipments = equipments;
+    }
+
     public StatusEquipmentType getStatusEquipmentType() {
         return statusEquipmentType;
     }
 
     public void setStatusEquipmentType(StatusEquipmentType statusEquipmentType) {
         this.statusEquipmentType = statusEquipmentType;
-    }
-
-    public List<Device> getDevices() {
-        return devices;
-    }
-
-    public void setDevices(List<Device> devices) {
-        this.devices = devices;
     }
 }

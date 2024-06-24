@@ -31,79 +31,202 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form class="commonForm" th:action="@{/admin/receipt/create}" method="post" th:object="${equipmentSystem}">
+                <form class="commonForm" th:action="@{/admin/receipt/create}" method="post" th:object="${receipt}">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card mb-3">
                                 <div class="card-body">
+                                    <h2 class="h4 mb-3">Thông Tin Phiếu Nhập Kho</h2>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="storage_id">Kho</label>
-                                                <select name="storage_id" id="storage_id" class="form-control">
-                                                    <option>Chọn Kho</option>
-                                                    <option>Kho CNTT</option>
+                                                <label for="warehouse_id">Kho</label>
+                                                <select id="warehouse_id" th:field="*{warehouse.id}" class="form-control">
+                                                    <option value="" disabled selected>Chọn Kho</option>
+                                                    <option th:each="warehouse : ${warehouses}" th:value="${warehouse.id}" th:text="${warehouse.name}"></option>
                                                 </select>
-                                                <p></p>
                                             </div>
+
                                             <div class="mb-3">
-                                                <label for="sub_category_id">Loại Trang Thiết Bị</label>
-                                                <select name="sub_category_id" id="sub_category_id" class="form-control">
-                                                    <option>Chọn loại trang thiết bị</option>
-                                                    <option>RAM</option>
+                                                <label for="receipt_code">Mã Số Phiếu Nhập Kho</label>
+                                                <input type="text" th:field="*{receiptCode}" id="receipt_code" class="form-control" placeholder="Mã số phiếu nhập kho">
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label for="vendor_id">Nhà Cung Cấp</label>
+                                                <select th:field="*{vendor.id}" id="vendor_id" class="form-control">
+                                                    <option value="" disabled selected>Chọn nhà cung cấp</option>
+                                                    <option th:each="vendor : ${vendors}" th:value="${vendor.id}" th:text="${vendor.vendorName}"></option>
                                                 </select>
-                                                <p></p>
                                             </div>
+
                                             <div class="mb-3">
-                                                <label for="device_id">ID Trang Thiết Bị</label>
-                                                <select name="device_id" id="device_id" class="form-control">
-                                                    <option>Chọn trang thiết bị</option>
-                                                    <option>IDV2323</option>
-                                                </select>
-                                                <p></p>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="date_add_storage">Ngày Nhập Trang Thiết Bị</label>
-                                                <input autocomplete="off" type="text" th:name="date_add_storage" id="date_add_storage" class="form-control" placeholder="Ngày nhập trang thiết bị">
+                                                <label for="date_add">Ngày Nhập Trang Thiết Bị</label>
+                                                <input autocomplete="off" type="text" th:field="*{dateAdd}" id="date_add" class="form-control datetimepicker-input" placeholder="Ngày nhập trang thiết bị" data-target="#received_date" data-toggle="datetimepicker">
                                                 <p></p>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="quality">Số Lượng</label>
-                                                <input type="text" th:name="quality" id="quality" class="form-control" placeholder="Số Lượng">
+                                                <label for="quantity">Số Lượng</label>
+                                                <input type="text" th:field="*{quantity}" id="quantity" class="form-control" placeholder="Số lượng">
                                             </div>
+
                                             <div class="mb-3">
-                                                <label for="price">Đơn Giá</label>
-                                                <input type="text" th:name="price" id="price" class="form-control" placeholder="Đơn giá">
+                                                <label for="price">Đơn Giá (VNĐ)</label>
+                                                <input type="text" th:field="*{price}" id="price" class="form-control" placeholder="Đơn giá">
                                                 <p></p>
                                             </div>
+
                                             <div class="mb-3">
                                                 <label for="employee_id">Nhân Viên Thực Hiện</label>
-                                                <select name="employee_id" id="employee_id" class="form-control">
-                                                    <option>Chọn nhân viên</option>
-                                                    <option>IDV2323</option>
+                                                <select th:field="*{employee.id}" id="employee_id" class="form-control">
+                                                    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name}"></option>
                                                 </select>
-                                                <p></p>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="description">Mô Tả</label>
-                                            <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="pb-5 pt-3">
-                                <button type="submit" class="btn btn-primary">Xác Nhận</button>
-                                <a th:href="@{/admin/receipt}" class="btn btn-outline-dark ml-3">Hủy</a>
-                            </div>
                         </div>
                     </div>
                 </form>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <form class="commonForm" th:id="equipmentFormInReceiptCreate" th:action="@{/admin/receipt/create}" method="post"  th:object="${equipmentForm}">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div id="equipment-list">
+                                        <div th:each="equipment, iterStat : ${equipmentForm.equipments}">
+                                            <div class="row equipment-item">
+                                                <h2 class="h4 mb-3">Thông Tin Trang Thiết Bị</h2>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="category_id">Danh Mục Trang Thiết Bị</label>
+                                                        <select th:field="*{equipments[__${iterStat.index}__].category.id}" id="category_id" class="form-control">
+                                                            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.nameCategory}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="equipment_type_id">Loại Trang Thiết Bị</label>
+                                                        <select th:field="*{equipments[__${iterStat.index}__].equipmentType.id}" id="equipment_type_id" class="form-control">
+                                                            <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="name">Tên Trang Thiết Bị</label>
+                                                        <input type="text" th:field="*{equipments[__${iterStat.index}__].nameEquipment}" id="name" class="form-control" placeholder="Tên thiết bị">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="serial_number">Serial Number</label>
+                                                        <input type="text" th:field="*{equipments[__${iterStat.index}__].serialNumber}" id="serial_number" class="form-control" placeholder="Serial Number">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="model">Mã Model</label>
+                                                        <input type="text" th:field="*{equipments[__${iterStat.index}__].model}" id="model" class="form-control" placeholder="Mã model">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="brand_id">Thương Hiệu</label>
+                                                        <select th:field="*{equipments[__${iterStat.index}__].brand.id}" id="brand_id" class="form-control">
+                                                            <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.nameBrand}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="status_equipment_type_id">Danh Mục Tình Trạng</label>
+                                                        <select th:field="*{equipments[__${iterStat.index}__].statusEquipmentType.id}" id="status_equipment_type_id" class="form-control">
+                                                            <option th:each="statusEquipmentType : ${statusEquipmentTypes}" th:value="${statusEquipmentType.id}" th:text="${statusEquipmentType.nameStatusType}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="status_equipment_id">Tình Trạng Trang Thiết Bị</label>
+                                                        <select th:field="*{equipments[__${iterStat.index}__].statusEquipment.id}" id="status_equipment_id" class="form-control">
+                                                            <option th:each="statusEquipment : ${statusEquipments}" th:value="${statusEquipment.id}" th:text="${statusEquipment.nameStatus}"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="pb-2 pt-3">
+                                                    <button class="btn btn-primary" onclick="document.getElementById('equipmentFormInReceiptCreate').submit()">Thêm Vào Danh Sách</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-9">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h2 class="h4 mb-3" id="list_equipment_in_receipt">Danh Sách Trang Thiết Bị</h2>
+                                <div class="table-responsive" style="max-height: 751px; overflow-y: auto;">
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 30px;">STT</th>
+                                            <th>Danh Mục</th>
+                                            <th>Loại</th>
+                                            <th>Tên</th>
+                                            <th>Serial Number</th>
+                                            <th>Mã Model</th>
+                                            <th>Thương Hiệu</th>
+                                            <th>Danh Mục Tình Trạng</th>
+                                            <th>Tình Trạng</th>
+                                            <th>Xóa</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="equipmentList">
+                                        <!-- Dữ liệu được thêm bởi Ajax sẽ hiển thị ở đây -->
+                                        <tr th:each="equipment, iterStat : ${equipmentForm.equipments}">
+                                            <td th:text="${iterStat.count}"></td>
+                                            <td th:text="${equipment.category.nameCategory}"></td>
+                                            <td th:text="${equipment.equipmentType.nameEquipmentType}"></td>
+                                            <td th:text="${equipment.nameEquipment}"></td>
+                                            <td th:text="${equipment.serialNumber}"></td>
+                                            <td th:text="${equipment.model}"></td>
+                                            <td th:text="${equipment.brand.nameBrand}"></td>
+                                            <td th:text="${equipment.statusEquipmentType.nameStatusType}"></td>
+                                            <td th:text="${equipment.statusEquipment.nameStatus}"></td>
+                                            <td><button class="btn btn-danger delete-equipment" data-id="${equipment.id}">Xóa</button></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pb-5 pt-3">
+                    <button class="btn btn-primary" onclick="document.getElementById('receiptFormCreate').submit()">Xác Nhận</button>
+                    <a th:href="@{/admin/receipt}" class="btn btn-outline-dark ml-3">Hủy</a>
+                </div>
             </div>
             <!-- /.card -->
         </section>
@@ -118,5 +241,140 @@
 
 <div th:replace="~{admin/fragments/scripts :: scripts}"></div>
 
+<script th:inline="javascript">
+    $(document).ready(function() {
+       $('#equipmentFormInReceiptCreate').submit(function(event) {
+           event.preventDefault(); // Ngăn chặn form submit mặc định
+
+           var formData = $(this).serialize(); // Serialize form data thành chuỗi query string
+
+           $.ajax({
+               type: 'POST',
+               url: '/admin/receipt/create-equipments',
+               data: formData,
+               dataType: 'json', // Xác định kiểu dữ liệu trả về là JSON
+               success: function(response) {
+                   // Xử lý kết quả thành công
+                   console.log('Success:', response);
+
+                   // Xử lý hiển thị kết quả trên giao diện
+                   var equipmentHtml = '';
+                   $.each(response, function(index, equipment) {
+                       // Tạo HTML cho từng dòng equipment
+                       equipmentHtml += '<tr>';
+                       equipmentHtml += '<td>' + (index + 1) + '</td>'; // STT
+                       equipmentHtml += '<td>' + equipment.category.nameCategory + '</td>'; // Danh mục
+                       equipmentHtml += '<td>' + equipment.equipmentType.nameEquipmentType + '</td>'; // Loại
+                       equipmentHtml += '<td>' + equipment.nameEquipment + '</td>'; // Tên
+                       equipmentHtml += '<td>' + equipment.serialNumber + '</td>'; // Serial Number
+                       equipmentHtml += '<td>' + equipment.model + '</td>'; // Mã Model
+                       equipmentHtml += '<td>' + equipment.brand.nameBrand + '</td>'; // Thương Hiệu
+                       equipmentHtml += '<td>' + equipment.statusEquipmentType.nameStatusType + '</td>'; // Danh mục tình trạng
+                       equipmentHtml += '<td>' + equipment.statusEquipment.nameStatus + '</td>'; // Tình trạng
+                       equipmentHtml += '<td><button class="btn btn-danger btn-sm" onclick="deleteEquipment(' + equipment.id + ')">Xóa</button></td>'; // Nút xóa
+                       equipmentHtml += '</tr>';
+                   });
+                   $('#equipmentList').append(equipmentHtml); // Thêm vào danh sách trên giao diện
+                   $('#successMessage').text('Thêm trang thiết bị thành công!').show(); // Hiển thị thông báo thành công
+
+                   // Reset form nếu cần
+                   $('#equipmentFormInReceiptCreate')[0].reset();
+               },
+               error: function(xhr, status, error) {
+                   // Xử lý lỗi
+                   console.error('Error:', error);
+               }
+           });
+       });
+   });
+
+       // Xử lý sự kiện xóa trang thiết bị
+       $('#equipmentList').on('click', '.delete-equipment', function(event) {
+           event.preventDefault();
+           var equipmentId = $(this).data('id');
+
+           // Gửi yêu cầu Ajax để xóa trang thiết bị
+           $.ajax({
+               type: 'DELETE',
+               url: '/admin/receipt/delete-equipment/' + equipmentId,
+               success: function(response) {
+                   console.log('Equipment deleted successfully');
+                   // Xóa dòng khỏi bảng
+                   $(event.target).closest('tr').remove();
+               },
+               error: function(xhr, status, error) {
+                   console.error('Error deleting equipment: ', error);
+                   // Xử lý lỗi khi xóa trang thiết bị
+                   alert('Error deleting equipment: ' + error);
+               }
+           });
+       });
+   });
+</script>
+
+<!--<script>-->
+<!--    $(document).ready(function() {-->
+<!--        $('#price').on('input', function() {-->
+<!--            var value = $(this).val().replace(/\D/g, '');-->
+<!--            if (value) {-->
+<!--                var formattedValue = new Intl.NumberFormat('vi-VN').format(value);-->
+<!--                $(this).val(formattedValue);-->
+<!--            }-->
+<!--        });-->
+
+<!--        $('#receiptFormCreate').on('submit', function() {-->
+<!--            var value = $('#price').val().replace(/\D/g, '');-->
+<!--            $('#price').val(value);-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
+<!--<script>-->
+<!--    function resetForm() {-->
+<!--      document.getElementById("equipmentFormInReceiptCreate").reset();-->
+<!--      document.getElementById("name").value = "";-->
+<!--      document.getElementById("serial_number").value = "";-->
+<!--      document.getElementById("model").value = "";-->
+<!--    }-->
+
+<!--    function addEquipmentToList() {-->
+<!--          var equipmentName = $('#name').val();-->
+<!--          var serialNumber = $('#serial_number').val();-->
+<!--          var model = $('#model').val();-->
+<!--          var categoryName = $('#category_id option:selected').text();-->
+<!--          var equipmentTypeName = $('#equipment_type_id option:selected').text();-->
+<!--          var brandName = $('#brand_id option:selected').text();-->
+<!--          var statusEquipmentTypeName = $('#status_equipment_type_id option:selected').text();-->
+<!--          var statusEquipmentName = $('#status_equipment_id option:selected').text();-->
+
+<!--          // Tính toán STT dựa trên số lượng dòng đã có trong bảng-->
+<!--          var rowCount = $('#equipmentList tr').length;-->
+<!--          var stt = rowCount + 1; // Số thứ tự mới-->
+
+<!--          var newRow = '<tr>' +-->
+<!--              '<td>' + stt + '</td>' + // Thêm giá trị STT-->
+<!--              '<td>' + categoryName + '</td>' +-->
+<!--              '<td>' + equipmentTypeName + '</td>' +-->
+<!--              '<td>' + equipmentName + '</td>' +-->
+<!--              '<td>' + serialNumber + '</td>' +-->
+<!--              '<td>' + model + '</td>' +-->
+<!--              '<td>' + brandName + '</td>' +-->
+<!--              '<td>' + statusEquipmentTypeName + '</td>' +-->
+<!--              '<td>' + statusEquipmentName + '</td>' +-->
+<!--              '<td>' +-->
+<!--                    '<a th:href="@{/admin/receipt/delete/{id}(id=${receipt.id})}" class="text-danger w-4 h-4 mr-1" th:onclick="return confirm(\'Bạn có chắc chắn xóa phiếu nhập kho này?\')">' +-->
+<!--                    '<svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">' +-->
+<!--                    '<path ath fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>' +-->
+<!--                    '</svg>' +-->
+<!--                    '</a>' +-->
+<!--              '</td>'-->
+<!--              '</tr>';-->
+
+<!--          $('#equipmentList').append(newRow);-->
+
+<!--          // Sau khi thêm vào danh sách, làm sạch form-->
+<!--          resetForm();-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>

@@ -14,7 +14,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header breadcrumb">
+        <section class="content-header">
             <div class="container-fluid my-2">
                 <div class="row mb-2">
                     <div class="col-sm-6">
@@ -58,6 +58,7 @@
                                     <thead>
                                     <tr>
                                         <th>STT</th>
+                                        <th>ID Phiếu Nhập Kho</th>
                                         <th>Kho</th>
                                         <th>Loại Trang Thiết Bị</th>
                                         <th>ID Trang Thiết Bị</th>
@@ -70,29 +71,30 @@
                                     </thead>
 
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Kho CNTT</td>
-                                        <td>RAM DESKTOP</td>
-                                        <td>RAM102, RAM203, RAM202, RAM102</td>
-                                        <td>21/02/2024</td>
-                                        <td>10</td>
-                                        <td>Phòng Kế Toán</td>
-                                        <td>Trần Văn A</td>
-                                        <td>
-                                            <a th:href="@{/admin/delivery-bill/edit}">
-                                                <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
-                                                </svg>
-                                            </a>
-                                            <a href="#" class="text-danger w-4 h-4 mr-1">
-                                                <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path ath fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                                                </svg>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
+                                        <tr th:each="deliveryBill, numberStart : ${deliveryBills}">
+                                            <td th:text="${numberStart.index + 1}"></td>
+                                            <td th:text="${deliveryBill.deliveryBillId}"></td>
+                                            <td th:text="${deliveryBill.warehouse.name}"></td>
+                                            <td th:text="${deliveryBill.equipmentType.nameEquipmentType}"></td>
+                                            <td th:text="${deliveryBill.equipment.equipmentId}"></td>
+                                            <td th:text="${deliveryBill.sendDate}"></td>
+                                            <td th:text="${deliveryBill.quantity}"></td>
+                                            <td th:text="${deliveryBill.department.departmentName}"></td>
+                                            <td th:text="${deliveryBill.employee.name}"></td>
+                                            <td>
+                                                <a th:href="@{/admin/delivery-bill/edit/{id}(id=${deliveryBill.id})}">
+                                                    <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                                                    </svg>
+                                                </a>
+                                                <a th:href="@{/admin/delivery-bill/delete/{id}(id=${deliveryBill.id})}" class="text-danger w-4 h-4 mr-1" th:onclick="return confirm('Bạn có chắc chắn xóa phiếu xuất kho này?')">
+                                                    <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                        <path ath fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->
