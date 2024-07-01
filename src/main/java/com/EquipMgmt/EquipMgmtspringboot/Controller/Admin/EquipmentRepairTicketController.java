@@ -4,12 +4,19 @@ import com.EquipMgmt.EquipMgmtspringboot.Models.EquipmentRepairTicket;
 import com.EquipMgmt.EquipMgmtspringboot.Services.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -35,10 +42,9 @@ public class EquipmentRepairTicketController {
     private SpringTemplateEngine springTemplateEngine;
 
     @Autowired
-    private PDFGenrateService pdfGenrateService;
+    private PdfService pdfService;
 
-    @Autowired
-    private DataService dataService;
+
 
     @GetMapping
     public String index(Model model, @Param("keyword") String keyword) {
@@ -173,22 +179,17 @@ public class EquipmentRepairTicketController {
         }
     }
     @GetMapping("/preview/{id}")
-    public String preview (Model model, @PathVariable("id") Long id){
-        model.addAttribute("repairTickets",this.equipmentRepairTicketService.findById(id));
-        return "admin/equipment_repair_ticket/preview";
+    public ResponseEntity<InputStreamResource> createPdf(@PathVariable Long id) throws IOException {
+        ByteArrayInputStream pdfStream = pdfService.generatePdf(id);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=example.pdf");
+
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(pdfStream));
     }
-    @PostMapping("/generate")
-    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-    public String generatePdf(@RequestBody List<EquipmentRepairTicket> equipmentRepairTickets){
-        try{
-            String finalhtml = null;
-            Context data = dataService.setData(equipmentRepairTickets);
-            finalhtml = springTemplateEngine.process("preview",data);
-            pdfGenrateService.htmltopdf(finalhtml);
-            return "admin/equipment_repair_ticket/list";
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 }

@@ -3,6 +3,7 @@ package com.EquipMgmt.EquipMgmtspringboot.Controller.Admin;
 import com.EquipMgmt.EquipMgmtspringboot.Models.Equipment;
 import com.EquipMgmt.EquipMgmtspringboot.Models.EquipmentForm;
 import com.EquipMgmt.EquipMgmtspringboot.Services.*;
+import com.google.zxing.WriterException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/equipment")
@@ -34,6 +37,8 @@ public class EquipmentController {
 
     @Autowired
     private EquipmentTypeService equipmentTypeService;
+    @Autowired
+    private QRCodeService qrCodeService;
 
     @GetMapping
     public String listDevices(Model model) {
@@ -124,6 +129,18 @@ public class EquipmentController {
 
         redirectAttributes.addFlashAttribute("successMessage", "Xóa trang thiết bị thành công!");
         return "redirect:/admin/equipment";
+    }
+    @GetMapping("/detail/{id}")
+    public String detailEquipment (@PathVariable("id") Long id, Model model){
+        Optional<Equipment> equipment  = equipmentService.getEquipmentById(id);
+        model.addAttribute("equipment",equipment.get());
+        return "admin/equipment/detail";
+    }
+    @GetMapping(value = "/generateQR", produces = "image/png")
+    @ResponseBody
+    public byte[] generateQRCode(@RequestParam("id") Long id) throws WriterException, IOException {
+        String url = "http://localhost:8080/admin/equipment/detail/" + id;
+        return qrCodeService.generateQRCodeImage(url, 200, 200);
     }
 }
 

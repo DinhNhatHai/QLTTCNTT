@@ -96,15 +96,15 @@
 
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label for="description">Đánh Giá</label>
-                                                <textarea th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Đánh giá"></textarea>
+                                                <label th:for="description">Đánh Giá</label>
+                                                <textarea th:field="*{description}" name="description" th:id="description" cols="30" rows="10" class="summernote" placeholder="Đánh giá"></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label for="comment">Nhận Xét</label>
-                                                <textarea th:field="*{comment}" name="comment" id="comment" cols="30" rows="10" class="summernote" placeholder="Nhận Xét"></textarea>
+                                                <label th:for="comment">Nhận Xét</label>
+                                                <textarea th:field="*{comment}" name="comment" th:id="comment" cols="30" rows="10" class="summernote" placeholder="Nhận Xét"></textarea>
                                             </div>
                                         </div>
 

@@ -30,10 +30,14 @@
             $('.commonForm').on('submit', function() {
                 var plainText = $('.summernote').summernote('code').replace(/<\/?[^>]+(>|$)/g, "");
                 $('#description').val(plainText);
-                $('#maintenance_description').val(plainText);
             });
 
-             $('.commonForm').on('submit', function() {
+              $('.commonForm').on('submit', function() {
+                var plainText = $('.summernote').summernote('code').replace(/<\/?[^>]+(>|$)/g, "");
+                $('#comment').val(plainText);
+            });
+
+              $('.commonForm').on('submit', function() {
                 var plainText = $('.summernote').summernote('code').replace(/<\/?[^>]+(>|$)/g, "");
                 $('#maintenance_description').val(plainText);
             });

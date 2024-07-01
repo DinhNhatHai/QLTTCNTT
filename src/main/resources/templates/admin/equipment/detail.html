@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+
+<body class="hold-transition sidebar-mini">
+<div th:replace="~{admin/fragments/style_detail :: style_detail}"></div>
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  <!-- Navbar -->
+  <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+  <!-- /.navbar -->
+  <!-- Main Sidebar Container -->
+
+  <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid my-2">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Thông tin chi tiết thiết bị</h1>
+          </div>
+          <div class="col-sm-6 text-right">
+            <a th:href="@{/admin/equipment}" class="btn btn-primary">Trở Lại</a>
+          </div>
+        </div>
+      </div>
+      <div th:replace="~{admin/fragments/message :: message}"></div>
+    </section>
+    <section class="content">
+      <div class="container">
+        <div class="device-details">
+          <div class="detail">
+            <label>Danh mục Trang thiết bị:</label>
+            <span th:text="${equipment.category.nameCategory}"></span>
+          </div>
+          <div class="detail">
+            <label>Loại Trang thiết bị:</label>
+            <span th:text="${equipment.equipmentType.nameEquipmentType}"></span>
+          </div>
+          <div class="detail">
+            <label>Tên Trang thiết bị:</label>
+            <span th:text="${equipment.nameEquipment}"></span>
+          </div>
+          <div class="detail">
+            <label>Serial Number:</label>
+            <span th:text="${equipment.serialNumber}"></span>
+          </div>
+          <div class="detail">
+            <label>Mã Model:</label>
+            <span th:text="${equipment.model}"></span>
+          </div>
+          <div class="detail">
+            <label>Mô tả:</label>
+            <span th:text="${equipment.description}"></span>
+          </div>
+          <div class="detail">
+            <label>Thương hiệu:</label>
+            <span th:text="${equipment.brand.nameBrand}"></span>
+          </div>
+          <div class="device-status">
+            <h4>Tình trạng Thiết bị</h4>
+            <div class="status-category">
+              <label>Danh mục Tình trạng:</label>
+              <span th:text="${equipment.statusEquipmentType.nameStatusType}"></span>
+            </div>
+            <div class="status-condition">
+              <label>Tình trạng Trang thiết bị:</label>
+              <span th:text="${equipment.statusEquipment.nameStatus}"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+  <div th:replace="~{admin/fragments/footer :: footer}"></div>
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+</body>
+</html>
