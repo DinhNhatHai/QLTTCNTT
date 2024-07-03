@@ -33,18 +33,30 @@ public class Department {
 
     @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
     private List<ReplacementUpgradeTicket> replacementUpgradeTickets;
+    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
+    private List<Equipment> equipment;
+
 
     public Department(){
 
     }
 
-    public Department(Long id, DepartmentType departmentType, String departmentName, String location, Boolean showHome, List<ReplacementUpgradeTicket> replacementUpgradeTickets) {
+    public Department(Long id, DepartmentType departmentType, String departmentName, String location, Boolean showHome, List<ReplacementUpgradeTicket> replacementUpgradeTickets, List<Equipment> equipment) {
         this.id = id;
         this.departmentType = departmentType;
         this.departmentName = departmentName;
         this.location = location;
         this.showHome = showHome;
         this.replacementUpgradeTickets = replacementUpgradeTickets;
+        this.equipment = equipment;
+    }
+
+    public List<Equipment> getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(List<Equipment> equipment) {
+        this.equipment = equipment;
     }
 
     public Boolean getShowHome() {

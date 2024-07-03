@@ -46,8 +46,7 @@ public class DepartmentController {
 
     @GetMapping("/edit/{id}")
     public String editDepartmentForm (@PathVariable Long id, Model model) {
-        Department department = departmentService.getDepartmentById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Nhân viên không tồn tại: " + id));
+        Department department = departmentService.getDepartmentById(id);
         model.addAttribute("department", department);
         model.addAttribute("departmentTypes", departmentTypeService.findAll());
         return "admin/department/edit";
@@ -66,8 +65,7 @@ public class DepartmentController {
 
     @GetMapping("/delete/{id}")
     public String deleteDepartment (@PathVariable Long id) {
-        Department department = departmentService.getDepartmentById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Nhân viên không tồn tại:" + id));
+        Department department = departmentService.getDepartmentById(id);
         departmentService.deleteById(id);
         return "redirect:/admin/department";
     }

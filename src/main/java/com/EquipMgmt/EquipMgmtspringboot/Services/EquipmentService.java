@@ -14,4 +14,5 @@ public interface EquipmentService {
     void deleteEquipment(Long id);
     List<Equipment> getAllEquipmentsByIds(List<Long> ids);
     List<Equipment> saveAllEquipments(List<Equipment> equipments);
+    List<Equipment> findByDepartmentId(Long departmentId);
 }

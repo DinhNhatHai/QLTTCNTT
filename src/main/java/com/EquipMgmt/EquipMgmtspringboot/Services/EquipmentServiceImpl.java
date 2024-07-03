@@ -46,4 +46,9 @@ public class EquipmentServiceImpl implements EquipmentService {
     public List<Equipment> saveAllEquipments(List<Equipment> equipments) {
         return equipmentRepository.saveAll(equipments);
     }
+
+    @Override
+    public List<Equipment> findByDepartmentId(Long departmentId) {
+        return equipmentRepository.findByDepartmentId(departmentId);
+    }
 }

@@ -39,6 +39,8 @@ public class EquipmentController {
     private EquipmentTypeService equipmentTypeService;
     @Autowired
     private QRCodeService qrCodeService;
+    @Autowired
+    private DepartmentService departmentService;
 
     @GetMapping
     public String listDevices(Model model) {
@@ -57,6 +59,7 @@ public class EquipmentController {
         model.addAttribute("statusEquipments", statusEquipmentService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
         model.addAttribute("categories", categoryService.getAll());
+        model.addAttribute("departments", departmentService.findAll());
         return "admin/equipment/create";
     }
 
@@ -68,6 +71,7 @@ public class EquipmentController {
             model.addAttribute("statusEquipments", statusEquipmentService.findAll());
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
             model.addAttribute("categories", categoryService.getAll());
+            model.addAttribute("departments", departmentService.findAll());
             return "admin/equipment/create";
         }
 
@@ -85,6 +89,7 @@ public class EquipmentController {
         model.addAttribute("statusEquipments", statusEquipmentService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
         model.addAttribute("categories", categoryService.getAll());
+        model.addAttribute("departments", departmentService.findAll());
 
         return "admin/equipment/create";
     }
@@ -99,6 +104,7 @@ public class EquipmentController {
         model.addAttribute("statusEquipments", statusEquipmentService.findAll());
         model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
         model.addAttribute("categories", categoryService.getAll());
+        model.addAttribute("departments", departmentService.findAll());
         return "admin/equipment/edit";
     }
 
@@ -110,6 +116,7 @@ public class EquipmentController {
             model.addAttribute("statusEquipments", statusEquipmentService.findAll());
             model.addAttribute("equipmentTypes", equipmentTypeService.findAll());
             model.addAttribute("categories", categoryService.getAll());
+            model.addAttribute("departments", departmentService.findAll());
             return "admin/equipment/edit";
         }
 

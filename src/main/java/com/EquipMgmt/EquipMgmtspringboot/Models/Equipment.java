@@ -67,11 +67,14 @@ public class Equipment {
 
     @OneToOne(mappedBy = "equipment")
     private Guarantee guarantee;
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     public Equipment() {
     }
 
-    public Equipment(Long id, String serialNumber, String model, String nameEquipment, String description, EquipmentType equipmentType, Category category, Brand brand, StatusEquipmentType statusEquipmentType, StatusEquipment statusEquipment, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets, List<Maintenance> maintenances, Receipt receipt, DeliveryBill deliveryBill, Guarantee guarantee) {
+    public Equipment(Long id, String serialNumber, String model, String nameEquipment, String description, EquipmentType equipmentType, Category category, Brand brand, StatusEquipmentType statusEquipmentType, StatusEquipment statusEquipment, List<ReplacementUpgradeTicket> originalReplacementUpgradeTickets, List<ReplacementUpgradeTicket> newReplacementUpgradeTickets, List<Maintenance> maintenances, Receipt receipt, DeliveryBill deliveryBill, Guarantee guarantee, Department department) {
         this.id = id;
         this.serialNumber = serialNumber;
         this.model = model;
@@ -88,6 +91,15 @@ public class Equipment {
         this.receipt = receipt;
         this.deliveryBill = deliveryBill;
         this.guarantee = guarantee;
+        this.department = department;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Long getId() {

@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     List<Equipment> findAllById(Iterable<Long> ids);
+    List<Equipment> findByDepartmentId(Long departmentId);
 }
