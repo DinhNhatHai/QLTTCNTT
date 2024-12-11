@@ -19,10 +19,8 @@ public class Category {
     @Column(name = "name", length = 50)
     private String nameCategory;
 
-
     @Column(name = "show_home")
     private Boolean showHome;
-
 
     @Column(name = "image")
     private String image;
@@ -31,29 +29,24 @@ public class Category {
     private String description;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
-    private Set<SubCategory> subCategory;
+    private Set<EquipmentType> equipmentTypes;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
-    private List<Device> devices;
+    private List<Equipment> equipments;
 
-    public Category(){
-
-    }
-
-    public Category(Long id, String nameCategory, Boolean showHome, String image, String description, Set<SubCategory> subCategory, List<Device> devices) {
+    public Category(Long id, String nameCategory, Boolean showHome, String image, String description, Set<EquipmentType> equipmentTypes, List<Equipment> equipments) {
         this.id = id;
         this.nameCategory = nameCategory;
         this.showHome = showHome;
         this.image = image;
         this.description = description;
-        this.subCategory = subCategory;
-        this.devices = devices;
+        this.equipmentTypes = equipmentTypes;
+        this.equipments = equipments;
     }
 
+    public Category(){
 
-
-
-    // Getters and Setters
+    }
 
     public Long getId() {
         return id;
@@ -63,11 +56,11 @@ public class Category {
         this.id = id;
     }
 
-    public String getNameCategory() {
+    public @Size(min = 3, max = 50) String getNameCategory() {
         return nameCategory;
     }
 
-    public void setNameCategory(String nameCategory) {
+    public void setNameCategory(@Size(min = 3, max = 50) String nameCategory) {
         this.nameCategory = nameCategory;
     }
 
@@ -95,19 +88,19 @@ public class Category {
         this.description = description;
     }
 
-    public Set<SubCategory> getSubCategory() {
-        return subCategory;
+    public Set<EquipmentType> getEquipmentTypes() {
+        return equipmentTypes;
     }
 
-    public void setSubCategory(Set<SubCategory> subCategory) {
-        this.subCategory = subCategory;
+    public void setEquipmentTypes(Set<EquipmentType> equipmentTypes) {
+        this.equipmentTypes = equipmentTypes;
     }
 
-    public List<Device> getDevices() {
-        return devices;
+    public List<Equipment> getEquipments() {
+        return equipments;
     }
 
-    public void setDevices(List<Device> devices) {
-        this.devices = devices;
+    public void setEquipments(List<Equipment> equipments) {
+        this.equipments = equipments;
     }
 }

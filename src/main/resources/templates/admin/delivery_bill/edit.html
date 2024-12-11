@@ -31,7 +31,7 @@
         <section class="content">
             <!-- Default box -->
             <div class="container-fluid">
-                <form class="commonForm" th:action="@{/admin/delivery-bill/create}" method="post" th:object="${equipmentSystem}">
+                <form class="commonForm" th:action="@{/admin/delivery-bill/edit/{id}(id=${deliveryBill.id})}" method="post" th:object="${deliveryBill}">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card mb-3">
@@ -39,70 +39,70 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="storage_id">Kho</label>
-                                                <select name="storage_id" id="storage_id" class="form-control">
-                                                    <option>Chọn Kho</option>
-                                                    <option>Kho CNTT</option>
+                                                <label for="warehouse_id">Kho</label>
+                                                <select th:field="*{warehouse.id}" id="warehouse_id" class="form-control">
+                                                    <option th:each="warehouse : ${warehouses}" th:value="${warehouse.id}" th:text="${warehouse.name}"></option>
                                                 </select>
-                                                <p></p>
                                             </div>
+
                                             <div class="mb-3">
-                                                <label for="sub_category_id">Loại Trang Thiết Bị</label>
-                                                <select name="sub_category_id" id="sub_category_id" class="form-control">
-                                                    <option>Chọn loại trang thiết bị</option>
-                                                    <option>RAM</option>
+                                                <label for="delivery_bill_id">ID Phiếu Xuất Kho</label>
+                                                <input type="text"  th:field="*{deliveryBillId}" th:name="delivery_bill_id" id="delivery_bill_id" class="form-control" placeholder="ID xuất nhập kho">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="equipment_type_id">Loại Trang Thiết Bị</label>
+                                                <select th:field="*{equipmentType.id}" id="equipment_type_id" class="form-control">
+                                                    <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.id}" th:text="${equipmentType.nameEquipmentType}"></option>
                                                 </select>
-                                                <p></p>
                                             </div>
+
                                             <div class="mb-3">
-                                                <label for="device_id">ID Trang Thiết Bị</label>
-                                                <select name="device_id" id="device_id" class="form-control">
-                                                    <option>Chọn trang thiết bị</option>
-                                                    <option>IDV2323</option>
+                                                <label for="equipment_id">ID Trang Thiết Bị</label>
+                                                <select th:field="*{equipment.id}" id="equipment_id" class="form-control">
+                                                    <option th:each="equipment : ${equipments}" th:value="${equipment.id}" th:text="${equipment.equipmentId}"></option>
                                                 </select>
-                                                <p></p>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="date_add_storage">Ngày Bàn Giao Trang Thiết Bị</label>
-                                                <input autocomplete="off" type="text" th:name="date_add_storage" id="date_add_storage" class="form-control" placeholder="Ngày bàn giao trang thiết bị">
-                                                <p></p>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="quality">Số Lượng</label>
-                                                <input type="text" th:name="quality" id="quality" class="form-control" placeholder="Số Lượng">
+                                                <label for="send_date">Ngày Bàn Giao Trang Thiết Bị</label>
+                                                <input autocomplete="off" th:field="*{sendDate}" type="text" id="send_date" class="form-control datetimepicker-input" placeholder="Ngày bàn giao trang thiết bị" data-target="#received_date" data-toggle="datetimepicker">
+                                                <p></p>
                                             </div>
+
+                                            <div class="mb-3">
+                                                <label for="quantity">Số Lượng</label>
+                                                <input type="text" th:field="*{quantity}" th:name="quantity" id="quantity" class="form-control" placeholder="Số Lượng">
+                                            </div>
+
                                             <div class="mb-3">
                                                 <label for="department_id">Đơn Vị Tiếp Nhận</label>
-                                                <select name="department_id" id="department_id" class="form-control">
-                                                    <option>Chọn đơn vị tiếp nhận</option>
-                                                    <option>Phòng Kế Toán</option>
+                                                <select th:field="*{department.id}" id="department_id" class="form-control">
+                                                    <option value="" disabled selected>Chọn đơn vị tiếp nhận</option>
+                                                    <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.departmentName}"></option>
                                                 </select>
-                                                <p></p>
                                             </div>
+
                                             <div class="mb-3">
                                                 <label for="employee_id">Nhân Viên Thực Hiện</label>
-                                                <select name="employee_id" id="employee_id" class="form-control">
-                                                    <option>Chọn nhân viên</option>
-                                                    <option>IDV2323</option>
+                                                <select th:field="*{employee.id}" id="employee_id" class="form-control">
+                                                    <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.name}"></option>
                                                 </select>
-                                                <p></p>
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="description">Mô Tả</label>
-                                            <textarea name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
+                                            <textarea  th:field="*{description}" name="description" id="description" cols="30" rows="10" class="summernote" placeholder="Mô tả"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="pb-5 pt-3">
-                                <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                                <button type="submit" class="btn btn-primary">Cập Nhật</button>
                                 <a th:href="@{/admin/delivery-bill}" class="btn btn-outline-dark ml-3">Hủy</a>
                             </div>
                         </div>

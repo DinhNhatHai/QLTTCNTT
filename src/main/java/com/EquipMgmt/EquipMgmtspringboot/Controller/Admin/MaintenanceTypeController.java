@@ -1,5 +1,6 @@
 package com.EquipMgmt.EquipMgmtspringboot.Controller.Admin;
 
+import com.EquipMgmt.EquipMgmtspringboot.Models.Employee;
 import com.EquipMgmt.EquipMgmtspringboot.Models.MaintenanceType;
 import com.EquipMgmt.EquipMgmtspringboot.Services.MaintenanceTypeService;
 import jakarta.validation.Valid;
@@ -29,7 +30,7 @@ public class MaintenanceTypeController {
     }
 
     @PostMapping("/create")
-    public String createVendor(@Valid @ModelAttribute MaintenanceType maintenanceType, BindingResult result) {
+    public String createMaintenanceType (@Valid @ModelAttribute MaintenanceType maintenanceType, BindingResult result) {
         if (result.hasErrors()) {
             return "admin/maintenance_type/create";
         }

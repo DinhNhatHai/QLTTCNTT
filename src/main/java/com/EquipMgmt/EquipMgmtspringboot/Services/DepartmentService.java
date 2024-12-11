@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 public interface DepartmentService {
     List<Department> findAll();
-    Optional<Department> getDepartmentById(Long id);
+    Department getDepartmentById(Long id);
     void save(Department department);
     void deleteById(Long id);
 }

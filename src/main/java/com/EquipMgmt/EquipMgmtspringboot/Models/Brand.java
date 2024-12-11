@@ -8,6 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "brand")
 public class Brand {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -21,9 +22,19 @@ public class Brand {
     private boolean showHome;
 
     @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
-    private List<Device> devices;
+    private List<Equipment> equipments;
 
-    // Getters and Setters
+
+    public Brand() {
+    }
+
+    public Brand(Long id, String nameBrand, boolean showHome, List<Equipment> equipments) {
+        this.id = id;
+        this.nameBrand = nameBrand;
+        this.showHome = showHome;
+        this.equipments = equipments;
+    }
+
     public Long getId() {
         return id;
     }
@@ -32,11 +43,11 @@ public class Brand {
         this.id = id;
     }
 
-    public String getNameBrand() {
+    public @Size(min = 1, max = 50) String getNameBrand() {
         return nameBrand;
     }
 
-    public void setNameBrand(String nameBrand) {
+    public void setNameBrand(@Size(min = 1, max = 50) String nameBrand) {
         this.nameBrand = nameBrand;
     }
 
@@ -46,5 +57,12 @@ public class Brand {
 
     public void setShowHome(boolean showHome) {
         this.showHome = showHome;
+    }
+
+    public List<Equipment> getEquipment() {
+        return equipments;
+    }
+    public void setEquipment(List<Equipment> equipments) {
+        this.equipments = equipments;
     }
 }

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{admin/fragments/head :: head}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+        .modal-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav th:replace="~{admin/fragments/navbar :: navbar}"></nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+
+    <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid my-2">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Danh Sách Trang Thiết Bị</h1>
+                        <select id="departmentSelect" name="departmentId" onchange="loadDepartmentDetails()" class="form-control" style="width:200px">
+                            <option th:each="department : ${departments}"
+                                    th:value="${department.id}"
+                                    th:text="${department.departmentName}"
+                                    th:selected="${department.id} == ${selectedDepartment.id}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div th:replace="~{admin/fragments/message :: message}"></div>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <form action="" method="get">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <button type="button" onclick=""
+                                                class="btn btn-default btn-sm">Reset</button>
+                                    </div>
+                                    <div class="card-tools">
+                                        <div class="input-group input-group" style="width: 250px;">
+                                            <input value="" type="text" name="keyword" class="form-control float-right" placeholder="Search">
+
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-default">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Loại Trang Thiết Bị</th>
+                                        <th>Tên Trang Thiết Bị</th>
+                                        <th>Serial Number</th>
+                                        <th>Model</th>
+                                        <th>Tình Trạng</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr th:each="equipment, numberStart : ${equipments}">
+                                        <td th:text="${numberStart.index + 1}"></td>
+                                        <td th:text="${equipment.equipmentType.nameEquipmentType}"></td>
+                                        <td th:text="${equipment.nameEquipment}"></td>
+                                        <td th:text="${equipment.serialNumber}"></td>
+                                        <td th:text="${equipment.model}"></td>
+                                        <td th:text="${equipment.statusEquipment.nameStatus}"></td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer clearfix">
+                                <ul class="pagination pagination m-0 float-right">
+                                    <li class="page-item"><a class="page-link" href="#">«</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">»</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <!-- /.container-fluid -->
+
+        </section>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div th:replace="~{admin/fragments/footer :: footer}"></div>
+</div>
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<div th:replace="~{admin/fragments/scripts :: scripts}"></div>
+
+
+
+<script>
+        function loadDepartmentDetails() {
+            var departmentId = document.getElementById("departmentSelect").value;
+            window.location.href = "/admin/department-equipment?departmentId=" + departmentId;
+        }
+    </script>
+</body>
+</html>

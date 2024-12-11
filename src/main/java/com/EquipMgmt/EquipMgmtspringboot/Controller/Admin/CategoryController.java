@@ -71,11 +71,13 @@ public class CategoryController {
     }
 
     @GetMapping("/edit/{id}")
-    public String edit (Model model, @PathVariable("id") Long id){
-        Category category = this.categoryService.findById(id);
+    public String edit(Model model, @PathVariable("id") Long id) {
+        Category category = this.categoryService.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid category ID: " + id));
         model.addAttribute("category", category);
         return "admin/category/edit";
     }
+
     @PostMapping("/edit")
     public String update (@ModelAttribute("category") Category category, @RequestParam("fileImage") MultipartFile
             file){
